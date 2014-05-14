@@ -48,8 +48,7 @@ gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails', '~> 4.0'
-  gem 'database_cleaner'
+  gem 'capybara'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
