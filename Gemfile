@@ -1,14 +1,19 @@
 source 'https://rubygems.org'
 
-group :production do
-  gem 'pg'
-  #make sure rails will run properly on Heroku
-  gem 'rails_12factor'
-end
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.4'
 
-group :development do
-  gem 'sqlite3'
+# Use PG for Heroku production environment
+group :production do
+  gem 'pg', '0.15.1'
+  gem 'rails_12factor', '0.0.2'
 end
+# Use Sqlite3 for development environment
+group :development do
+  gem 'sqlite3', '1.3.8'
+end
+# Use Twitter Bootsrap Framework
+gem 'bootstrap-sass', '~> 3.1.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -26,7 +31,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-# gem 'turbolinks'
+gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -37,9 +42,14 @@ group :doc do
 end
 
 ######ADDED GEMS############
+gem 'thin', group: :development
 gem 'newrelic_rpm'
 
-
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'database_cleaner'
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
