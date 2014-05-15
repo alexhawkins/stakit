@@ -1,6 +1,7 @@
 /*BOOTSTRAP CUSTOMIZATIONS*/
 
 //BOOTSTRAP COLORS
+$purple: #843ab8;
 $brand-primary: #29a9eb;
   $brand-primary-hover: darken($brand-primary, 5.5%);
 
@@ -16,21 +17,32 @@ $brand-warning: #ff9600;
 $brand-danger: #eb2949;
   $brand-danger-hover: darken($brand-warning, 5.5%);
 
+//BASIC ELEMENT OVERIDES
+body {
+  //background-color: $purple;
+
+}
+a {
+  color: $brand-primary;
+  &:hover{
+    color: $brand-primary-hover;
+  }
+}
 
 /*BOOTSTRAP BUTTONS*/
 .btn {
     //box shadow
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
-    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
-    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
+      -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
+      -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
     padding: .6em 1.875em;
     font-size: 1.2em;
     //border radius
     border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
     //text shadow
     text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
@@ -67,9 +79,41 @@ $brand-danger: #eb2949;
   }
 }
 
+/************* LOGIN PAGE/REGISTRATION PAGES***************/
 
-//BASICS 
+//SURROUNDING BOX FOR LOGIN
+.dialog-box{
+  background: $purple;
+  border: 1px solid rgba(0,0,0,0.2);
+  margin-top: 60px;
+  padding: 40px;
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+  background-image: url("/assets/noise.png"),linear-gradient(#a648c4,#7930a7);
+  border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(255,255,255,0.1),inset 0px 1px rgba(255,255,255,0.4);
+    -webkit-box-shadow: 0 1px 2px rgba(255,255,255,0.1),inset 0 1px rgba(255,255,255,0.4);
+    -moz-box-shadow: 0 1px 2px rgba(255,255,255,0.1),inset 0 1px rgba(255,255,255,0.4);
+}
+//ERRORS on REGISTRATION AND LOGIN
+#error_explanation{
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(255,255,255,0.1),inset 0px 1px rgba(255,255,255,0.4);
+    -webkit-box-shadow: 0 1px 2px rgba(255,255,255,0.1),inset 0 1px rgba(255,255,255,0.4);
+    -moz-box-shadow: 0 1px 2px rgba(255,255,255,0.1),inset 0 1px rgba(255,255,255,0.4);
+  h2{
+  font-size: 1.4em;
+  }
 
-a {
-color: $brand-primary;
 }
