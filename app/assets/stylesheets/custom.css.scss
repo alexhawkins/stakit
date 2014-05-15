@@ -1,0 +1,75 @@
+/*BOOTSTRAP CUSTOMIZATIONS*/
+
+//BOOTSTRAP COLORS
+$brand-primary: #29a9eb;
+  $brand-primary-hover: darken($brand-primary, 5.5%);
+
+$brand-success: #1eb760;
+  $brand-success-hover: darken($brand-success, 5.5%);
+
+$brand-info: #ab2afd;
+  $brand-info-hover: darken($brand-info, 5.5%);
+
+$brand-warning: #ff9600;
+  $brand-warning-hover: darken($brand-warning, 5.5%);
+
+$brand-danger: #eb2949;
+  $brand-danger-hover: darken($brand-warning, 5.5%);
+
+
+/*BOOTSTRAP BUTTONS*/
+.btn {
+    //box shadow
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
+    padding: .6em 1.875em;
+    font-size: 1.2em;
+    //border radius
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    //text shadow
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.btn-success {
+  border: 1px solid #178b49;
+  background-color: $brand-success;
+  &:hover{
+    background-color: $brand-success-hover;
+  }
+}
+.btn-primary {
+  background-color: $brand-primary;
+   &:hover{
+    background-color: $brand-primary-hover;
+  }
+}
+.btn-danger {
+  background-color: $brand-danger;
+   &:hover{
+    background-color: $brand-danger-hover;
+  }
+}
+.btn-info {
+  background-color: $brand-info;
+   &:hover{
+    background-color: $brand-info-hover;
+  }
+}
+.btn-warning {
+  background-color: $brand-warning;
+   &:hover{
+    background-color: $brand-warning-hover;
+  }
+}
+
+
+//BASICS 
+
+a {
+color: $brand-primary;
+}
