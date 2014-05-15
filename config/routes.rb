@@ -1,4 +1,10 @@
 Stakit::Application.routes.draw do
+  resources :stack_supplements
+  resources :frenquencies
+  resources :stacks do
+    resources :stack_supplements
+  end
+  resources :supplements
   get 'landing/index'
   get 'landing/about'
   
@@ -11,5 +17,6 @@ Stakit::Application.routes.draw do
               :edit => "settings" }
 
   resources :users, only: [:update]
+
   root to: 'landing#index'
 end

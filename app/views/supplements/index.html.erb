@@ -1,0 +1,31 @@
+<h1>Listing supplements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Default dose</th>
+      <th>Default frequency</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @supplements.each do |supplement| %>
+      <tr>
+        <td><%= supplement.name %></td>
+        <td><%= supplement.default_dose %></td>
+        <td><%= supplement.default_frequency %></td>
+        <td><%= link_to 'Show', supplement %></td>
+        <td><%= link_to 'Edit', edit_supplement_path(supplement) %></td>
+        <td><%= link_to 'Destroy', supplement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Supplement', new_supplement_path %>

@@ -1,0 +1,29 @@
+<h1>Listing stacks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stacks.each do |stack| %>
+      <tr>
+        <td><%= stack.name %></td>
+        <td><%= stack.user %></td>
+        <td><%= link_to 'Show', stack %></td>
+        <td><%= link_to 'Edit', edit_stack_path(stack) %></td>
+        <td><%= link_to 'Destroy', stack, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stack', new_stack_path %>

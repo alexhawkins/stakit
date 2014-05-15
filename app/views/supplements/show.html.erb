@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @supplement.name %>
+</p>
+
+<p>
+  <strong>Default dose:</strong>
+  <%= @supplement.default_dose %>
+</p>
+
+<p>
+  <strong>Default frequency:</strong>
+  <%= @supplement.default_frequency %>
+</p>
+
+<%= link_to 'Edit', edit_supplement_path(@supplement) %> |
+<%= link_to 'Back', supplements_path %>

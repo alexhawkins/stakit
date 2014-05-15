@@ -11,7 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514225610) do
+ActiveRecord::Schema.define(version: 20140515151451) do
+
+  create_table "frequencies", force: true do |t|
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stack_supplements", force: true do |t|
+    t.integer  "stack_id"
+    t.integer  "supplement_id"
+    t.integer  "frequency_id"
+    t.string   "dose"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stack_supplements", ["frequency_id"], name: "index_stack_supplements_on_frequency_id"
+  add_index "stack_supplements", ["stack_id"], name: "index_stack_supplements_on_stack_id"
+  add_index "stack_supplements", ["supplement_id"], name: "index_stack_supplements_on_supplement_id"
+
+  create_table "stacks", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stacks", ["user_id"], name: "index_stacks_on_user_id"
+
+  create_table "supplements", force: true do |t|
+    t.string   "name"
+    t.string   "default_dose"
+    t.string   "default_frequency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
