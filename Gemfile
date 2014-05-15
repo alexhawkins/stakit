@@ -18,7 +18,7 @@ end
 gem 'bootstrap-sass', '~> 3.1.1'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '4.0.1'
+gem 'sass-rails', '4.0.2'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -30,7 +30,7 @@ gem 'coffee-rails', '4.0.1'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '3.0.4'
+gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 #gem 'turbolinks', '1.1.1'
@@ -43,13 +43,18 @@ group :doc do
 end
 
 ######ADDED GEMS############
-gem 'thin', group: :development
-gem 'newrelic_rpm'
-
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
 end
+
+gem 'thin', group: :development
+gem 'newrelic_rpm'
+gem 'devise'
+# handle sensitive data with environment variables
+gem 'figaro'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
