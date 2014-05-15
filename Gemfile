@@ -53,6 +53,7 @@ gem 'newrelic_rpm'
 gem 'devise'
 # handle sensitive data with environment variables
 gem 'figaro'
+gem 'pundit'
 
 
 # Use ActiveModel has_secure_password

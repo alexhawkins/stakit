@@ -5,6 +5,7 @@ class SupplementsController < ApplicationController
   # GET /supplements.json
   def index
     @supplements = Supplement.all
+    authorize @supplements
   end
 
   # GET /supplements/1
@@ -15,6 +16,7 @@ class SupplementsController < ApplicationController
   # GET /supplements/new
   def new
     @supplement = Supplement.new
+    authorize @supplement
   end
 
   # GET /supplements/1/edit
@@ -25,6 +27,7 @@ class SupplementsController < ApplicationController
   # POST /supplements.json
   def create
     @supplement = Supplement.new(supplement_params)
+    authorize @supplement
 
     respond_to do |format|
       if @supplement.save
@@ -65,6 +68,7 @@ class SupplementsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_supplement
       @supplement = Supplement.find(params[:id])
+      authorize @supplement
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

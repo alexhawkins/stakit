@@ -1,9 +1,8 @@
-<h1>Listing stack_supplements</h1>
+<h1><%= @stack.name %></h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Stack</th>
       <th>Supplement</th>
       <th>Frequency</th>
       <th>Dose</th>
@@ -16,10 +15,10 @@
   <tbody>
     <% @stack_supplements.each do |stack_supplement| %>
       <tr>
-        <td><%= stack_supplement.stack %></td>
-        <td><%= stack_supplement.supplement %></td>
-        <td><%= stack_supplement.frequency %></td>
+        <td><%= stack_supplement.supplement.name %></td>
         <td><%= stack_supplement.dose %></td>
+        <td><%= stack_supplement.frequency.value %></td>
+
         <td><%= link_to 'Show', stack_stack_supplement_path(@stack, stack_supplement) %></td>
         <td><%= link_to 'Edit', edit_stack_stack_supplement_path(@stack, stack_supplement) %></td>
         <td><%= link_to 'Destroy', stack_stack_supplement_path(@stack, stack_supplement) , method: :delete, data: { confirm: 'Are you sure?' } %></td>

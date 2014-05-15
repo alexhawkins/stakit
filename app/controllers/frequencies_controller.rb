@@ -5,6 +5,7 @@ class FrequenciesController < ApplicationController
   # GET /frequencies.json
   def index
     @frequencies = Frequency.all
+    authorize @frequencies
   end
 
   # GET /frequencies/1
@@ -15,6 +16,7 @@ class FrequenciesController < ApplicationController
   # GET /frequencies/new
   def new
     @frequency = Frequency.new
+    authorize @frequency
   end
 
   # GET /frequencies/1/edit
@@ -25,6 +27,7 @@ class FrequenciesController < ApplicationController
   # POST /frequencies.json
   def create
     @frequency = Frequency.new(frequency_params)
+    authorize @frequency
 
     respond_to do |format|
       if @frequency.save
@@ -65,6 +68,7 @@ class FrequenciesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_frequency
       @frequency = Frequency.find(params[:id])
+      authorize @frequency
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

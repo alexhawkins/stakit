@@ -5,7 +5,7 @@ class StackSupplementsController < ApplicationController
   # GET /stack_supplements
   # GET /stack_supplements.json
   def index
-    @stack_supplements = StackSupplement.all
+    @stack_supplements = @stack.stack_supplements
   end
 
   # GET /stack_supplements/1
@@ -66,6 +66,7 @@ class StackSupplementsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_stack_supplement
       @stack_supplement = StackSupplement.find(params[:id])
+      authorize @stack_supplement
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -75,5 +76,6 @@ class StackSupplementsController < ApplicationController
 
     def set_stack
       @stack = Stack.find(params[:stack_id])
+      authorize @stack
     end
 end

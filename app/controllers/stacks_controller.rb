@@ -4,17 +4,25 @@ class StacksController < ApplicationController
   # GET /stacks
   # GET /stacks.json
   def index
-    @stacks = Stack.all
+    if current_user
+      @stacks = current_user.stacks
+      authorize @stacks
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # GET /stacks/1
   # GET /stacks/1.json
   def show
+    @user = current_user
   end
 
   # GET /stacks/new
   def new
     @stack = Stack.new
+    @user = current_user
+    authorize @stack
   end
 
   # GET /stacks/1/edit
@@ -65,6 +73,7 @@ class StacksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_stack
       @stack = Stack.find(params[:id])
+      authorize @stack
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
