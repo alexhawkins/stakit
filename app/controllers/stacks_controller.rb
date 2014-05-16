@@ -21,7 +21,6 @@ class StacksController < ApplicationController
   # GET /stacks/new
   def new
     @stack = Stack.new
-    @user = current_user
     authorize @stack
   end
 
@@ -33,7 +32,7 @@ class StacksController < ApplicationController
   # POST /stacks.json
   def create
     @stack = Stack.new(stack_params)
-
+    @stack.user = current_user
     respond_to do |format|
       if @stack.save
         format.html { redirect_to @stack, notice: 'Stack was successfully created.' }
