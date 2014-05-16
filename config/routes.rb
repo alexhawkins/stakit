@@ -1,5 +1,6 @@
 Stakit::Application.routes.draw do
   resources :stack_supplements
+
   resources :frequencies
   resources :stacks do
     resources :stack_supplements

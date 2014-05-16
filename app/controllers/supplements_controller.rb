@@ -4,8 +4,13 @@ class SupplementsController < ApplicationController
   # GET /supplements
   # GET /supplements.json
   def index
-    @supplements = Supplement.all
-    authorize @supplements
+    #get all supplements where the name is like the auto complete query
+    #and match it to the term parameter in jquery-ui
+    #order the supplments by name
+    @supplements = Supplement.order(:name).where("name like ?", "%#{params[:term]}%")
+    #return a json array of the supplements
+    render json: @supplements.map(&:name)
+    #authorize @supplements
   end
 
   # GET /supplements/1

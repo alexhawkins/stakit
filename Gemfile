@@ -31,7 +31,7 @@ gem 'coffee-rails', '4.0.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
+#gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 #gem 'turbolinks', '1.1.1'
 
@@ -54,6 +54,7 @@ gem 'devise'
 # handle sensitive data with environment variables
 gem 'figaro'
 gem 'pundit'
+#gem 'rails3-jquery-autocomplete'
 
 
 # Use ActiveModel has_secure_password

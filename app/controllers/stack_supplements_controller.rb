@@ -1,7 +1,7 @@
 class StackSupplementsController < ApplicationController
   before_action :set_stack
   before_action :set_stack_supplement, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /stack_supplements
   # GET /stack_supplements.json
   def index
@@ -29,7 +29,7 @@ class StackSupplementsController < ApplicationController
 
     respond_to do |format|
       if @stack_supplement.save
-        format.html { redirect_to [@stack, @stack_supplement], notice: 'Stack supplement was successfully created.' }
+        format.html { redirect_to :back, notice: 'Stack supplement was successfully created.' }
         format.json { render action: 'show', status: :created, location: [@stack, @stack_supplement] }
       else
         format.html { render action: 'new' }
@@ -71,7 +71,7 @@ class StackSupplementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stack_supplement_params
-      params.require(:stack_supplement).permit(:stack_id, :supplement_id, :frequency_id, :dose)
+      params.require(:stack_supplement).permit(:stack_id, :supplement_name, :supplement_id, :frequency_id, :dose)
     end
 
     def set_stack

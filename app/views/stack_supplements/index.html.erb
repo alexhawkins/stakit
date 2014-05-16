@@ -1,11 +1,14 @@
-<h1><%= @stack.name %></h1>
+<h1><%= @stack.name %> Stack</h1>
+
+<%= render partial: 'stack_supplements/form', locals: {stack: @stack, stack_supplement: StackSupplement.new }%>
+
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Supplement</th>
-      <th>Frequency</th>
       <th>Dose</th>
+      <th>Frequency</th>
       <th></th>
       <th></th>
       <th></th>

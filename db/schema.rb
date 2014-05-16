@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 20140515205627) do
   end
 
   create_table "stack_supplements", force: true do |t|
-    t.integer  "stack_id"
-    t.integer  "supplement_id"
-    t.integer  "frequency_id"
-    t.string   "dose"
+    t.integer  "stack_id",                        null: false
+    t.integer  "supplement_id",                   null: false
+    t.integer  "frequency_id",  default: 2,       null: false
+    t.string   "dose",          default: "500mg", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

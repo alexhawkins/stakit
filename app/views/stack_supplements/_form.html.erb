@@ -1,32 +1,30 @@
-<%= form_for [@stack, @stack_supplement] do |f| %>
-  <% if @stack_supplement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@stack_supplement.errors.count, "error") %> prohibited this stack_supplement from being saved:</h2>
-
+<%= form_for [stack, stack_supplement] do |f| %>
+  <% if stack_supplement.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(stack_supplement.errors.count, "error") %> prohibited this stack_supplement from being saved:</h2>
       <ul>
-      <% @stack_supplement.errors.full_messages.each do |msg| %>
+      <% stack_supplement.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :supplement_id %><br>
-    <%= f.text_field :supplement_id %>
+  <div class="form-group">
+    <%= f.text_field :supplement_name,  data: {autocomplete_source: supplements_path}, class: 'form-control', placeholder: "Enter Supplement" %>
   </div>
- 
-  <div class="field">
-    <%= f.label :dose %><br>
-    <%= f.text_field :dose %>
+<!--
+  <div class="form-group">
+  <%= f.collection_select :supplement_id, Supplement.order(:name), :id, :name, include_blank: false %>
   </div>
+-->
 
-   <div class="field">
-    <%= f.label :frequency_id %><br>
-    <%= f.text_field :frequency_id %>
-  </div>
-  
-  <div class="actions">
-    <%= f.submit %>
+<div class="form-group">
+  <%= f.collection_select :stack_id, Stack.order(:name), :id, :name, include_blank: false %>
+</div>
+
+
+  <div class="form-group">
+    <%= f.submit "Add a supplement to your Stack", class: 'btn btn-success' %>
   </div>
 <% end %>
