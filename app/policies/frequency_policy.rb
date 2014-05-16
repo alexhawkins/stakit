@@ -9,7 +9,7 @@ class FrequencyPolicy < ApplicationPolicy
   end
 
   def new?
-    false
+    show?
   end
 
   def destroy?
