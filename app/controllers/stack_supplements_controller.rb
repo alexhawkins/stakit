@@ -8,6 +8,7 @@ class StackSupplementsController < ApplicationController
   def index
     @stack_supplements = @stack.stack_supplements.order("id DESC")
     @new_stack_supplement = StackSupplement.new
+    @new_stack = Stack.new
     @user = current_user
   end
 

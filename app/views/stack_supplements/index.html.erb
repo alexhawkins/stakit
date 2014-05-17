@@ -1,37 +1,79 @@
 <div class="row">
   <div class="col-md-4">
   <h2><%= @user.name %></h2>
-  <!-- Check to see if user has added any stacks -->
-    <% unless @user.stacks.empty? %>
-    <!-- order the stacks alphabetically so that they stay in the same position
-         upon page reload-->
-     <% @user.stacks.order('name ASC').each do |stack| %>
-       <ul class="nav nav-pills nav-stacked">
-       <!-- check to see if the selected stack is the stack page the user is
-            currently on. If it is, then we want the tab to be active -->
-        <% if stack == @stack  %>
-          <li class="active">
-            <a href="#">
-                <%= content_tag :span, class: "badge pull-right", id: "stack-count-#{stack.id}" do %>
-                <%= stack.supplements.count%>
-                <% end %>
-              <%= stack.name %>
+  <!-- USER SIDE PANELS -->
+    <div class="panel-group" id="accordion">
+    <!--ACCORDIAN PANEL 1 - MY STACKS -->
+       <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMyStacks">
+              My Stacks
             </a>
-          </li>     
-        <% else %>
-          <li>
-            <a href="<%="#{stack_stack_supplements_path(stack)}"%>">
-              <%= content_tag :span, class: "badge pull-right", id: "stack-count-#{stack.id}" do %>
-                <%= stack.supplements.count%>
+          </h4>
+        </div>
+        <div id="collapseMyStacks" class="panel-collapse collapse in">
+        <!--MY STACK MAIN BODY -->
+          <div class="panel-body">
+          <!-- Check to see if user has added any stacks -->
+          <% unless @user.stacks.empty? %>
+          <!-- order the stacks alphabetically so that they stay in the same position upon page reload-->
+          <!-- NAVIGAION PILLS WITHIN MY STACK BODY -->
+           <% @user.stacks.order('name ASC').each do |stack| %>
+             <ul class="nav nav-pills nav-stacked">
+             <!-- check to see if the selected stack is the stack page the user is
+                  currently on. If it is, then we want the tab to be active -->
+              <% if stack == @stack  %>
+               <!-- ACTIVE NAV PILL -->
+                <li class="active">
+                  <a href="#">
+                  <!-- STACK SUPPLEMENT COUNT -->
+                    <%= content_tag :span, class: "badge pull-right", id: "stack-count-#{stack.id}" do %>
+                      <%= stack.supplements.count%>
+                    <% end %>
+                   <!-- STACK SUPPLEMENT NAME -->
+                    <%= stack.name %>
+                  </a>
+                </li>     
+              <% else %>
+                <li>
+                <!-- INACTIVE NAV PILL -->
+                  <a href="<%="#{stack_stack_supplements_path(stack)}"%>">
+                    <%= content_tag :span, class: "badge pull-right", id: "stack-count-#{stack.id}" do %>
+                      <%= stack.supplements.count%>
+                    <% end %>
+                    <%= stack.name %>
+                  </a>
+                </li>
               <% end %>
-              <%= stack.name %>
+             </ul>
+            <% end %>
+          <% end %>      
+          </div>
+        </div>
+      </div>  
+      <!--ACCORDIAN PANEL 2 - CREATE A NEW STACK -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseNewStack">
+              Create a New Stack
             </a>
-          </li>
-        <% end %>
-       </ul>
-      <% end %>
-    <% end %>
+          </h4>
+        </div>
+        <div id="collapseNewStack" class="panel-collapse collapse">
+          <div class="panel-body">
+          <!-- NEW STACK FORM -->
+           <div class="create-new-stack">
+            <%= render partial: 'stack_supplements/stacks/form', locals: {stack: @new_stack} %>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- MAIN BODY/ RIGHT COLUMN-->
   <div class="col-md-8">
     <!-- STACK_SUPPLEMENT FORM -->
     <%= render partial: 'stack_supplements/form', locals: {stack: @stack, stack_supplement: StackSupplement.new }%>
@@ -48,13 +90,56 @@
       </thead>
       <tbody id='js-stack-supplements'>
       <!-- RENDER INDIVIDUAL STACK SUPPLEMENTS-->
-              <%= render @stack_supplements %>
+        <%= render @stack_supplements %>
       </tbody>  
     </table>
 
-
-    <br>
-
-    <%= link_to 'New Stack supplement', new_stack_stack_supplement_path(@stack) %>
+    <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
+    <div class="panel-group" id="accordion2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+              Important Details About this Stack
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <div class="panel-body">
+            Stacking supplements has many benefits. For one, there are many ways to gain muscle or lose fat, so by combining supplements that help you do either one through different pathways is very important.
+          </div>
+        </div>
+      </div>
+      <!--ACCORDIAN PANEL 2/MAIN BODY - VIDEO LINKS-->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+              YouTube Links
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+          <div class="panel-body">
+           Stacking supplements has many benefits. For one, there are many ways to gain muscle or lose fat, so by combining supplements that help you do either one through different pathways is very important.
+          </div>
+        </div>
+      </div>
+      <!--ACCORDIAN PANEL 3/MAIN BODY - VIDEO LINKS-->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+              Pictures
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+          <div class="panel-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

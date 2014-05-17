@@ -35,7 +35,7 @@ class StacksController < ApplicationController
     @stack.user = current_user
     respond_to do |format|
       if @stack.save
-        format.html { redirect_to @stack, notice: 'Stack was successfully created.' }
+        format.html { redirect_to stack_stack_supplements_path(@stack), notice: 'Stack was successfully created.' }
         format.json { render action: 'show', status: :created, location: @stack }
       else
         format.html { render action: 'new' }
