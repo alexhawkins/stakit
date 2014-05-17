@@ -2,27 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $brand-primary: #29a9eb;
-$brand-primary-hover: lighten($brand-primary, 30%);
+$brand-primary-hover: lighten($brand-primary, 20%);
 
 ul.ui-autocomplete {
   position: absolute;
   list-style: none;
   margin: 0;
   padding: 0;
-  border: solid 1px #999;
+  border: solid 1px $brand-primary-hover;
   cursor: default;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
   li {
     background-color: #FFF;
-    border-top: solid 1px #DDD;
     margin: 0;
     padding: 0;
     a {
       color: #000;
       display: block;
-      padding: 3px;
+      padding: 2px 10px;
     }
     a.ui-state-hover, a.ui-state-focus {
-      background-color: #dddddd;
+      background-color: #3875d7;
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #3875d7), color-stop(90%, #2a62bc));
+      background-image: -webkit-linear-gradient(#3875d7 20%, #2a62bc 90%);
+      background-image: -moz-linear-gradient(#3875d7 20%, #2a62bc 90%);
+      background-image: -o-linear-gradient(#3875d7 20%, #2a62bc 90%);
+      background-image: linear-gradient(#3875d7 20%, #2a62bc 90%);
+      color: white;
+      text-decoration: none;
     }
   }
 }

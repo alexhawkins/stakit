@@ -1,11 +1,14 @@
 class StackSupplementsController < ApplicationController
+  respond_to :html, :js
   before_action :set_stack
   before_action :set_stack_supplement, only: [:show, :edit, :update, :destroy]
   
   # GET /stack_supplements
   # GET /stack_supplements.json
   def index
-    @stack_supplements = @stack.stack_supplements
+    @stack_supplements = @stack.stack_supplements.order("id DESC")
+    @new_stack_supplement = StackSupplement.new
+    @user = current_user
   end
 
   # GET /stack_supplements/1
@@ -26,14 +29,17 @@ class StackSupplementsController < ApplicationController
   # POST /stack_supplements.json
   def create
     @stack_supplement = @stack.stack_supplements.build(stack_supplement_params)
+    @new_stack_supplement = StackSupplement.new
 
     respond_to do |format|
       if @stack_supplement.save
         format.html { redirect_to :back, notice: 'Stack supplement was successfully created.' }
         format.json { render action: 'show', status: :created, location: [@stack, @stack_supplement] }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @stack_supplement.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -59,6 +65,7 @@ class StackSupplementsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to stack_stack_supplements_url(@stack) }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -71,7 +78,7 @@ class StackSupplementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stack_supplement_params
-      params.require(:stack_supplement).permit(:stack_id, :supplement_name, :supplement_id, :frequency_id, :dose)
+      params.require(:stack_supplement).permit(:stack_id, :supplement_name, :supplement_ids, :supplement_id, :frequency_id, :dose)
     end
 
     def set_stack

@@ -1,0 +1,10 @@
+<%= content_tag :tr, id: "js-stack-supplements-#{stack_supplement.id}" do %>
+  <td><%= stack_supplement.supplement.name %></td>
+  <td><%= stack_supplement.dose %></td>
+  <td><%= stack_supplement.frequency.value %></td>
+
+  <td><%= link_to 'Edit', edit_stack_stack_supplement_path(@stack, stack_supplement) %></td>
+
+   <td><%= link_to " ", stack_stack_supplement_path(@stack, stack_supplement), method: :delete, class: 'glyphicon glyphicon-remove-circle', remote: true, data: { confirm: 'Are you sure?' }%>
+   </td>
+<% end %>

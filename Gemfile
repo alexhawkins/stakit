@@ -54,6 +54,7 @@ gem 'devise'
 # handle sensitive data with environment variables
 gem 'figaro'
 gem 'pundit'
+gem 'chosen-rails'
 #gem 'rails3-jquery-autocomplete'
 
 

@@ -1,35 +1,60 @@
-<h1><%= @stack.name %> Stack</h1>
-
-<%= render partial: 'stack_supplements/form', locals: {stack: @stack, stack_supplement: StackSupplement.new }%>
-
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Supplement</th>
-      <th>Dose</th>
-      <th>Frequency</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @stack_supplements.each do |stack_supplement| %>
-      <tr>
-        <td><%= stack_supplement.supplement.name %></td>
-        <td><%= stack_supplement.dose %></td>
-        <td><%= stack_supplement.frequency.value %></td>
-
-        <td><%= link_to 'Show', stack_stack_supplement_path(@stack, stack_supplement) %></td>
-        <td><%= link_to 'Edit', edit_stack_stack_supplement_path(@stack, stack_supplement) %></td>
-        <td><%= link_to 'Destroy', stack_stack_supplement_path(@stack, stack_supplement) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="row">
+  <div class="col-md-4">
+  <h2><%= @user.name %></h2>
+  <!-- Check to see if user has added any stacks -->
+    <% unless @user.stacks.empty? %>
+    <!-- order the stacks alphabetically so that they stay in the same position
+         upon page reload-->
+     <% @user.stacks.order('name ASC').each do |stack| %>
+       <ul class="nav nav-pills nav-stacked">
+       <!-- check to see if the selected stack is the stack page the user is
+            currently on. If it is, then we want the tab to be active -->
+        <% if stack == @stack  %>
+          <li class="active">
+            <a href="#">
+                <%= content_tag :span, class: "badge pull-right", id: "stack-count-#{stack.id}" do %>
+                <%= stack.supplements.count%>
+                <% end %>
+              <%= stack.name %>
+            </a>
+          </li>     
+        <% else %>
+          <li>
+            <a href="<%="#{stack_stack_supplements_path(stack)}"%>">
+              <%= content_tag :span, class: "badge pull-right", id: "stack-count-#{stack.id}" do %>
+                <%= stack.supplements.count%>
+              <% end %>
+              <%= stack.name %>
+            </a>
+          </li>
+        <% end %>
+       </ul>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <div class="col-md-8">
+    <!-- STACK_SUPPLEMENT FORM -->
+    <%= render partial: 'stack_supplements/form', locals: {stack: @stack, stack_supplement: StackSupplement.new }%>
 
-<br>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Supplement</th>
+          <th>Dose</th>
+          <th>Frequency</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id='js-stack-supplements'>
+      <!-- RENDER INDIVIDUAL STACK SUPPLEMENTS-->
+              <%= render @stack_supplements %>
+      </tbody>  
+    </table>
 
-<%= link_to 'New Stack supplement', new_stack_stack_supplement_path(@stack) %>
+
+    <br>
+
+    <%= link_to 'New Stack supplement', new_stack_stack_supplement_path(@stack) %>
+  </div>
+</div>

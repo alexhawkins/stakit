@@ -10,5 +10,12 @@
   <%= @stack.user.name %>
 </p>
 
+<%= render partial: 'stacks/form', locals: {stack: @stack }%>
+
+
+<% @stack.supplements.each do |supplement| %>
+  <p> <%= supplement.name %></p>
+<% end %>
+
 <%= link_to 'Edit', edit_stack_path(@stack) %> |
 <%= link_to 'Back', stacks_path %>

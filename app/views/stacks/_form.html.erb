@@ -11,14 +11,15 @@
     </div>
   <% end %>
 
+  <div class="form_group">
+  <%= f.collection_select :supplement_ids, Supplement.order(:name), :id, :name, {}, {multiple: true} %>
+ </div>
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -15,7 +15,7 @@ $brand-warning: #ff9600;
   $brand-warning-hover: darken($brand-warning, 5.5%);
 
 $brand-danger: #eb2949;
-  $brand-danger-hover: darken($brand-danger, 5.5%);
+  $brand-danger-hover: darken($brand-danger, 15.5%);
 
 //BASIC ELEMENT OVERIDES
 body {
@@ -117,3 +117,19 @@ a {
   }
 
 }
+
+//BOOTSTRAP GLYPHICONS
+.glyphicon {
+  &:hover{
+  text-decoration: none;
+  }
+}
+//change color of stop sign glyphicons
+.glyphicon-remove-circle{
+  font-size: 1.2em;
+  color: $brand-danger;
+  &:hover{
+    color: $brand-danger-hover;
+  }
+}
+  
