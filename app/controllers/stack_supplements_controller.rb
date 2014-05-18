@@ -10,6 +10,7 @@ class StackSupplementsController < ApplicationController
     @new_stack_supplement = StackSupplement.new
     @new_stack = Stack.new
     @user = current_user
+    @frequencies = Frequency.all
   end
 
   # GET /stack_supplements/1
@@ -24,6 +25,7 @@ class StackSupplementsController < ApplicationController
 
   # GET /stack_supplements/1/edit
   def edit
+
   end
 
   # POST /stack_supplements

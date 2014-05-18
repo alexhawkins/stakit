@@ -19,12 +19,4 @@ class StackSupplement < ActiveRecord::Base
     self.supplement = Supplement.find_by_name(name) if name.present?
   end
 
-  def supplement_ids
-    supplement.try(:supplement_ids)
-  end
-
-  def supplement_ids=(ids)
-
-  end
-
 end

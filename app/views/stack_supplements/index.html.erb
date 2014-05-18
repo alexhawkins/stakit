@@ -1,10 +1,12 @@
 <div class="row">
+  <!--*******************************-->
+  <!-- USER MAIN SIDE PANEL/NAVIGATION-->
+   <!--*******************************-->
   <div class="col-md-4">
-  <h2><%= @user.name %></h2>
-  <!-- USER SIDE PANELS -->
-    <div class="panel-group" id="accordion">
-    <!--ACCORDIAN PANEL 1 - MY STACKS -->
-       <div class="panel panel-default">
+ <h2><%= best_in_place @user, :name, :type => :input %></h2>
+  <!--ACCORDIAN PANEL 1 - MY STACKS -->
+  <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseMyStacks">
@@ -48,32 +50,56 @@
               <% end %>
              </ul>
             <% end %>
-          <% end %>      
-          </div>
-        </div>
-      </div>  
-      <!--ACCORDIAN PANEL 2 - CREATE A NEW STACK -->
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseNewStack">
-              Create a New Stack
-            </a>
-          </h4>
-        </div>
-        <div id="collapseNewStack" class="panel-collapse collapse">
-          <div class="panel-body">
-          <!-- NEW STACK FORM -->
-           <div class="create-new-stack">
-            <%= render partial: 'stack_supplements/stacks/form', locals: {stack: @new_stack} %>
-           </div>
+          <% end %> 
+          <!-- MANAGE MY STACKS -->
+            <div class="manage-stack-margin-space">
+              <%= link_to "Manage my Stacks", stacks_path, class: 'btn btn-default pull-right' %>
+            </div> 
           </div>
         </div>
       </div>
-    </div>
-  </div>
+      </div>
+      <div class="panel-group" id="accordion#3">
+        <!--ACCORDIAN PANEL 2 - CREATE A NEW STACK -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion3" href="#collapseNewStack">
+                Create a New Stack
+              </a>
+            </h4>
+          </div>
+          <div id="collapseNewStack" class="panel-collapse collapse in">
+            <div class="panel-body">
+            <!-- NEW STACK FORM -->
+             <div class="create-new-stack">
+              <%= render partial: 'stack_supplements/stacks/form', locals: {stack: @new_stack} %>
+             </div>
+            </div>
+          </div>
+        </div>
 
+        <!--ACCORDIAN PANEL 2 - FOLLOWERS -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion3" href="#collapseNewStack">
+                Followers
+              </a>
+            </h4>
+          </div>
+          <div id="collapseNewStack" class="panel-collapse collapse">
+            <div class="panel-body">
+             <p>John</p>
+            </div>
+          </div>
+        </div>
+      </div>
+   </div>
+
+  <!--*******************************-->
   <!-- MAIN BODY/ RIGHT COLUMN-->
+  <!--*******************************-->
   <div class="col-md-8">
     <!-- STACK_SUPPLEMENT FORM -->
     <%= render partial: 'stack_supplements/form', locals: {stack: @stack, stack_supplement: StackSupplement.new }%>
@@ -100,7 +126,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-              Important Details About this Stack
+              Important Details about this Stack
             </a>
           </h4>
         </div>

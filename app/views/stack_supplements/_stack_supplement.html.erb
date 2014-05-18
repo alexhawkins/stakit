@@ -1,10 +1,31 @@
 <%= content_tag :tr, id: "js-stack-supplements-#{stack_supplement.id}" do %>
-  <td><%= stack_supplement.supplement.name %></td>
-  <td><%= stack_supplement.dose %></td>
-  <td><%= stack_supplement.frequency.value %></td>
+  <td>
+    <%= stack_supplement.supplement.name %>
+  </td>
 
-  <td><%= link_to 'Edit', edit_stack_stack_supplement_path(@stack, stack_supplement) %></td>
+  <td>
+    <a href="#" data-xeditable="true" data-pk="<%= stack_supplement.id %>" data-model="stack_supplement" data-name="dose" data-url="<%= stack_stack_supplement_path(@stack, stack_supplement) %>" data-title="Adjust your dosage">
+      <%= stack_supplement.dose %>
+    </a>
+  </td>
 
-   <td><%= link_to " ", stack_stack_supplement_path(@stack, stack_supplement), method: :delete, class: 'glyphicon glyphicon-remove-circle', remote: true, data: { confirm: 'Are you sure?' }%>
+  <td>
+    <a href="#" data-xeditable="true" data-type="select" data-pk="<%= stack_supplement.id %>" data-value="frequency_id" data-model="stack_supplement" data-name="value" data-url="<%= stack_stack_supplement_path(@stack, stack_supplement) %>" data-title="Frequency">
+      <%= stack_supplement.frequency.value %>
+    </a>
+
+    <!-- <%= best_in_place stack_supplement, :frequency_id, type: :select, collection: [["6", "BID"], ["2", "TID"], ["3", "AM"]] %>
+   
+
+     <%= stack_supplement.frequency.value %>
+  </td>
+   -->
+
+  <td>
+    <%= link_to 'Edit', edit_stack_stack_supplement_path(@stack, stack_supplement) %>
+  </td>
+
+   <td>
+    <%= link_to " ", stack_stack_supplement_path(@stack, stack_supplement), method: :delete, class: 'glyphicon glyphicon-remove-circle', remote: true, data: { confirm: 'Are you sure?' }%>
    </td>
 <% end %>
