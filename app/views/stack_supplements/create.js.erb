@@ -2,3 +2,19 @@ $('#js-stack-supplements').prepend("<%= escape_javascript(render(@stack_suppleme
 $('#js-stack-supplements-' +<%= @stack_supplement.id %>).hide().fadeIn(500);
 //$('.new_stack_supplement').html("<%= escape_javascript(render partial: 'stack_supplements/form', locals: { stack: @stack, stack_supplement: @new_stack_supplement }) %>");
 $('#stack-count-' +<%= @stack.id %>).html("<%= @stack.supplements.count %>");
+
+$("[data-xeditable=true]").each(function() {
+  return $(this).editable({
+    ajaxOptions: {
+      type: "PUT",
+      dataType: "json"
+    },
+    params: function(params) {
+      var railsParams;
+      railsParams = {};
+      railsParams[$(this).data("model")] = {};
+      railsParams[$(this).data("model")][params.name] = params.value;
+      return railsParams;
+    }
+  });
+});

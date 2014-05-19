@@ -10,7 +10,7 @@
   </td>
 
   <td>
-    <a href="#" data-xeditable="true" data-type="select" data-pk="<%= stack_supplement.id %>" data-value="frequency_id" data-model="stack_supplement" data-name="value" data-url="<%= stack_stack_supplement_path(@stack, stack_supplement) %>" data-title="Frequency">
+    <a href="#" data-xeditable="true" data-type="select" data-pk="<%= stack_supplement.id %>"data-model="stack_supplement" data-name="frequency_id" data-url="<%= stack_stack_supplement_path(@stack, stack_supplement) %>" data-title="Frequency" data-source="<%= Frequency.to_xeditable %>" placeholder="please select">
       <%= stack_supplement.frequency.value %>
     </a>
 
