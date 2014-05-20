@@ -1,38 +1,50 @@
-<h1>Your stacks</h1>
-
-<p>
-  <% @stacks.each do |stack| %>
-      <% if policy(stack).show? %>
-        <%=link_to stack.name, stack_stack_supplements_path(stack) %> | 
+<div class="panel panel-primary">
+  <div class="panel-heading">
+   <h2>My Stack Manager</h2>
+  </div>
+  
+  <div class="panel-body">
+    <ul class="pager">
+      <% array = [] %>
+      <% @stacks.each do |stack| %>
+        <% stack.supplements.each do |supplement| %>
+          <% array << supplement %>
+        <% end %>
       <% end %>
-  <% end %>
-</p>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+      <!-- get uqniq supplements from the array -->
+      <% array.uniq.each do | supplement | %>       
+        <li><a href="#"><%= supplement.name %></a></li>
+      <% end %>
+    </ul>
 
-  <tbody>
-  <%if current_user %>
-    <% @stacks.each do |stack| %>
-      <tr>
-        <td><%= stack.name %></td>
-        <td><%= stack.user.name %></td>
-        <td><%= link_to 'Show', stack %></td>
-        <td><%= link_to 'Edit', edit_stack_path(stack) %></td>
-        <td><%= link_to 'Destroy', stack, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  <% end %>
-  </tbody>
-</table>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date Created</th>
+          <th>Supplment Count</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-<br>
+      <tbody>
+        <% @stacks.each do |stack| %>
+          <tr>
+            <td><%= stack.name %></td>
+            <td><%= time_ago_in_words(stack.created_at) %> ago</td>
+            <td><%= stack.supplements.count %></td>
+            <td><%= link_to 'View', stack_stack_supplements_path(stack) %></td>
+            <td><%= link_to 'Delete', stack, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this stack?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<%= link_to 'New Stack', new_stack_path %>
+  <br>
+
+  </div>
+  <div class="panel-footer">
+    <%= link_to 'Back to Main', stack_stack_supplements_path(@stack), class: 'btn btn-primary' %>
+  </div>
+</div>

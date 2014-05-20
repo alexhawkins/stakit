@@ -11,19 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <div class="field">
+ <div class="form-group">
+    <%= f.label :tooltip %><br>
+    <%= f.text_area :tooltip, rows: 10, class: 'form-control' %>
+  </div>
+<div class="form-group">
     <%= f.label :default_dose %><br>
-    <%= f.text_field :default_dose %>
+    <%= f.text_field :default_dose, class: 'form-control' %>
   </div>
-  <div class="field">
+<div class="form-group">
     <%= f.label :default_frequency %><br>
-    <%= f.text_field :default_frequency %>
+    <%= f.text_field :default_frequency, class: 'form-control' %>
   </div>
-  <div class="actions">
+<div class="form-group">
     <%= f.submit %>
   </div>
 <% end %>

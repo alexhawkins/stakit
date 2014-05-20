@@ -1,6 +1,8 @@
 <%= content_tag :tr, id: "js-stack-supplements-#{stack_supplement.id}" do %>
   <td>
-    <%= stack_supplement.supplement.name %>
+    <a href="#" class="supplement-tip" data-toggle="tooltip" data-placement="right" title="<%=stack_supplement.supplement.tooltip %>">
+      <%= stack_supplement.supplement.name %>
+    </a>
   </td>
 
   <td>

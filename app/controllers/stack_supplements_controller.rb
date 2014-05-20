@@ -103,7 +103,7 @@ class StackSupplementsController < ApplicationController
      else
        #otherwise, find the last stack that this user created and redirect
        @stack = current_user.stacks.find(:first, :order => 'created_at DESC')
-       flash[:notice] = "Unable to view this page"
+       flash[:error] = "Unable to view page. Better luck next time:)"
        redirect_to stack_stack_supplements_path(@stack)
      end
     end

@@ -1,4 +1,11 @@
 // Place all the styles related to the Stacks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+$brand-royal-blue: #3875d7;
+.panel-primary > .panel-heading {
+  background-color: $brand-royal-blue;
+}
+// supplements you're taking tags 
+.pager li > a, .pager li > span {
+  margin: 3px 0;
+}

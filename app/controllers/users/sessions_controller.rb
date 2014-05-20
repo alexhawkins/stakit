@@ -12,16 +12,16 @@ class Users::SessionsController < Devise::SessionsController
             #Create and new Stack Supplement association for each supplement in this beginner stack
             StackSupplement.create(stack_id: @starter_stack_id, supplement_id: supplement.id)
           end
-        @stack_supplement = StackSupplement.first
         #create a beginner brain stack for the user
         StackSupplement.create(stack_id: @brain_stack.id, supplement_id: 2)
         #create a beginner fitness stack for the user
         StackSupplement.create(stack_id: @fitness_stack.id, supplement_id: 3)
         #stack_stack_supplements_path(@stack, @stack_supplement)
+        redirect_to stack_stack_supplements_path(@starter_stack) and return
       else
-        
-        @stack = current_user.stacks.where(user_id: current_user.id).find(:first, :order => 'created_at DESC')
-        #stack_stack_supplements_path(@stack)
+
+        @stack = current_user.stacks.find(:first, :order => 'created_at DESC')
+        redirect_to stack_stack_supplements_path(@stack) and return
        end
     end
   end

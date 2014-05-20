@@ -78,6 +78,6 @@ class SupplementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supplement_params
-      params.require(:supplement).permit(:name, :default_dose, :default_frequency)
+      params.require(:supplement).permit(:name, :tooltip, :default_dose, :default_frequency)
     end
 end

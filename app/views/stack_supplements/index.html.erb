@@ -21,7 +21,7 @@
           <% unless @user.stacks.empty? %>
           <!-- order the stacks alphabetically so that they stay in the same position upon page reload-->
           <!-- NAVIGAION PILLS WITHIN MY STACK BODY -->
-           <% @user.stacks.order('name ASC').each do |stack| %>
+           <% @user.stacks.each do |stack| %>
              <ul class="nav nav-pills nav-stacked">
              <!-- check to see if the selected stack is the stack page the user is
                   currently on. If it is, then we want the tab to be active -->
