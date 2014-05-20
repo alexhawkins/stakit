@@ -4,7 +4,7 @@ class StackPolicy < ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => record.id).exists? && user.present? && (record.user == user || user.role?(:admin))
+    user.present? && (record.user == user || user.role?(:admin))
   end
 
   def create?

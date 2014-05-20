@@ -1,15 +1,16 @@
 class StackSupplementsController < ApplicationController
+  before_filter :authenticate_user!
   respond_to :html, :js
-  before_action :set_stack
+  before_action :set_stack, except: [:sort]
   before_action :set_stack_supplement, only: [:show, :edit, :update, :destroy]
   
   # GET /stack_supplements
   # GET /stack_supplements.json
   def index
-    @stack_supplements = @stack.stack_supplements.order("id DESC")
+    @user = current_user
+    @stack_supplements = @stack.stack_supplements.order("position")
     @new_stack_supplement = StackSupplement.new
     @new_stack = Stack.new
-    @user = current_user
     @frequencies = Frequency.all
   end
 
@@ -72,8 +73,16 @@ class StackSupplementsController < ApplicationController
     end
   end
 
+  def sort
+      params[:stack_supplement].each_with_index do |id, index| 
+        StackSupplement.where(id: id).update_all({position: index+1})
+      end
+      render nothing: true
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
+
     def set_stack_supplement
       @stack_supplement = StackSupplement.find(params[:id])
       authorize @stack_supplement
@@ -85,7 +94,17 @@ class StackSupplementsController < ApplicationController
     end
 
     def set_stack
-      @stack = Stack.find(params[:stack_id])
-      authorize @stack
+      #check to see if the user has a stack that is the same as the stack being passed 
+      if current_user.stacks.where(id: params[:stack_id]).present? 
+       #@stack = current_user.stacks.where(user_id: current_user.id).find(:first, :order => 'created_at DESC')
+       #if a stack exist, set the stack variabe
+       @stack = Stack.find(params[:stack_id])
+       authorize @stack
+     else
+       #otherwise, find the last stack that this user created and redirect
+       @stack = current_user.stacks.find(:first, :order => 'created_at DESC')
+       flash[:notice] = "Unable to view this page"
+       redirect_to stack_stack_supplements_path(@stack)
+     end
     end
 end

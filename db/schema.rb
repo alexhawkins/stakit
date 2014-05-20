@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515205627) do
+ActiveRecord::Schema.define(version: 20140519205747) do
 
   create_table "frequencies", force: true do |t|
     t.string   "value"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140515205627) do
     t.string   "dose",          default: "500mg", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "stack_supplements", ["frequency_id"], name: "index_stack_supplements_on_frequency_id"
@@ -37,6 +38,8 @@ ActiveRecord::Schema.define(version: 20140515205627) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description", default: "Details about my stack..."
+    t.string   "links",       default: "Video Links to my stack..."
   end
 
   add_index "stacks", ["user_id"], name: "index_stacks_on_user_id"

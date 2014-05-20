@@ -1,5 +1,7 @@
 Stakit::Application.routes.draw do
-  resources :stack_supplements
+  resources :stack_supplements do
+     collection { post :sort }
+  end
 
   resources :frequencies
   resources :stacks do
@@ -9,7 +11,8 @@ Stakit::Application.routes.draw do
   get 'landing/index'
   get 'landing/about'
   
-  devise_for :users, 
+
+  devise_for :users, controllers: { sessions: "users/sessions" },
            :path => '', 
            :path_names => { 
               :sign_in => "login", 
@@ -19,5 +22,5 @@ Stakit::Application.routes.draw do
 
   resources :users, only: [:update]
 
-  root to: 'landing#index'
+  root to: 'stacks#index'
 end

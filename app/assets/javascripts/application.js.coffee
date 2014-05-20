@@ -16,7 +16,7 @@
 #= require chosen-jquery
 #= require best_in_place
 #= require best_in_place.purr
-##require jquery.tokeninput
+## require jquery.tokeninput
 #= require bootstrap
 #= require bootstrap3-editable/bootstrap-editable
 ## require turbolinks
@@ -36,6 +36,9 @@ jQuery ->
 
         return railsParams
 
-
 jQuery ->
   $('.best_in_place').best_in_place()
+
+$(".best_in_place").bind "ajax:success", ->
+  $(this).closest("tr").effect "highlight"
+  return

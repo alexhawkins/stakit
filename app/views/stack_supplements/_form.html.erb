@@ -13,27 +13,14 @@
   <div class="form-group">
     <%= f.text_field :supplement_name,  data: {autocomplete_source: supplements_path}, class: 'form-control', placeholder: "Enter Supplement" %>
   </div>
-<!--
-  <div class="form-group">
-  <%= f.collection_select :supplement_id, Supplement.order(:name), :id, :name, include_blank: false %>
-  </div>
--->
+
 <div class="form_group">
   <%= f.collection_select :supplement_id, Supplement.order(:name), :id, :name, {}, {multiple: true} %>
 </div>
-<!--
+
 
 <div class="form-group">
-  <%= f.collection_select :stack_id, Stack.order(:name), :id, :name, include_blank: false %>
-</div>
-
-<%= params.inspect %>
--->
-
-
-  <div class="form-group">
     <%= f.submit "Add a supplement to your Stack", class: 'btn btn-success' %>
   </div>
 <% end %>
-
 

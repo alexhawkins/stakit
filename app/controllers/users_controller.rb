@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :json
+  
 
   def update
     @user = current_user

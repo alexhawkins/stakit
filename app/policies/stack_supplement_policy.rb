@@ -1,7 +1,7 @@
 class StackSupplementPolicy < ApplicationPolicy
 
   def index?
-    user.present? && (record.user == user || user.role?(:admin))
+    user.present? && (record.stack.user == user || user.role?(:admin))
   end
 
   def show?

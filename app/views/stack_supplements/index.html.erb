@@ -111,10 +111,9 @@
           <th>Dose</th>
           <th>Frequency</th>
           <th></th>
-          <th></th>
         </tr>
       </thead>
-      <tbody id='js-stack-supplements'>
+      <tbody id="js-stack-supplements" data-update-url="<%= sort_stack_supplements_url %>">
       <!-- RENDER INDIVIDUAL STACK SUPPLEMENTS-->
         <%= render @stack_supplements %>
       </tbody>  
@@ -132,7 +131,7 @@
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
           <div class="panel-body">
-            Stacking supplements has many benefits. For one, there are many ways to gain muscle or lose fat, so by combining supplements that help you do either one through different pathways is very important.
+           <%= best_in_place @stack, :description, :classes => 'highlight_on_success', :type => :textarea %></h2>
           </div>
         </div>
       </div>
@@ -147,7 +146,7 @@
         </div>
         <div id="collapseTwo" class="panel-collapse collapse">
           <div class="panel-body">
-           Stacking supplements has many benefits. For one, there are many ways to gain muscle or lose fat, so by combining supplements that help you do either one through different pathways is very important.
+           <%= @stack.links %>
           </div>
         </div>
       </div>

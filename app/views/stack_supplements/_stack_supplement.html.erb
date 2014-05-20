@@ -10,22 +10,18 @@
   </td>
 
   <td>
-    <a href="#" data-xeditable="true" data-type="select" data-pk="<%= stack_supplement.id %>"data-model="stack_supplement" data-name="frequency_id" data-url="<%= stack_stack_supplement_path(@stack, stack_supplement) %>" data-title="Frequency" data-source="<%= Frequency.to_xeditable %>" placeholder="please select">
+    <a href="#" data-xeditable="true" data-type="select" data-pk="<%= stack_supplement.id %>"data-model="stack_supplement" data-name="frequency_id" data-url="<%= stack_stack_supplement_path(@stack, stack_supplement) %>" data-title="Frequency" data-source="<%= Frequency.to_xeditable %>" data-value="<%= stack_supplement.frequency_id %>" >
       <%= stack_supplement.frequency.value %>
     </a>
-
-    <!-- <%= best_in_place stack_supplement, :frequency_id, type: :select, collection: [["6", "BID"], ["2", "TID"], ["3", "AM"]] %>
-   
-
-     <%= stack_supplement.frequency.value %>
   </td>
-   -->
-
+  <!--
   <td>
     <%= link_to 'Edit', edit_stack_stack_supplement_path(@stack, stack_supplement) %>
   </td>
+ -->
 
-   <td>
+  <td>
     <%= link_to " ", stack_stack_supplement_path(@stack, stack_supplement), method: :delete, class: 'glyphicon glyphicon-remove-circle', remote: true, data: { confirm: 'Are you sure?' }%>
-   </td>
+  </td>
 <% end %>
+

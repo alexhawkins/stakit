@@ -1,5 +1,7 @@
 class StacksController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_stack, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :json
 
   # GET /stacks
   # GET /stacks.json
@@ -50,10 +52,10 @@ class StacksController < ApplicationController
     respond_to do |format|
       if @stack.update(stack_params)
         format.html { redirect_to @stack, notice: 'Stack was successfully updated.' }
-        format.json { head :no_content }
+        format.json { respond_with_bip(@stack) }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @stack.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@stack) }
       end
     end
   end
@@ -77,6 +79,6 @@ class StacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stack_params
-      params.require(:stack).permit(:name, :supplement_ids, :user_id)
+      params.require(:stack).permit(:name, :description, :links, :supplement_ids, :user_id)
     end
 end
