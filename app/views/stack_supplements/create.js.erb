@@ -4,10 +4,15 @@ $('.new_stack_supplement').html("<%= escape_javascript(render partial: 'stack_su
 $('#stack-count-' +<%= @stack.id %>).html("<%= @stack.supplements.count %>");
 //CALL AGAIN AFTER NEW SUPPLEMENT IS CREATED
 $('#stack_supplement_supplement_name').autocomplete({
-  source: $('#stack_supplement_supplement_name').data('autocomplete-source')
+  source: $('#stack_supplement_supplement_name').data('autocomplete-source'),
+  messages: {
+      noResults: '',
+      results: function() {}
+  }
 });
+//CALL TOOLTIP AGAIN AFTER CREATION
 $('.supplement-tip').tooltip();
-
+//CALL X-EDITABLE AGAIN AFTER CREATION
 $("[data-xeditable=true]").each(function() {
   return $(this).editable({
     ajaxOptions: {

@@ -6,6 +6,9 @@
 jQuery ->
   $('#stack_supplement_supplement_name').autocomplete
     source: $('#stack_supplement_supplement_name').data('autocomplete-source')
+    messages:
+       noResults: ""
+       results: ->
 #SORTIING
   $('#js-stack-supplements').sortable
     axis: 'y'

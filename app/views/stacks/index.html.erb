@@ -5,22 +5,13 @@
   
   <div class="panel-body">
     <ul class="pager">
-      <% array = [] %>
-      <% @stacks.each do |stack| %>
-        <% stack.supplements.each do |supplement| %>
-          <% array << supplement %>
-        <% end %>
-      <% end %>
-      <!-- get uqniq supplements from the array -->
-      <% array.uniq.each do | supplement | %>       
-        <li><a href="#"><%= supplement.name %></a></li>
-      <% end %>
+      <%= render_supplements_for(@stacks).html_safe %>      
     </ul>
 
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Name</th>
+          <th>Name (Click to Edit) </th>
           <th>Date Created</th>
           <th>Supplment Count</th>
           <th></th>
@@ -31,11 +22,15 @@
       <tbody>
         <% @stacks.each do |stack| %>
           <tr>
-            <td><%= stack.name %></td>
+            <td>
+              <a href="#" data-xeditable="true" data-pk="<%= stack.id %>" data-model="stack" data-name="name" data-url="<%= stack_path(stack)%>" data-title="Edit your stack name">
+              <%= stack.name %>
+              </a>
+            </td>
             <td><%= time_ago_in_words(stack.created_at) %> ago</td>
             <td><%= stack.supplements.count %></td>
-            <td><%= link_to 'View', stack_stack_supplements_path(stack) %></td>
-            <td><%= link_to 'Delete', stack, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this stack?' } %></td>
+            <td><%= link_to 'View', stack_stack_supplements_path(stack), class: 'btn-sm btn-primary'%></td>
+            <td><%= link_to 'Delete', stack, class: 'btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure you want to permanently delete this stack?' } %></td>
           </tr>
         <% end %>
       </tbody>

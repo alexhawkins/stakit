@@ -51,3 +51,12 @@ ul.ui-autocomplete {
 #js-stack-supplements{
   cursor: move;
 }
+
+
+//
+.glyphicon-info-sign {
+  color: #bbb;
+  &:hover{
+    color: #999;
+  }
+}

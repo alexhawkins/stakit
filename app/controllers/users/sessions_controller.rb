@@ -20,7 +20,7 @@ class Users::SessionsController < Devise::SessionsController
         redirect_to stack_stack_supplements_path(@starter_stack) and return
       else
 
-        @stack = current_user.stacks.find(:first, :order => 'created_at DESC')
+        @stack = current_user.stacks.last
         redirect_to stack_stack_supplements_path(@stack) and return
        end
     end

@@ -3,9 +3,8 @@ class StackSupplement < ActiveRecord::Base
   belongs_to :supplement
   belongs_to :frequency
 
-  
 #sort by created_at
-# default_scope { order('created_at DESC') }
+default_scope { order('created_at DESC') }
 #sort alphabetically by title regardless of upcase or downcase
 
  #return nil if no supplement exists

@@ -16,13 +16,12 @@
 #= require chosen-jquery
 #= require best_in_place
 #= require best_in_place.purr
-## require jquery.tokeninput
 #= require bootstrap
 #= require bootstrap3-editable/bootstrap-editable
 ## require turbolinks
 #= require_tree .
 
-
+#X-EDITABLE
 jQuery ->
   $("[data-xeditable=true]").each ->
     $(@).editable
@@ -35,10 +34,5 @@ jQuery ->
         railsParams[$(@).data("model")][params.name] = params.value
 
         return railsParams
-
-jQuery ->
+  #BEST IN PLACE EDITING
   $('.best_in_place').best_in_place()
-
-$(".best_in_place").bind "ajax:success", ->
-  $(this).closest("tr").effect "highlight"
-  return

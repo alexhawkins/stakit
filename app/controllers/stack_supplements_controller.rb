@@ -8,7 +8,7 @@ class StackSupplementsController < ApplicationController
   # GET /stack_supplements.json
   def index
     @user = current_user
-    @stack_supplements = @stack.stack_supplements.order("position")
+    @stack_supplements = @stack.stack_supplements
     @new_stack_supplement = StackSupplement.new
     @new_stack = Stack.new
     @frequencies = Frequency.all

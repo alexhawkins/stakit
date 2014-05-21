@@ -31,6 +31,11 @@ a {
 }
 
 /*BOOTSTRAP BUTTONS*/
+
+.btn {
+
+}
+
 .btn-success {
     //box shadow
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
@@ -60,7 +65,8 @@ a {
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
       -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
       -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),0 0 5px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.2);
-}
+      -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 2px rgba(0, 0, 0, 0.15);
+   }
 
 .btn-success {
   border: 1px solid #178b49;
@@ -71,6 +77,23 @@ a {
 }
 .btn-primary {
   background-color: $brand-royal-blue;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  background-color: #006dcc;
+  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  background-repeat: repeat-x;
+  border-color: #0044cc #0044cc #002a80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
    &:hover{
     background-color: darken($brand-royal-blue, 8.5%);
   }
@@ -96,7 +119,7 @@ a {
 
 /************* LOGIN PAGE/REGISTRATION PAGES***************/
 
-//SURROUNDING BOX FOR LOGIN
+/* //SURROUNDING BOX FOR LOGIN
 .dialog-box{
   background: $purple;
   border: 1px solid rgba(0,0,0,0.2);
@@ -131,7 +154,7 @@ a {
   font-size: 1.4em;
   }
 
-}
+} */
 
 //BOOTSTAP PILL NAVIGATION
 

@@ -1,8 +1,8 @@
 <%= content_tag :tr, id: "js-stack-supplements-#{stack_supplement.id}" do %>
   <td>
-    <a href="#" class="supplement-tip" data-toggle="tooltip" data-placement="right" title="<%=stack_supplement.supplement.tooltip %>">
-      <%= stack_supplement.supplement.name %>
-    </a>
+      
+    <%= stack_supplement.supplement.name %>
+    <%= link_to " ", "#", class: 'glyphicon glyphicon-info-sign supplement-tip', data: { toggle: :tooltip, placement: :right, trigger: 'click focus'}, title: stack_supplement.supplement.tooltip %>
   </td>
 
   <td>
@@ -16,14 +16,9 @@
       <%= stack_supplement.frequency.value %>
     </a>
   </td>
-  <!--
-  <td>
-    <%= link_to 'Edit', edit_stack_stack_supplement_path(@stack, stack_supplement) %>
-  </td>
- -->
 
   <td>
-    <%= link_to " ", stack_stack_supplement_path(@stack, stack_supplement), method: :delete, class: 'glyphicon glyphicon-remove-circle', remote: true, data: { confirm: 'Are you sure?' }%>
+    <%= link_to " ", stack_stack_supplement_path(@stack, stack_supplement), method: :delete, class: 'glyphicon glyphicon-remove-circle supplement-tip', remote: true, data: { confirm: 'Are you sure?' }, toggle: :tooltip, placement: :top, title: 'Delete Supplement' %>
   </td>
 <% end %>
 
