@@ -1,67 +1,41 @@
 <div class="row">
   <!--*******************************-->
   <!-- USER MAIN SIDE PANEL/NAVIGATION-->
-   <!--*******************************-->
- <div class="col-md-4">
+  <!--*******************************-->
+ <div class="col-md-3">
+ <!-- if the user is the current_user, let his profile image link to his settings page -->
+ <% if current_user %>
+    <%= link_to render_profile_avatar_for(@user), edit_user_registration_path %>
+ <% else %>
+    <%= render_profile_avatar_for(@user) %>
+ <% end %>
+
  <h2><%= @user.name %></h2>
   <!--ACCORDIAN PANEL 1 - MY STACKS -->
   <div class="panel-group" id="accordion">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMyStacks">
-              My Stacks
-            </a>
+             <%= render_arrow_collapse_for("#accordion", "#collapseMyStacks").html_safe %>
+              About
           </h4>
         </div>
         <div id="collapseMyStacks" class="panel-collapse collapse in">
         <!--MY STACK MAIN BODY -->
           <div class="panel-body">
           <!-- Check to see if user has added any stacks -->
-          <% unless @stacks.empty? %>
-          <!-- NAVIGAION PILLS WITHIN MY STACK BODY -->
-           <% @stacks.each do |stack| %>
-             <ul class="nav nav-pills nav-stacked">
-             <!-- check to see if the selected stack is the stack page the user is
-                  currently on. If it is, then we want the tab to be active -->
-              <% if stack == @stack  %>
-               <!-- ACTIVE NAV PILL -->
-                <li class="active">
-                  <a href="#">
-                  <!-- STACK SUPPLEMENT COUNT -->
-                    <%= content_tag :span, class: "badge pull-right", id: "stack-count-#{stack.id}" do %>
-                      <%= stack.supplements.count%>
-                    <% end %>
-                   <!-- STACK SUPPLEMENT NAME -->
-                    <%= stack.name %>
-                  </a>
-                </li>     
-              <% else %>
-                <li>
-                <!-- INACTIVE NAV PILL -->
-                  <a href="<%="#{stack_stack_supplements_path(stack)}"%>">
-                    <%= content_tag :span, class: "badge pull-right", id: "stack-count-#{stack.id}" do %>
-                      <%= stack.supplements.count%>
-                    <% end %>
-                    <%= stack.name %>
-                  </a>
-                </li>
-              <% end %>
-             </ul>
-            <% end %>
-          <% end %> 
+          
           </div>
         </div>
       </div>
       </div>
-      <div class="panel-group" id="accordion#3">
+      <div class="panel-group" id="accordion3">
         <!--ACCORDIAN PANEL 2 - CREATE A NEW STACK -->
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion3" href="#collapseNewStack">
+              <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack").html_safe %>
                 Posts
-              </a>
             </h4>
           </div>
           <div id="collapseNewStack" class="panel-collapse collapse in">
@@ -76,12 +50,11 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion3" href="#collapseNewStack">
+              <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack1").html_safe %>
                 Followers
-              </a>
             </h4>
           </div>
-          <div id="collapseNewStack" class="panel-collapse collapse">
+          <div id="collapseNewStack1" class="panel-collapse collapse">
             <div class="panel-body">
              <p>John</p>
             </div>
@@ -93,7 +66,7 @@
   <!--*******************************-->
   <!-- MAIN BODY/ RIGHT COLUMN-->
   <!--*******************************-->
-  <div class="col-md-8">
+  <div class="col-md-9">
 
    <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
   <div class="panel-group" id="accordion-top">
@@ -105,9 +78,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion-top" href="#collapseTop-<%= stack.id %>">
+          <%= render_arrow_collapse_for("#accordion-top", "#collapseTop-#{stack.id}").html_safe %>
              <%= stack.name %>
-            </a>
           </h4>
         </div>
         <% if num == 0 %>
@@ -144,9 +116,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+            <%= render_arrow_collapse_for("#accordion2", "#collapseOne").html_safe %>
               Important Details about this Stack
-            </a>
           </h4>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
@@ -159,9 +130,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+            <%= render_arrow_collapse_for("#accordion2", "#collapseTwo").html_safe %>
               YouTube Links
-            </a>
           </h4>
         </div>
         <div id="collapseTwo" class="panel-collapse collapse">
@@ -174,9 +144,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+            <%= render_arrow_collapse_for("#accordion2", "#collapseThree").html_safe %>
               Pictures
-            </a>
           </h4>
         </div>
         <div id="collapseThree" class="panel-collapse collapse">
@@ -187,4 +156,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

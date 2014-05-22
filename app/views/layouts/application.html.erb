@@ -38,8 +38,8 @@
              <% if current_user %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              
-                <strong><em><%= (current_user.name || current_user.email )%></em></strong> ! <b class="caret"></b></a>
+                 <span><%= render_tiny_avatar_for(current_user) %></span>
+                 <strong><em><%= (current_user.name || current_user.email )%></em></strong> ! <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Settings", edit_user_registration_path %></li>
                   <li><%= link_to "Logout", destroy_user_session_path, method: :delete %>

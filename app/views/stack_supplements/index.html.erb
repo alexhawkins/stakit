@@ -13,10 +13,9 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMyStacks">
+            <%= render_arrow_collapse_for("#accordion", "#collapseMyStacks").html_safe %>
               My Stacks
                <%= link_to " ", stacks_path, class: 'glyphicon glyphicon-th-list supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Manage Stacks' %>
-            </a>
           </h4>
         </div>
         <div id="collapseMyStacks" class="panel-collapse collapse in">
@@ -68,9 +67,8 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion3" href="#collapseNewStack">
+              <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack").html_safe %>
                 Create a New Stack
-              </a>
             </h4>
           </div>
           <div id="collapseNewStack" class="panel-collapse collapse in">
@@ -87,9 +85,8 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion3" href="#collapseNewStack">
+             <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack").html_safe %>
                 Followers
-              </a>
             </h4>
           </div>
           <div id="collapseNewStack" class="panel-collapse collapse">
@@ -115,14 +112,13 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion-top" href="#collapseTop">
+          <%= render_arrow_collapse_for("#accordion-top", "#collapseTop").html_safe %>
              <%= @stack.name %>
              <% if @public %>
                <%= link_to " ", "#", class: 'glyphicon glyphicon-eye-open supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Your stack is public' %>
              <% else %>
                <%= link_to " ", "#", class: 'glyphicon glyphicon-lock supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Your stack is private' %>
              <% end %>
-            </a>
           </h4>
         </div>
         <div id="collapseTop" class="panel-collapse collapse in">
@@ -155,14 +151,13 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+          <%= render_arrow_collapse_for("#accordion2", "#collapseOne").html_safe %>
               Important Details about this Stack
-            </a>
           </h4>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
           <div class="panel-body">
-           <%= best_in_place @stack, :description, :classes => 'highlight_on_success', :type => :textarea %></h2>
+           <%= best_in_place @stack, :description, :classes => 'highlight_on_success', :type => :textarea %>
           </div>
         </div>
       </div>
@@ -170,9 +165,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+            <%= render_arrow_collapse_for("#accordion2", "#collapseTwo").html_safe %>
               YouTube Links
-            </a>
           </h4>
         </div>
         <div id="collapseTwo" class="panel-collapse collapse">
@@ -185,9 +179,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+           <%= render_arrow_collapse_for("#accordion2", "#collapseThree").html_safe %>
               Pictures
-            </a>
           </h4>
         </div>
         <div id="collapseThree" class="panel-collapse collapse">
@@ -197,5 +190,4 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+

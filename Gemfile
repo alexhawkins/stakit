@@ -57,8 +57,9 @@ gem 'pundit'
 gem 'chosen-rails'
 gem 'best_in_place', github: 'bernat/best_in_place'
 gem 'bootstrap-x-editable-rails'
-#gem 'x-editable-rails'
-#gem 'rails3-jquery-autocomplete'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 
 
 # Use ActiveModel has_secure_password

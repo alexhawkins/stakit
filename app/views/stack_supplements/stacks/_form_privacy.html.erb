@@ -11,20 +11,15 @@
     </div>
   <% end %>
 
- <div class="btn-group">
-       <%= f.label "Public" %>
-       <%= f.radio_button :public, true %>
-       <%= f.label "Private" %>
-       <%= f.radio_button :public, false %>
+  <div class="btn-group">
+    <%= f.label "Public" %>
+    <%= f.radio_button :public, true %>
+    <%= f.label "Private" %>
+    <%= f.radio_button :public, false %>
   </div>
 
-  <% if stack.public?  %>
-    <div class="form-group pull-left">
-      <%= f.submit "Make this Stack Private", class: 'btn btn-primary' %>
-    </div>
-  <% else %>
-     <div class="form-group pull-left">
-      <%= f.submit "Make this Stack Public", class: 'btn btn-primary' %>
-    </div>
-  <% end %>
+  <div class="form-group pull-left">
+    <%= f.submit "Change Stack Privacy", class: 'btn btn-primary' %>
+  </div>
+
 <% end %>

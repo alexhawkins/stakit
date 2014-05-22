@@ -16,4 +16,5 @@ module UsersHelper
       name
     end
   end
+
 end

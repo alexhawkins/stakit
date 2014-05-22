@@ -9,3 +9,30 @@ $brand-royal-blue: #3875d7;
 .pager li > a, .pager li > span {
   margin: 3px;
 }
+
+.glyphicon-circle-arrow-down{
+  color: #BBB !important;
+  padding-right: 3px;
+  //font-size: 1.1em;
+  &:hover {
+    color: #999 !important;
+  }
+}
+
+.glyphicon-minus-sign{
+  color: #999 !important;
+  padding-right: 3px;
+  //font-size: 1.1em;
+  &:hover {
+    color: #666 !important;
+  }
+}
+
+.glyphicon-plus-sign{
+  color: #BBB !important;
+  padding-right: 3px;
+  //font-size: 1.1em;
+  &:hover {
+    color: #999 !important;
+  }
+}

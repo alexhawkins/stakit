@@ -4,3 +4,9 @@ SENDGRID_USERNAME: app25225351@heroku.com
 SENDGRID_PASSWORD: bbtn3xio
 DEVISE_SECRET_KEY: 14ffed21c405a885ee4a9df4e79fce98c04c8093965134cc8d67adfddbed50618fddda3526ee69398ce304c190c3ae41bf8be3d552ea2ff9141b4f238565e7c6
 DEVISE_SEND_MAIL_FROM: "alexhawkins.me@gmail.com"
+AWS_ACCESS_KEY_ID: AKIAJEREPINFZUGZ3XBQ
+AWS_SECRET_ACCESS_KEY: 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
+development:
+  AWS_BUCKET: stakit-app-development
+production:
+  AWS_BUCKET: stakit-app-production
