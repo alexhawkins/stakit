@@ -2,12 +2,8 @@
   <!--*******************************-->
   <!-- USER MAIN SIDE PANEL/NAVIGATION-->
    <!--*******************************-->
-  <div class="col-md-4">
- <h2><!-- <%= best_in_place @user, :name, :type => :input %> -->
-    <%= link_to @user.name, user_path(@user), class: 'supplement-tip', data: { toggle: :tooltip, placement: :top}, title: 'View my public profile' %> 
-    <span class="settings-cog"><%= link_to " ", edit_user_registration_path, class: 'glyphicon glyphicon-cog supplement-tip', data: { toggle: :tooltip, placement: :top, trigger: 'click hover'}, title: 'User Settings' %>
-    </span>
- </h2>
+ <div class="col-md-4">
+ <h2><%= @user.name %></h2>
   <!--ACCORDIAN PANEL 1 - MY STACKS -->
   <div class="panel-group" id="accordion">
       <div class="panel panel-default">
@@ -15,7 +11,6 @@
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseMyStacks">
               My Stacks
-               <%= link_to " ", stacks_path, class: 'glyphicon glyphicon-th-list supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Manage Stacks' %>
             </a>
           </h4>
         </div>
@@ -23,9 +18,9 @@
         <!--MY STACK MAIN BODY -->
           <div class="panel-body">
           <!-- Check to see if user has added any stacks -->
-          <% unless @user.stacks.empty? %>
+          <% unless @stacks.empty? %>
           <!-- NAVIGAION PILLS WITHIN MY STACK BODY -->
-           <% @user.stacks.each do |stack| %>
+           <% @stacks.each do |stack| %>
              <ul class="nav nav-pills nav-stacked">
              <!-- check to see if the selected stack is the stack page the user is
                   currently on. If it is, then we want the tab to be active -->
@@ -55,10 +50,6 @@
              </ul>
             <% end %>
           <% end %> 
-          <!-- MANAGE MY STACKS -->
-            <div class="manage-stack-margin-space">
-              <%= link_to "Manage my Stacks", stacks_path, class: 'btn btn-default pull-right' %>
-            </div> 
           </div>
         </div>
       </div>
@@ -69,16 +60,14 @@
           <div class="panel-heading">
             <h4 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion3" href="#collapseNewStack">
-                Create a New Stack
+                Posts
               </a>
             </h4>
           </div>
           <div id="collapseNewStack" class="panel-collapse collapse in">
             <div class="panel-body">
             <!-- NEW STACK FORM -->
-             <div class="create-new-stack">
-              <%= render partial: 'stack_supplements/stacks/form', locals: {stack: @new_stack} %>
-             </div>
+             
             </div>
           </div>
         </div>
@@ -105,27 +94,26 @@
   <!-- MAIN BODY/ RIGHT COLUMN-->
   <!--*******************************-->
   <div class="col-md-8">
-    <!-- STACK_SUPPLEMENT FORM -->
-    <%= render partial: 'stack_supplements/form', locals: {stack: @stack, stack_supplement: StackSupplement.new }%>
 
-   
-
-    <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
-    <div class="panel-group" id="accordion-top">
+   <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
+  <div class="panel-group" id="accordion-top">
+   <% num = 0 %>
+   <!-- only show stack that are made public -->
+   <% @stacks.visible_to.each do |stack| %>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion-top" href="#collapseTop">
-             <%= @stack.name %>
-             <% if @stack.public? %>
-               <%= link_to " ", "#", class: 'glyphicon glyphicon-eye-open supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Your stack is public' %>
-             <% else %>
-               <%= link_to " ", "#", class: 'glyphicon glyphicon-lock supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Your stack is private' %>
-             <% end %>
+            <a data-toggle="collapse" data-parent="#accordion-top" href="#collapseTop-<%= stack.id %>">
+             <%= stack.name %>
             </a>
           </h4>
         </div>
-        <div id="collapseTop" class="panel-collapse collapse in">
+        <% if num == 0 %>
+          <div id="collapseTop-<%= stack.id %>" class="panel-collapse collapse in ">
+        <% else %>
+          <div id="collapseTop-<%= stack.id %>" class="panel-collapse collapse">
+        <% end %>
+        <% num += 1 %>
           <div class="panel-body">
           <!-- SUPPLEMENT TABLE --> 
             <table class="table table-striped">
@@ -139,17 +127,14 @@
               </thead>
               <tbody id="js-stack-supplements" data-update-url="<%= sort_stack_supplements_url %>">
               <!-- RENDER INDIVIDUAL STACK SUPPLEMENTS-->
-                <%= render @stack_supplements %>
+               
               </tbody>  
             </table>
-            <!-- STACK PRIVACY -->
-            <div class="privacy-for-stacks">
-              <%= render partial: 'stack_supplements/stacks/form_privacy', locals: {stack: @stack}%>
-            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
+  </div>
     <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
     <div class="panel-group" id="accordion2">
       <div class="panel panel-default">
@@ -162,7 +147,7 @@
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
           <div class="panel-body">
-           <%= best_in_place @stack, :description, :classes => 'highlight_on_success', :type => :textarea %></h2>
+           <!--ENTER SOMETHING HERE -->
           </div>
         </div>
       </div>
@@ -177,7 +162,7 @@
         </div>
         <div id="collapseTwo" class="panel-collapse collapse">
           <div class="panel-body">
-           <%= @stack.links %>
+           <!--ENTER SOMETHING HERE -->
           </div>
         </div>
       </div>

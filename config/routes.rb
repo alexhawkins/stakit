@@ -20,7 +20,7 @@ Stakit::Application.routes.draw do
               :sign_up => "register",
               :edit => "settings" }
 
-  resources :users, only: [:update]
+  resources :users, only: [:update, :show]
 
   root to: 'stacks#index'
 end

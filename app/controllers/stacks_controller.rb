@@ -55,7 +55,8 @@ class StacksController < ApplicationController
   def update
     respond_to do |format|
       if @stack.update(stack_params)
-        format.html { redirect_to @stack, notice: 'Stack was successfully updated.' }
+        format.html { 
+        redirect_to :back, notice: 'Stack was successfully updated.' }
         format.json { respond_with_bip(@stack) }
       else
         format.html { render action: 'edit' }
@@ -91,6 +92,6 @@ class StacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stack_params
-      params.require(:stack).permit(:name, :description, :links, :supplement_ids, :user_id)
+      params.require(:stack).permit(:name, :public, :description, :links, :supplement_ids, :user_id)
     end
 end

@@ -7,4 +7,13 @@ module StacksHelper
     end
     output
   end
+
+  def render_privacy_for(stack)
+    output = ""
+    if stack
+      output += "public"
+    else
+      output += "private"
+    end
+  end
 end

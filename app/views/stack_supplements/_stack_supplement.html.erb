@@ -2,7 +2,7 @@
   <td>
       
     <%= stack_supplement.supplement.name %>
-    <%= link_to " ", "#", class: 'glyphicon glyphicon-info-sign supplement-tip', data: { toggle: :tooltip, placement: :right, trigger: 'click focus'}, title: stack_supplement.supplement.tooltip %>
+    <%= link_to " ", "#", class: 'glyphicon glyphicon-info-sign supplement-tip', data: { toggle: :tooltip, placement: :right, trigger: 'click hover'}, title: stack_supplement.supplement.tooltip %>
   </td>
 
   <td>
@@ -10,6 +10,7 @@
       <%= stack_supplement.dose %>
     </a>
   </td>
+
 
   <td>
     <a href="#" data-xeditable="true" data-type="select" data-pk="<%= stack_supplement.id %>"data-model="stack_supplement" data-name="frequency_id" data-url="<%= stack_stack_supplement_path(@stack, stack_supplement) %>" data-title="Frequency" data-source="<%= Frequency.to_xeditable %>" data-value="<%= stack_supplement.frequency_id %>" >

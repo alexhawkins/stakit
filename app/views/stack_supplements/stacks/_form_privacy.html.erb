@@ -1,0 +1,30 @@
+<%= form_for(stack) do |f| %>
+  <% if stack.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(stack.errors.count, "error") %> prohibited this stack from being saved:</h2>
+
+      <ul>
+      <% stack.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="btn-group">
+       <%= f.label "Public", class: 'radio' %>
+       <%= f.radio_button :public, true %>
+       <%= f.label "Private", class: 'radio' %>
+       <%= f.radio_button :public, false %>
+  </div>
+
+  <% if stack.public?  %>
+    <div class="form-group">
+      <%= f.submit "Make Private", class: 'btn btn-success' %>
+    </div>
+  <% else %>
+     <div class="form-group">
+      <%= f.submit "Make Public", class: 'btn btn-success' %>
+    </div>
+  <% end %>
+<% end %>

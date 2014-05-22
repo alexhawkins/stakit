@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520214104) do
+ActiveRecord::Schema.define(version: 20140521204911) do
 
   create_table "frequencies", force: true do |t|
     t.string   "value"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140520214104) do
     t.datetime "updated_at"
     t.string   "description", default: "Details about my stack..."
     t.string   "links",       default: "Video Links to my stack..."
+    t.boolean  "public",      default: true
   end
 
   add_index "stacks", ["user_id"], name: "index_stacks_on_user_id"

@@ -9,4 +9,6 @@ class Frequency < ActiveRecord::Base
     end
     ret.to_json
   end
+
+
 end
