@@ -12,6 +12,7 @@ class StackSupplementsController < ApplicationController
     @new_stack_supplement = StackSupplement.new
     @new_stack = Stack.new
     @frequencies = Frequency.all
+    @public = @stack.public
   end
 
   # GET /stack_supplements/1

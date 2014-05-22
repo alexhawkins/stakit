@@ -117,7 +117,7 @@
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion-top" href="#collapseTop">
              <%= @stack.name %>
-             <% if @stack.public? %>
+             <% if @public %>
                <%= link_to " ", "#", class: 'glyphicon glyphicon-eye-open supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Your stack is public' %>
              <% else %>
                <%= link_to " ", "#", class: 'glyphicon glyphicon-lock supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Your stack is private' %>
@@ -143,7 +143,7 @@
               </tbody>  
             </table>
             <!-- STACK PRIVACY -->
-            <div class="privacy-for-stacks">
+            <div class="privacy-for-stacks pull-left">
               <%= render partial: 'stack_supplements/stacks/form_privacy', locals: {stack: @stack}%>
             </div>
           </div>

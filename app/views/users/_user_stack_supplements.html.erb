@@ -1,0 +1,14 @@
+<tr>
+  <td>  
+    <%= stack_supplement.supplement.name %>
+    <%= link_to " ", "#", class: 'glyphicon glyphicon-info-sign supplement-tip', data: { toggle: :tooltip, placement: :right, trigger: 'click hover'}, title: stack_supplement.supplement.tooltip %>
+  </td>
+
+  <td>
+      <%= stack_supplement.dose %>
+  </td>
+
+  <td>
+      <%= stack_supplement.frequency.value %>
+  </td>
+</tr>

@@ -98,8 +98,10 @@
    <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
   <div class="panel-group" id="accordion-top">
    <% num = 0 %>
-   <!-- only show stack that are made public -->
+   <!-- only show stacks that are made public -->
    <% @stacks.visible_to.each do |stack| %>
+  <!-- check to see if stack has any supplements in it -->
+    <% unless stack.stack_supplements.empty? %>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -122,17 +124,19 @@
                   <th>Supplement</th>
                   <th>Dose</th>
                   <th>Frequency</th>
-                  <th></th>
                 </tr>
               </thead>
-              <tbody id="js-stack-supplements" data-update-url="<%= sort_stack_supplements_url %>">
-              <!-- RENDER INDIVIDUAL STACK SUPPLEMENTS-->
-               
+              <tbody>
+              <!-- SHOW STACK SUPPLEMENTS -->
+               <% stack.stack_supplements.each do |stack_supplement| %>
+                  <%= render partial: 'user_stack_supplements', locals: { stack: stack, stack_supplement: stack_supplement } %>
+               <% end %>
               </tbody>  
             </table>
           </div>
         </div>
-      </div>
+       </div>
+     <% end %>
     <% end %>
   </div>
     <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
