@@ -121,7 +121,7 @@
   <div class="tab-content">
    <div class="tab-pane fade in active" id="stacks">
 
-   
+
    <%= render partial: 'stack_supplements/form', locals: {stack: @stack, stack_supplement: StackSupplement.new }%>
         <!--CONTENT FOR TAB 1 -->
     <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
@@ -199,6 +199,25 @@
         </div>
      </div>
      <!-- END OF TAB -->
+     <div class="tab-pane fade" id="video">
+        <div class="panel-group" id="accordion3">
+        <!--ACCORDIAN PANEL 2/MAIN BODY - VIDEO LINKS-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <%= render_arrow_collapse_for("#accordion3", "#collapseThree").html_safe %>
+                Videos
+            </h4>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse in">
+            <div class="panel-body">
+              VIDEOS
+            </div>
+          </div>
+          </div>
+        </div>
+     </div>
+     <!-- END OF TAB 3 -->
     </div>
     <!-- END OF TABS -->
   </div>
