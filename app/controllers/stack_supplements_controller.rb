@@ -13,6 +13,7 @@ class StackSupplementsController < ApplicationController
     @new_stack = Stack.new
     @frequencies = Frequency.all
     @public = @stack.public
+    @user_attachment = UserAttachment.new
   end
 
   # GET /stack_supplements/1

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :stacks, dependent: :destroy
+  has_many :user_attachments, dependent: :destroy
+  accepts_nested_attributes_for :user_attachments
   mount_uploader :avatar, AvatarUploader
 
   def role?(base_role)

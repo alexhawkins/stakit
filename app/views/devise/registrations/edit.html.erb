@@ -20,10 +20,19 @@
       </div>
 
       <div class="panel-body">
-       <div class="col-md-8">
-        <div class="form-group">
+        <div class="col-md-8">
             <!-- PERSONAL INFO AND AVATAR -->
             <%= form_for(current_user) do |f| %>
+              <!-- NAME -->
+              <div class="form-group">
+                <%= f.label :name %>
+                <%= f.text_field :name, class: 'form-control', placeholder: "Enter name", autofocus: true %>
+              </div>
+              <!--LOCATION -->
+              <div class="form-group">
+                <%= f.label :location %>
+                <%= f.text_field :location, class: 'form-control', placeholder: "Enter Location", autofocus: true %>
+              </div>
 
               <!-- ADD AN AVATAR -->
               <div class="form-group">
@@ -37,16 +46,38 @@
                 <%= f.hidden_field :avatar_cache %>
               </div>
 
-              <div class="form-group">
-                <%= f.label :name %>
-                <%= f.text_field :name, class: 'form-control', placeholder: "Enter name", autofocus: true %>
+               <div class="form-group">
+                <%= f.submit "Update", class: 'btn btn-success' %>
               </div>
+              
+            <% end %>
+
+            <%= form_for(current_user, :html => { :multipart => true }) do |f| %>
+
+              
+                <%= f.fields_for :user_attachments do |u| %>
+                <% current_user.user_attachments.each do |attachment| %>
+
+                  <div class="form-group">
+                      <%= image_tag(attachment.image.url, class: 'img-responsive img-rounded').html_safe %>
+                  </div>
+                   
+                   <div class="form-group">
+                    <p><strong>User Image</strong></p>
+                     <%= u.file_field :image, :multiple => true, name: "user_attachments[image][]" %>
+                  </div> 
+
+                <% end %>
+              <% end %>
 
                <div class="form-group">
                 <%= f.submit "Update", class: 'btn btn-success' %>
               </div>
             <% end %>
-           </div>
+
+           
+         
+
             <!-- EMAIL AND PASSWORD-->
             <h4 class="page-header">Change email or password</h4>
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -83,7 +114,12 @@
               <div class="form-group">
                 <%= f.submit "Update", class: 'btn btn-success' %>
               </div>
+
+
             <% end %>
+
+            
+             
            
             
             <div class="page-header">

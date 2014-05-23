@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522213959) do
+ActiveRecord::Schema.define(version: 20140523040145) do
 
   create_table "frequencies", force: true do |t|
     t.string   "value"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 20140522213959) do
     t.string   "tooltip"
   end
 
+  create_table "user_attachments", force: true do |t|
+    t.integer  "user_id"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_attachments", ["user_id"], name: "index_user_attachments_on_user_id"
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "username"
@@ -75,6 +84,7 @@ ActiveRecord::Schema.define(version: 20140522213959) do
     t.datetime "updated_at"
     t.string   "role"
     t.string   "avatar"
+    t.string   "location"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

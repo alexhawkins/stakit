@@ -1,0 +1,14 @@
+<div class="panel-body">
+  <div class="row">
+    <% if @user.user_attachments.present? %>
+      <% @user.user_attachments.each do |attachment| %>
+       <div class="col-xs-6 col-md-3">
+          <%= image_tag(attachment.image.url, class: 'new-image-portfolio img-responsive img-rounded').html_safe %>
+          <p class="pull-right"><%= link_to 'Delete',attachment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-sm btn-danger btn-images' %></p>
+       </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'form' %>

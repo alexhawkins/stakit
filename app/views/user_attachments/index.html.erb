@@ -1,0 +1,29 @@
+<h1>Listing user_attachments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Image</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_attachments.each do |user_attachment| %>
+      <tr>
+        <td><%= user_attachment.user_id %></td>
+        <td><%= user_attachment.image %></td>
+        <td><%= link_to 'Show', user_attachment %></td>
+        <td><%= link_to 'Edit', edit_user_attachment_path(user_attachment) %></td>
+        <td><%= link_to 'Destroy', user_attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User attachment', new_user_attachment_path %>

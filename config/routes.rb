@@ -1,4 +1,6 @@
 Stakit::Application.routes.draw do
+  resources :user_attachments
+
   resources :stack_supplements do
      collection { post :sort }
   end

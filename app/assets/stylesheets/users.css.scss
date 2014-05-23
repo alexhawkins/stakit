@@ -10,3 +10,25 @@ border-radius: 5px;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 }
+
+.user-profile-images{
+  margin-bottom: 20px;
+}
+
+//USER NAV TABS
+.user-nav-tabs {
+  margin-bottom: 20px;
+}
+
+//USER NAV FONT WEIGHTS
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  font-weight: bold;
+}
+
+.nav-tabs > li > a:hover, .nav-tabs > li > a, .nav-tabs > li > a:focus {
+  font-weight: bold;
+}
+
+.glyph-tab-spacing {
+ letter-spacing: 12px;
+}

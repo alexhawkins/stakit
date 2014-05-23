@@ -4,14 +4,27 @@
   <!--*******************************-->
  <div class="col-md-3">
  <!-- if the user is the current_user, let his profile image link to his settings page -->
- <% if current_user %>
+ <% if current_user == @user %>
     <%= link_to render_profile_avatar_for(@user), edit_user_registration_path %>
  <% else %>
     <%= render_profile_avatar_for(@user) %>
  <% end %>
+ <div class="page-header squashed-header">
+    <h3><strong><%= @user.name %></strong></h3>
+ </div>
+ <!-- Location Info/ Joined Info-->
+ <div class="page-header squashed-header">
+    <h5>
+      <%= link_to " ", "#", class: 'glyphicon glyphicon-map-marker supplement-tip', data: { toggle: :tooltip, placement: :top }, title: @user.location %>
+      <%= @user.location %>
+    </h5>
+    <h5>
+       <%= link_to " ", "#", class: 'glyphicon glyphicon-time supplement-tip', data: { toggle: :tooltip, placement: :bottom }, title: "#{time_ago_in_words(@user.created_at)} ago" %>
+       <%= @user.created_at.strftime("Joined on %B %d, %Y") %>
+    </h5>
+ </div>
 
- <h2><%= @user.name %></h2>
-  <!--ACCORDIAN PANEL 1 - MY STACKS -->
+  <!--ACCORDIAN PANEL 1 - ABOUT-->
   <div class="panel-group" id="accordion">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -23,8 +36,7 @@
         <div id="collapseMyStacks" class="panel-collapse collapse in">
         <!--MY STACK MAIN BODY -->
           <div class="panel-body">
-          <!-- Check to see if user has added any stacks -->
-          
+           
           </div>
         </div>
       </div>
@@ -66,81 +78,76 @@
   <!--*******************************-->
   <!-- MAIN BODY/ RIGHT COLUMN-->
   <!--*******************************-->
-  <div class="col-md-9">
+    <div class="col-md-9">
 
-   <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
-  <div class="panel-group" id="accordion-top">
-   <% num = 0 %>
-   <!-- only show stacks that are made public -->
-   <% @stacks.visible_to.each do |stack| %>
-  <!-- check to see if stack has any supplements in it -->
-    <% unless stack.stack_supplements.empty? %>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-          <%= render_arrow_collapse_for("#accordion-top", "#collapseTop-#{stack.id}").html_safe %>
-             <%= stack.name %>
-          </h4>
+      <!--TAB 1 -->
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs user-nav-tabs">
+        <li class="active">
+          <%= link_to " Stacks", "#stacks", class: 'glyphicon glyphicon-th-list', data: { toggle: :tab } %>
+        </li>
+        <li>
+          <%= link_to " Pictures", "#pictures", class: 'glyphicon glyphicon-picture', data: { toggle: :tab } %>
+        </li>
+        <li>
+          <%= link_to " Video", "#video", class: 'glyphicon glyphicon-film', data: { toggle: :tab } %>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="stacks">
+        <!--CONTENT FOR TAB 1 -->
+        <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
+        <div class="panel-group" id="accordion-top">
+          <% num = 0 %>
+          <!-- only show stacks that are made public -->
+          <% @stacks.visible_to.each do |stack| %>
+          <!-- check to see if stack has any supplements in it -->
+            <% unless stack.stack_supplements.empty? %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                  <%= render_arrow_collapse_for("#accordion-top", "#collapseTop-#{stack.id}").html_safe %>
+                     <%= stack.name %>
+                  </h4>
+                </div>
+                <% if num == 0 %>
+                  <div id="collapseTop-<%= stack.id %>" class="panel-collapse collapse in ">
+                <% else %>
+                  <div id="collapseTop-<%= stack.id %>" class="panel-collapse collapse">
+                <% end %>
+                <% num += 1 %>
+                  <div class="panel-body">
+                  <!-- SUPPLEMENT TABLE --> 
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Supplement</th>
+                          <th>Dose</th>
+                          <th>Frequency</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <!-- SHOW STACK SUPPLEMENTS -->
+                       <% stack.stack_supplements.each do |stack_supplement| %>
+                          <%= render partial: 'user_stack_supplements', locals: { stack: stack, stack_supplement: stack_supplement } %>
+                       <% end %>
+                      </tbody>  
+                    </table>
+                  </div>
+                </div>
+               </div>
+            <% end %>
+          <% end %>
         </div>
-        <% if num == 0 %>
-          <div id="collapseTop-<%= stack.id %>" class="panel-collapse collapse in ">
-        <% else %>
-          <div id="collapseTop-<%= stack.id %>" class="panel-collapse collapse">
-        <% end %>
-        <% num += 1 %>
-          <div class="panel-body">
-          <!-- SUPPLEMENT TABLE --> 
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Supplement</th>
-                  <th>Dose</th>
-                  <th>Frequency</th>
-                </tr>
-              </thead>
-              <tbody>
-              <!-- SHOW STACK SUPPLEMENTS -->
-               <% stack.stack_supplements.each do |stack_supplement| %>
-                  <%= render partial: 'user_stack_supplements', locals: { stack: stack, stack_supplement: stack_supplement } %>
-               <% end %>
-              </tbody>  
-            </table>
-          </div>
-        </div>
-       </div>
-     <% end %>
-    <% end %>
-  </div>
-    <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
-    <div class="panel-group" id="accordion2">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <%= render_arrow_collapse_for("#accordion2", "#collapseOne").html_safe %>
-              Important Details about this Stack
-          </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
-          <div class="panel-body">
-           <!--ENTER SOMETHING HERE -->
-          </div>
-        </div>
+        <!--END OF TAB 1 -->
       </div>
-      <!--ACCORDIAN PANEL 2/MAIN BODY - VIDEO LINKS-->
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <%= render_arrow_collapse_for("#accordion2", "#collapseTwo").html_safe %>
-              YouTube Links
-          </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse">
-          <div class="panel-body">
-           <!--ENTER SOMETHING HERE -->
-          </div>
-        </div>
-      </div>
-      <!--ACCORDIAN PANEL 3/MAIN BODY - VIDEO LINKS-->
+      
+      <div class="tab-pane fade" id="pictures">
+      <!-- CONTENT FOR TAB 2 -->
+      <div class="panel-group" id="accordion2">
+      <!--ACCORDIAN PANEL 1/MAIN BODY - IMAGES-->
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -148,13 +155,44 @@
               Pictures
           </h4>
         </div>
-        <div id="collapseThree" class="panel-collapse collapse">
+        <div id="collapseThree" class="panel-collapse collapse in">
           <div class="panel-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+               <div class="row">
+               <% if @user.user_attachments.present? %>
+                <% @user.user_attachments.each do |attachment| %>
+                  <div class="col-xs-6 col-md-3">
+                     <%= image_tag(attachment.image.url, class: 'user-profile-images img-responsive img-rounded').html_safe %>
+                  </div>
+                 <% end %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
+      </div>  
+      <!--END OF TAB 2-->
+      </div>
+      
+      <div class="tab-pane fade" id="video">
+      <!-- CONTENT FOR TAB 3 -->
+      <!--ACCORDIAN PANEL 3/MAIN BODY - VIDEO LINKS-->
+      <div class="panel-group" id="accordion4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <%= render_arrow_collapse_for("#accordion4", "#collapseTwo").html_safe %>
+                YouTube Links
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse in">
+            <div class="panel-body">
+             <!--ENTER SOMETHING HERE -->
+            </div>
+          </div>
+        </div>
+       </div>  
+      <!--END OF TAB 3-->
       </div>
     </div>
   </div>
-</div>
 </div>
