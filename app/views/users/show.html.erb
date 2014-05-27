@@ -108,8 +108,13 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
+                  <!-- ARROW COLLAPSE -->
                   <%= render_arrow_collapse_for("#accordion-top", "#collapseTop-#{stack.id}").html_safe %>
-                     <%= stack.name %>
+                    <%= stack.name %>
+                    <!-- FAVORITE STACKS BUTTON -->
+                 <!--    <span class="pull-right">
+                       <%= render partial: 'favorite_stacks/favorite_stack', locals: { stack: stack, user: @user} %>
+                    </span> -->
                   </h4>
                 </div>
                 <% if num == 0 %>

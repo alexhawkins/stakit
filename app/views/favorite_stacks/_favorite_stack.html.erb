@@ -1,0 +1,13 @@
+<div class="favorite">
+    <% if favorite = user.favorited_stack(stack) %>
+      <%= stack.id %>
+      <%= user.id %>
+      <%= link_to [favorite], class: 'btn btn-danger', method: :delete do %>
+        <i class="glyphicon glyphicon-star-empty"> </i>&nbsp; Unfavorite
+      <% end %>
+    <% else %>
+      <%= link_to [FavoriteStack.create(stack_id: stack.id, user_id: current_user.id)], class: 'btn btn-primary', method: :post do %>
+        <i class="glyphicon glyphicon-star"> </i>&nbsp; Favorite
+      <% end %>
+    <% end %>
+</div>

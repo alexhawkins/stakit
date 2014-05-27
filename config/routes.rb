@@ -1,4 +1,7 @@
 Stakit::Application.routes.draw do
+  resources :topics
+  resources :questions
+
   resources :user_attachments
 
   resources :stack_supplements do
@@ -23,6 +26,7 @@ Stakit::Application.routes.draw do
               :edit => "settings" }
 
   resources :users, only: [:update, :show]
+  resources :favorite_stacks, only: [:create, :destroy]
 
   root to: 'stacks#index'
 end
