@@ -131,11 +131,19 @@
           <h4 class="panel-title">
           <%= render_arrow_collapse_for("#accordion-top", "#collapseTop").html_safe %>
              <%= @stack.name %>
+             <!-- STACK PRIVACY -->
              <% if @public %>
-               <%= link_to " ", "#", class: 'glyphicon glyphicon-eye-open supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Your stack is public' %>
+               <%= link_to " ", "#", class: 'glyphicon glyphicon-eye-open supplement-tip pull-right', data: { toggle: :tooltip, placement: :top}, title: 'Public' %>
              <% else %>
-               <%= link_to " ", "#", class: 'glyphicon glyphicon-lock supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Your stack is private' %>
+               <%= link_to " ", "#", class: 'glyphicon glyphicon-lock supplement-tip pull-right', data: { toggle: :tooltip, placement: :top}, title: 'Private' %>
              <% end %>
+             <!-- STACK DEFAULT -->
+             <% if @stack.default? %>
+                <%= link_to " ", "#", class: 'glyphicon glyphicon-tag supplement-tip default-tag pull-right', data: { toggle: :tooltip, placement: :left}, title: 'This is your default stack' %>
+             <% else %>
+              <%= link_to "Make Default", default_stack_stack_path(@stack), class: 'btn-xs btn-primary default-stack-button pull-right', :method => :put  %>
+             <% end %>
+
           </h4>
         </div>
         <div id="collapseTop" class="panel-collapse collapse in">

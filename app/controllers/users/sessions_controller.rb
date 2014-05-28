@@ -5,7 +5,7 @@ class Users::SessionsController < Devise::SessionsController
        
         @brain_stack = Stack.create(user_id: current_user.id, name: 'Sample Brain Stack')
         @fitness_stack = Stack.create(user_id: current_user.id, name: 'Sample Fitness Stack')
-        @starter_stack = Stack.create(user_id: current_user.id, name: 'My Starter Stack')
+        @starter_stack = Stack.create(user_id: current_user.id, name: 'My Starter Stack', default: true)
         @starter_stack_id = @starter_stack.id
         #create a new Supplement array with the first 8 supplements we have, then iterate
         Supplement.take(8).each do |supplement|

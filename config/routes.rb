@@ -11,6 +11,7 @@ Stakit::Application.routes.draw do
   resources :frequencies
   resources :stacks do
     resources :stack_supplements
+    put :default_stack, on: :member
   end
   resources :supplements
   get 'landing/index'

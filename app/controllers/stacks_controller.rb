@@ -11,7 +11,7 @@ class StacksController < ApplicationController
       @stacks = current_user.stacks
       authorize @stacks
       #set up stack for user to go back to when he click 'back'
-      @stack = current_user.stacks.find(:first, :order => 'created_at DESC')
+      @stack = current_user.stacks.where(default: true).first
     else
       flash[:notice] = "You can not view this page."
       redirect_to new_user_session_path
@@ -83,6 +83,17 @@ class StacksController < ApplicationController
     end
   end
 
+  #SET THE DEFAULT STACK
+  def default_stack
+    @default_stack = Stack.find(params[:id])
+    @current_default = Stack.where(default: true).first
+    @default_stack.update_attribute(:default, true)
+    if @current_default.present?
+      @current_default.update_attribute(:default, false)
+    end
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_stack
@@ -92,6 +103,6 @@ class StacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stack_params
-      params.require(:stack).permit(:name, :public, :description, :links, :supplement_ids, :user_id)
+      params.require(:stack).permit(:name, :public, :default, :description, :links, :supplement_ids, :user_id)
     end
 end

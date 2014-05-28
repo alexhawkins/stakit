@@ -20,7 +20,7 @@
                     <th>Supplments</th>
                     <th></th>
                     <th>Privacy</th>
-                    <th></th>
+                    <th>Default Stack</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -51,7 +51,12 @@
                       </td>
 
                       <td> 
-                        <%= link_to 'View', stack_stack_supplements_path(stack), class: 'btn-sm btn-primary'%>
+                        <!-- STACK DEFAULT -->
+                         <% if stack.default? %>
+                            <%= link_to " ", "#", class: 'glyphicon glyphicon-tag supplement-tip default-tag', data: { toggle: :tooltip, placement: :right}, title: 'Default stack' %>
+                         <% else %>
+                            <%= link_to "Make Default", default_stack_stack_path(stack), class: 'btn-sm btn-primary', :method => :put  %>
+                         <% end %>
                       </td>
 
                       <td><%= link_to " ", stack, method: :delete, class: 'glyphicon glyphicon-remove-circle supplement-tip', remote: true, data: { confirm: 'Are you sure?' }, toggle: :tooltip, placement: :top, title: 'Delete Stack' %>

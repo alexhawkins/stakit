@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527191517) do
+ActiveRecord::Schema.define(version: 20140528203338) do
 
   create_table "favorite_stacks", force: true do |t|
     t.integer  "stack_id"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20140527191517) do
     t.string   "description", default: "Details about my stack..."
     t.string   "links",       default: "Video Links to my stack..."
     t.boolean  "public",      default: true
+    t.boolean  "default",     default: false
   end
 
   add_index "stacks", ["user_id"], name: "index_stacks_on_user_id"
