@@ -60,6 +60,7 @@ gem 'bootstrap-x-editable-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
+gem 'select2-rails'
 
 
 # Use ActiveModel has_secure_password

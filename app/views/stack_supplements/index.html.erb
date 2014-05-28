@@ -5,7 +5,7 @@
   <div class="col-md-4">
  <h2><!-- <%= best_in_place @user, :name, :type => :input %> -->
     <%= link_to @user.name, user_path(@user), class: 'supplement-tip', data: { toggle: :tooltip, placement: :top}, title: 'View my public profile' %> 
-    <span class="settings-cog"><%= link_to " ", edit_user_registration_path, class: 'glyphicon glyphicon-cog supplement-tip', data: { toggle: :tooltip, placement: :top, trigger: 'click hover'}, title: 'User Settings' %>
+    <span class="settings-cog"><%= link_to " ", edit_user_registration_path, class: 'glyphicon glyphicon-cog supplement-tip', data: { toggle: :tooltip, placement: :top, trigger: 'click hover'}, title: 'Settings' %>
     </span>
  </h2>
   <!--ACCORDIAN PANEL 1 - MY STACKS -->

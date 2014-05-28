@@ -5,18 +5,47 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
+########################
 /.bundle
 
 # Ignore the default SQLite database.
+#####################################
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
+####################################
 /log/*.log
 /tmp
+*.sql
+*.sqlite
+
 
 # Ignore application configuration
+##################################
 /config/application.yml
 
 # Carrierwave image
+###################
 public/uploads
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ignore other unneeded files.
+##############################
+database.yml
+doc/
+*.swp
+*~
+.idea
+.secret
+bundler_stubs/
+

@@ -16,8 +16,9 @@
                 <thead>
                   <tr>
                     <th>Name (Click to Edit) </th>
-                    <th>Date Created</th>
-                    <th>Supplment Count</th>
+                    <th>Created</th>
+                    <th>Supplments</th>
+                    <th></th>
                     <th>Privacy</th>
                     <th></th>
                     <th></th>
@@ -34,9 +35,27 @@
                       </td>
                       <td><%= time_ago_in_words(stack.created_at) %> ago</td>
                       <td><%= stack.supplements.count %></td>
-                      <td><%= render_privacy_for(stack.public).html_safe %></td>
-                      <td><%= link_to 'View', stack_stack_supplements_path(stack), class: 'btn-sm btn-primary'%></td>
-                      <td><%= link_to 'Delete', stack, class: 'btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure you want to permanently delete this stack?' } %></td>
+          
+                      <td>
+                        <% if stack.public %>
+                        <%= link_to " ", "#", class: 'glyphicon glyphicon-eye-open supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Your stack is public' %>
+                        <% else %>
+                          <%= link_to " ", "#", class: 'glyphicon glyphicon-lock supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Your stack is private' %>
+                        <% end %>
+                      </td>
+
+                      <td>
+                        <div class="pull-left">
+                           <%= render partial: 'stack_supplements/stacks/form_privacy_manager', locals: {stack: stack}%>
+                        </div>
+                      </td>
+
+                      <td> 
+                        <%= link_to 'View', stack_stack_supplements_path(stack), class: 'btn-sm btn-primary'%>
+                      </td>
+
+                      <td><%= link_to " ", stack, method: :delete, class: 'glyphicon glyphicon-remove-circle supplement-tip', remote: true, data: { confirm: 'Are you sure?' }, toggle: :tooltip, placement: :top, title: 'Delete Stack' %>
+                      </td>
                     </tr>
                   <% end %>
                 </tbody>

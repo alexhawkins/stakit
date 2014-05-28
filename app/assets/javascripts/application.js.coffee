@@ -17,6 +17,7 @@
 #= require best_in_place
 #= require best_in_place.purr
 #= require jquery.tokeninput
+#= require select2
 #= require bootstrap
 #= require bootstrap3-editable/bootstrap-editable
 ## require turbolinks
