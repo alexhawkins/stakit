@@ -11,6 +11,9 @@ Stakit::Application.routes.draw do
   resources :frequencies
   resources :stacks do
     resources :stack_supplements
+    # route for updating default stack on specific stack id
+    # note that we use member to update/act on a singular object like stacks/1/default_stack
+    # and collection to act on/display a collection of ojbects like  stacks/search.
     put :default_stack, on: :member
   end
   resources :supplements

@@ -6,8 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @stacks = @user.stacks
-    @stack = @user.stacks.find(:first, :order => 'created_at DESC')
-    @user_attachments = @user.user_attachments.all
+    @user_attachments = @user.user_attachments
   end
 
   def new

@@ -86,7 +86,7 @@ class StacksController < ApplicationController
   #SET THE DEFAULT STACK
   def default_stack
     @default_stack = Stack.find(params[:id])
-    @current_default = Stack.where(default: true).first
+    @current_default = current_user.stacks.where(default: true).first
     @default_stack.update_attribute(:default, true)
     if @current_default.present?
       @current_default.update_attribute(:default, false)

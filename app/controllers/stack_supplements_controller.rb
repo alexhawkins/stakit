@@ -11,7 +11,7 @@ class StackSupplementsController < ApplicationController
     @stack_supplements = @stack.stack_supplements
     @new_stack_supplement = StackSupplement.new
     @new_stack = Stack.new
-    @frequencies = Frequency.all
+    @frequencies = Frequency.all.load
     @public = @stack.public
     @user_attachment = UserAttachment.new
   end
@@ -102,9 +102,9 @@ class StackSupplementsController < ApplicationController
        #if a stack exist, set the stack variabe
        @stack = Stack.find(params[:stack_id])
        authorize @stack
-     else
+     else #CREATE A REDIRECT
        #otherwise, find the last stack that this user created and redirect
-       @stack = current_user.stacks.find(:first, :order => 'created_at DESC')
+       @stack = current_user.stacks.first
        flash[:error] = "Unable to view page. Better luck next time:)"
        redirect_to stack_stack_supplements_path(@stack)
      end
