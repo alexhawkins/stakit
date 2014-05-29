@@ -1,0 +1,15 @@
+<!--FORM TO EDIT QUESTION AND QUESTION DETAILS  -->
+<p>
+  <%= form_for [@question], remote: true do |f| %>
+     <div class="form-group"><strong>
+        <%= f.text_field :title, class: 'form-control' %>
+     </strong>
+     </div>
+     <div class="form-group">
+        <%= f.text_area :body, rows: 3, class: 'form-control', placeholder: "Add Detail" %>
+      </div>
+      <div class="form-group pull-right">
+        <%= f.submit "Update", class: 'btn btn-success btn-xs' %>
+      </div><br>
+  <% end %>
+</p>

@@ -1,0 +1,42 @@
+<%= content_tag :div, class: 'media each-question', id: "questions-#{question.id}" do %>
+   <!-- FOLLOW QUESTION BUTTON -->
+       <!--ADD FOLLOW HERE LATER -->
+        <div class="media-body">
+          <div class="question-added-section">
+          <!--QUESTION ADDED TO WHAT TOPIC? -->
+            Question added to topic <%= link_to @topic.name, topic_path(@topic),  class: "label label-default" %> &bull; <%= link_to "#{time_ago_in_words(question.created_at)} ago", question_path(question) %> 
+            <!--DELETE BUTTON-->
+            <% if policy(question).destroy? %>
+              &bull; <%= link_to "Delete", question_path(question), method: :delete, remote: true, class: 'label label-danger' %>
+            <% end %>
+          </div>
+           <!-- QUESTION TITLE + LINK -->
+          <h4 class="media-heading question-title-space">
+            <%= link_to question.name,  question_path(question) %>
+          </h4>
+          <!-- QUESTION BODY -->
+          <div class="question-body">
+            <a href="#" data-xeditable="true" data-type="textarea" data-pk="<%= question.id %>" data-model="question" data-name="body" data-url="<%= question_path(question) %>" data-title="Edit Question Details">
+              <%= question.description %>
+            </a>
+          </div>
+          <!-- ANSWER FORM -->
+          <%= content_tag :div, id: "js-question-answer-#{question.id}" do %>
+            <p>
+          <!--
+            <%= render partial: 'answers/answers_form', locals: { question: question, answer: @new_answer } %>
+            </p>
+            -->
+          <% end %>
+
+          <!--LINKS: FOLLOW/ ANSWER COUNT / SHARE-->
+          <div class="answer-links">
+            <h5>
+              <%= link_to "Follow", '#' %> &bull;
+              <%= link_to "#{question.answers.count} Answers" , question_path(question, anchor: 'js-answers'), id: "js-answers-count-#{question.id}" %> &bull;
+              <%= link_to "Share", '#' %>
+            </h5>
+          </div>
+              
+        </div>
+    <% end %>

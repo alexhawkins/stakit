@@ -1,0 +1,13 @@
+<!-- add remote: true to enable Ajax on the form -->
+<%= form_for [question] do |f| %>
+  <div class="form-group answer-form ask-question-form">
+    <%= f.text_area :name, rows: 1, cols: 40, class: 'form-control', placeholder: "What is your question about #{topic.name.capitalize}?" %>
+  </div>
+
+  <%= hidden_field_tag "topic_id", topic.id %>
+ 
+  <div class="form-group">
+    <%= f.submit "Ask Question", class: 'btn btn-primary pull-right' %>
+  </div>
+<% end %>
+

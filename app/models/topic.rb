@@ -2,6 +2,8 @@ class Topic < ActiveRecord::Base
   has_many :question_topics, dependent: :destroy
   has_many :questions, through: :question_topics
 
+  scope :alphabetically, -> { order('title ASC') }
+
   def self.tokens(query)
     topics = where("name like?", "%#{query}%")
     if topics.empty?

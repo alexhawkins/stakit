@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  respond_to :html, :js
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   # GET /topics
@@ -14,6 +15,12 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
+    @questions = @topic.questions.includes(:user).paginate(page: params[:page], per_page: 5)
+    @new_question = Question.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /topics/new

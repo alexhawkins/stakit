@@ -1,0 +1,23 @@
+<!-- add remote: true to enable Ajax on the form -->
+<%= form_for [question, answer], remote: true do |f| %>
+
+<!-- DETERMINE PLAEHOlDER TEXT BASED UPON NUMBER OF FOLLOWERS -->
+
+    <% if question.answers.empty? %>
+      <% if question.follows.count > 1 %>
+        <% answer_placeholder = "#{pluralize(question.follows.count, 'Person')} are waiting for an answer" %>
+      <% else %>
+        <% answer_placeholder = "#{pluralize(question.follows.count, 'Person')} is waiting for an answer" %>
+      <% end %>
+    <% else %>
+        <% answer_placeholder = "Add your answer" %>
+    <% end %>          
+
+  <div class="form-group answer-form">
+    <%= f.text_area :body, rows: 4, cols: 40, class: 'form-control', placeholder: "#{answer_placeholder}" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Add Answer", class: 'btn btn-success btn-xs' %>
+  </div>
+<% end %>

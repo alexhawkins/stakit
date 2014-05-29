@@ -1,0 +1,7 @@
+<% if @answer.destroyed? %>
+$('#answer-' +<%= @answer.id %>).fadeOut( "slow", function() {});
+$('.js-answers-count').html("<%= @question.answers.count %> Answers");
+$('#js-answers-count-' +<%= @question.id %>).html("<%= @question.answers.count %> Answers");
+<% else %>
+$('#answer-' +<%= @answer.id %>).prepend("<div class='alert alert-error'><%= flash[:error] %></div>");
+<% end %>

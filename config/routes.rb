@@ -1,4 +1,6 @@
 Stakit::Application.routes.draw do
+  resources :answers
+
   resources :topics
   resources :questions
 

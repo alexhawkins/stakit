@@ -60,7 +60,8 @@ gem 'bootstrap-x-editable-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
-gem 'select2-rails'
+gem 'will_paginate', '~> 3.0.5'
+gem 'bootstrap-will_paginate', '~> 0.0.10'
 
 
 # Use ActiveModel has_secure_password

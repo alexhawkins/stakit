@@ -1,0 +1,47 @@
+<p>
+<%= content_tag :div, class: 'media', id: "answer-#{answer.id}" do %>
+      <a class="pull-left" href="#">
+      <!--VOTE COUNT FOR ANSWER -->
+      <%= render partial: 'answer_votes/voter', locals: { question: @question, answer: answer } %>
+      </a>
+
+      <div class="media-body">
+        <h4 class="media-heading"> 
+        <!-- USER NAME and INFO OF ANSWER -->
+          <%= link_to answer.user.name, user_path(answer.user) %>
+          <!-- RENDER A TINY AVATAR FOR THE USER OF THIS ANSWER -->
+         <%= link_to render_answer_avatar_for(answer.user), user_path(answer.user), class: 'pull-right answer-image' %>
+        </h4>
+
+
+        <!-- VOTERS NAME -->
+        <div class="vote-names">
+          <%= pluralize(answer.answer_votes.count, 'Vote') %>
+          <% unless answer.answer_votes.empty? %>
+            by
+            <% answer.answer_votes.each do |vote| %>
+            <!--check to make sure there is more than 1 vote and it's not the last vote -->
+              <% if answer.answer_votes.count > 1 && answer.answer_votes.last != vote %>
+               <%= link_to vote.user.name, user_path(vote.user) %>, 
+              <% else %>
+               <%= link_to vote.user.name, user_path(vote.user) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <!--ANSWER BODY -->
+        <p> <%= truncate(strip_tags(answer.body), length: 500) %></p>
+        <p class="answer-feed-info">
+          <!--DATE ANSWER WAS CREATED-->
+           <span>
+            <%= link_to "#{time_ago_in_words(answer.created_at)} ago", question_answer_path(@question, answer), class: 'label label-default' %>
+          <!--DELETE BUTTON-->
+           <% if policy(answer).destroy? %>
+            <%= link_to "Delete", question_answer_path(@question, answer), method: :delete, remote: true, class: 'label label-danger' %>
+           <% end %>
+
+          </span>
+        </p>
+    </div>
+<% end %>
+</p>

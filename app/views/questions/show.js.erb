@@ -1,0 +1,7 @@
+$('#js-answers').append('<%= j render @answers %>');
+<% if @answers.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @answers %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>
