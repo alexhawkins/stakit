@@ -10,6 +10,13 @@ class Answer < ActiveRecord::Base
     self.answer_votes.sum(:value).to_i
   end
 
+  def update_rank
+    age = (self.created_at - Time.new(1970,1,1)) / 86400
+    new_rank = age + points
+
+    self.update_attribute(:rank, new_rank)
+  end
+
   private
 
 # automatically be set to up vote an Answer after creation
