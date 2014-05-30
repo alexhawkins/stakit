@@ -187,12 +187,25 @@ a {
 //BOOTSTRAP LABELS {
 .label{
   border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
   padding-left: 8px;
   padding-right: 8px;
 
 }
 .label-primary{
   background-color: $brand-royal-blue;
+}
+
+.label-info{
+  line-height: 2.3em;
+  background-color: white;
+  color: $brand-royal-blue;
+  border: 1px solid $brand-royal-blue;
+  &:hover {
+     background-color: white !important;
+     color: $brand-royal-blue !important;
+  }
 }
 
 

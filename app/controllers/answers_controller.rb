@@ -4,6 +4,7 @@ class AnswersController < ApplicationController
 
   # GET /answers/1
   # GET /answers/1.json
+
   def show
     @question = Question.find(params[:question_id])
   end
@@ -24,15 +25,17 @@ class AnswersController < ApplicationController
     @answers = @question.answers
     @answer = current_user.answers.build(answer_params)
     @answer.question = @question
-    @new_answer = Answer.new(answer_params)
+    @new_answer = Answer.new
 
     respond_to do |format|
       if @answer.save
         format.html { redirect_to :back, notice: 'Answer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @question }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -44,9 +47,11 @@ class AnswersController < ApplicationController
       if @answer.update(answer_params)
         format.html { redirect_to :back, notice: 'Answer was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: 'edit' }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -59,6 +64,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :back }
       format.json { head :no_content }
+      format.js
     end
   end
 

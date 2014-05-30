@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :user_attachments, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
+  has_many :answer_votes, dependent: :destroy
   
   accepts_nested_attributes_for :user_attachments
   mount_uploader :avatar, AvatarUploader

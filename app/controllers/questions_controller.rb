@@ -12,6 +12,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     get_and_show_answers
+    @stack = current_user.stacks.where(default: true).first
   end
 
   # GET /questions/new

@@ -1,6 +1,6 @@
 <p>
 <%= content_tag :div, class: 'media', id: "answer-#{answer.id}" do %>
-      <a class="pull-left" href="#">
+      <a class="pull-left" href="#"
       <!--VOTE COUNT FOR ANSWER -->
       <%= render partial: 'answer_votes/voter', locals: { question: @question, answer: answer } %>
       </a>
@@ -8,12 +8,12 @@
       <div class="media-body">
         <h4 class="media-heading"> 
         <!-- USER NAME and INFO OF ANSWER -->
-          <%= link_to answer.user.name, user_path(answer.user) %>
+          <%= link_to answer.user.name, user_path(answer.user), data: { toggle: :tooltip, placement: :top}, title: 'Public' %>
+          
           <!-- RENDER A TINY AVATAR FOR THE USER OF THIS ANSWER -->
-         <%= link_to render_answer_avatar_for(answer.user), user_path(answer.user), class: 'pull-right answer-image' %>
-        </h4>
-
-
+         <%= link_to render_answer_avatar_for(answer.user), user_path(answer.user), class: 'pull-right answer-image supplement-tip', data: { toggle: :tooltip, placement: :left}, title: "#{answer.user.name} profile" %>
+          </h4>
+       
         <!-- VOTERS NAME -->
         <div class="vote-names">
           <%= pluralize(answer.answer_votes.count, 'Vote') %>
@@ -31,17 +31,35 @@
         </div>
         <!--ANSWER BODY -->
         <p> <%= truncate(strip_tags(answer.body), length: 500) %></p>
-        <p class="answer-feed-info">
+        <p>
           <!--DATE ANSWER WAS CREATED-->
            <span>
             <%= link_to "#{time_ago_in_words(answer.created_at)} ago", question_answer_path(@question, answer), class: 'label label-default' %>
           <!--DELETE BUTTON-->
            <% if policy(answer).destroy? %>
-            <%= link_to "Delete", question_answer_path(@question, answer), method: :delete, remote: true, class: 'label label-danger' %>
+            <%= link_to "Delete", question_answer_path(@question, answer), method: :delete, class: 'label label-danger', remote: true %>
            <% end %>
-
           </span>
         </p>
-    </div>
-<% end %>
+
+        <!-- USER DEFAULT SUPPLEMENTS -->      
+          <div class="panel-group answer-feed-info" id="accordion-user-supplements">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <%= render_arrow_collapse_for("#accordion-user-supplements", "#collapseUser-#{answer.id}").html_safe %>
+                    View My Current Stack
+                </h4>
+              </div>
+              <div id="collapseUser-<%= answer.id %>" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <% answer.user.stacks.where(default: true).first.supplements.each do |supplement| %>
+                    <span class="unique-supplement"><%= link_to supplement.name, '#',  class: 'label label-info' %></span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+  <% end %>
 </p>

@@ -2,7 +2,10 @@ Stakit::Application.routes.draw do
 
   resources :topics
   resources :questions do
-    resources :answers, only: [:create, :destroy, :show, :edit, :new]
+    resources :answers, only: [:create, :destroy, :show, :edit, :new] do
+      get '/up-vote' => 'answer_votes#up_vote', as: :up_vote
+      get '/down-vote' => 'answer_votes#down_vote', as: :down_vote
+    end
   end
 
   resources :user_attachments
@@ -14,7 +17,7 @@ Stakit::Application.routes.draw do
     # and collection to act on/display a collection of ojbects like  stacks/search.
     put :default_stack, on: :member
   end
-  
+
   resources :stack_supplements do
      collection { post :sort }
   end
