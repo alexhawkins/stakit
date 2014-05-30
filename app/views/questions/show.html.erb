@@ -1,20 +1,73 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @question.name %>
-</p>
+<!-- show the topics that the question belongs to -->
+<div class="row">
+  <div class="col-md-7">
+    <% @question.topics.each do |topic| %>
+     <%= link_to topic.name, topic_path(topic), class: 'label label-primary' %>
+    <% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @question.description %>
-</p>
+    <!-- QUESTION TITLE & DETAILS-->
+    <div id="js-edit-question">
+      <%= render partial: 'questions/question_title', locals: { question: @question } %>
+    </div>
+    <!-- ANSWER COUNT -->
+    <div class="answers-lead js-answers-count">
+      <%= pluralize(@question.answers.count, 'Answer') %>
+    </div>
 
-<ul>
-<% @question.topics.each do |topic| %>
-  <li><%= topic.name %></li>
-<% end %>
-</ul>
+    <!-- ANSWER FORM -->
+    <%= render partial: 'answers/answers_form', locals: { question: @question, answer: @answer } %>
 
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+
+    <!-- ANSWERS -->
+      <div class="js-answers", id="js-answers">
+          <%= render @answers %>
+      </div>
+
+      <div id="infinite-scrolling">
+        <%= will_paginate @answers %>
+      </div>
+      
+    </div>
+
+  <!--Sidebar Column -->
+  <div class="col-md-5">
+      <div class="list-group">
+      <a href="#" class="list-group-item active">
+        Setup Your Account
+      </a>
+      <a href="#" class="list-group-item">Visit your feed</a>
+      <a href="#" class="list-group-item">Follow more topics</a>
+      <a href="#" class="list-group-item">Find your friends on Query</a>
+      <a href="#" class="list-group-item">Upvote answers you like</a>
+      <a href="#" class="list-group-item">Ask your first question</a>
+      <a href="#" class="list-group-item">Add details about what you know</a>
+      <a href="#" class="list-group-item">Answer a question</a>
+    </div>
+    <div class="list-group">
+    <a href="#" class="list-group-item active">
+      <h4 class="list-group-item-heading">Follow Question</h4>
+      <p class="list-group-item-text">
+        While not always necessary, sometimes you need to put your DOM in a box. For those situations, try the panel component.
+      </p>
+    </a>
+    <a href="#" class="list-group-item">
+      <h4 class="list-group-item-heading">Share Question</h4>
+      <p class="list-group-item-text">
+        While not always necessary, sometimes you need to put your DOM in a box. For those situations, try the panel component.
+      </p>
+    </a>
+  </div>
+  <!---RELATED QUESTIONS -->
+  <h3 class="page-header">Related Questions</h3>
+    <div class="list-group">
+      <!--loop  through each topic association with question object-->
+      <% @question.topics.each do |topic| %>
+        <!--of the related topics, loop through each question in said topic-->
+        <% topic.questions.each do |question| %>
+          <%= link_to question.name, question_path(question), class: 'list-group-item'%>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

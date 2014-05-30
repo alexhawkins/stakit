@@ -1,0 +1,6 @@
+$('#js-edit-question').html("<%= escape_javascript(render partial: 'questions/edit_question_form', locals: { question: @question }) %>");
+$('#question_topic_tokens').tokenInput('/topics.json', {
+  theme: 'facebook',
+  prePopulate: $('#question_topic_tokens').data('load'),
+  preventDuplicates: true
+});

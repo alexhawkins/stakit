@@ -1,3 +1,47 @@
 // Place all the styles related to the questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*QUESTIONS */
+//singles out each individual question
+.each-question {
+  padding: 20px 0;
+  border-bottom: 1px dotted #BABABA;
+}
+
+.ask-question {
+  margin-bottom: 70px;
+}
+
+.ask-question-form {
+  padding: 20px;
+  //margin-bottom: 50px;
+  background-color: #EBEBEB;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.question-title-space{
+  margin-top: 4px;
+}
+
+.question-added-section {
+  color: #999;
+  font-size: .95em;
+  padding-bottom: 2px;
+}
+.question-body {
+  a {
+    color: #999;
+    border-bottom: 1px dashed #999;
+    &:hover{
+     color: #BABABA;
+     border-bottom: 1px dashed #BABABA;
+   }
+   &:active{
+     color: #BABABA;
+     border-bottom: 1px dashed #BABABA;
+   }
+ }
+}

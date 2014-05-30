@@ -1,15 +1,11 @@
 class AnswersController < ApplicationController
+  respond_to :html, :js
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-
-  # GET /answers
-  # GET /answers.json
-  def index
-    @answers = Answer.all
-  end
 
   # GET /answers/1
   # GET /answers/1.json
   def show
+    @question = Question.find(params[:question_id])
   end
 
   # GET /answers/new
@@ -24,12 +20,16 @@ class AnswersController < ApplicationController
   # POST /answers
   # POST /answers.json
   def create
-    @answer = Answer.new(answer_params)
+    @question = Question.find(params[:question_id])
+    @answers = @question.answers
+    @answer = current_user.answers.build(answer_params)
+    @answer.question = @question
+    @new_answer = Answer.new(answer_params)
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @answer }
+        format.html { redirect_to :back, notice: 'Answer was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @question }
       else
         format.html { render action: 'new' }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Answer was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -54,9 +54,10 @@ class AnswersController < ApplicationController
   # DELETE /answers/1
   # DELETE /answers/1.json
   def destroy
+    @question = Question.find(params[:question_id])
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to answers_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

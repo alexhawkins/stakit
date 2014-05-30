@@ -11,22 +11,17 @@
             <% end %>
           </div>
            <!-- QUESTION TITLE + LINK -->
-          <h4 class="media-heading question-title-space">
-            <%= link_to question.name,  question_path(question) %>
-          </h4>
+          <h3 class="media-heading question-title-space">
+            <strong><%= link_to question.name,  question_path(question) %></strong>
+          </h3>
           <!-- QUESTION BODY -->
-          <div class="question-body">
-            <a href="#" data-xeditable="true" data-type="textarea" data-pk="<%= question.id %>" data-model="question" data-name="body" data-url="<%= question_path(question) %>" data-title="Edit Question Details">
-              <%= question.description %>
-            </a>
-          </div>
+          <%= question.description %>
           <!-- ANSWER FORM -->
           <%= content_tag :div, id: "js-question-answer-#{question.id}" do %>
             <p>
-          <!--
+
             <%= render partial: 'answers/answers_form', locals: { question: question, answer: @new_answer } %>
             </p>
-            -->
           <% end %>
 
           <!--LINKS: FOLLOW/ ANSWER COUNT / SHARE-->
@@ -36,7 +31,6 @@
               <%= link_to "#{question.answers.count} Answers" , question_path(question, anchor: 'js-answers'), id: "js-answers-count-#{question.id}" %> &bull;
               <%= link_to "Share", '#' %>
             </h5>
-          </div>
-              
+          </div>     
         </div>
-    <% end %>
+  <% end %>

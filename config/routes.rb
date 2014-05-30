@@ -1,16 +1,12 @@
 Stakit::Application.routes.draw do
-  resources :answers
 
   resources :topics
-  resources :questions
+  resources :questions do
+    resources :answers, only: [:create, :destroy, :show, :edit, :new]
+  end
 
   resources :user_attachments
 
-  resources :stack_supplements do
-     collection { post :sort }
-  end
-
-  resources :frequencies
   resources :stacks do
     resources :stack_supplements
     # route for updating default stack on specific stack id
@@ -18,6 +14,12 @@ Stakit::Application.routes.draw do
     # and collection to act on/display a collection of ojbects like  stacks/search.
     put :default_stack, on: :member
   end
+  
+  resources :stack_supplements do
+     collection { post :sort }
+  end
+
+  resources :frequencies
   resources :supplements
   get 'landing/index'
   get 'landing/about'

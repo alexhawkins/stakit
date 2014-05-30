@@ -1,3 +1,80 @@
 // Place all the styles related to the Answers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/*ANSWERS*/
+
+//answers lead for answers count on question.show
+.answers-lead {
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #BABABA;
+  padding: 5px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.answer-feed-info{
+  padding-bottom: 20px;
+  border-bottom: 1px solid #DDD;
+}
+
+// hide items on page
+.hide {
+  display: none;
+}
+
+//answer links follow share section
+.answer-links {
+  font-style: italic;
+  color: #999;
+}
+
+/*VOTES*/
+
+//answer_votes (see answer_votes/voter.html.erb)
+
+.vote-arrows {
+  width: 30px;
+  text-align: center;
+  background-color: #F3F3F3;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding:5px;
+  &:hover {
+    background-color: #EEEEEE;
+  }
+}
+
+.vote-names{
+  color: #999999;
+  font-size: .9em;
+  font-style: italic;
+}
+
+/*USERS */
+
+.user-info {
+  color: #999;
+}
+
+
+/*IMAGES*/
+.answer-image{
+  margin-left: 10px;
+}
+
+.tiny-thumbnail{
+padding: 2px;
+border: 1px solid #dddddd;
+border-radius: 2px;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+}
+
+/*FOLLOW*/
+
+.follow{
+  font-size: 2em;
+}

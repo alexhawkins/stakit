@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.order(:name)
+    @topics = Topic.order(:name).paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html
       format.json { render json: @topics.tokens(params[:q]) }
@@ -15,8 +15,9 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @questions = @topic.questions.includes(:user).paginate(page: params[:page], per_page: 5)
+    @questions = @topic.questions.includes(:user).includes(:answers).paginate(page: params[:page], per_page: 5)
     @new_question = Question.new
+    @new_answer = Answer.new
     respond_to do |format|
       format.html
       format.js
