@@ -3,6 +3,7 @@ class Answer < ActiveRecord::Base
   belongs_to :user
   has_many :answer_votes, dependent: :destroy
   after_create :create_vote
+  after_create :create_follow
   after_create :send_following_emails
 
   default_scope { order('rank DESC') }
@@ -25,9 +26,20 @@ class Answer < ActiveRecord::Base
    user.answer_votes.create(value: 1, answer: self)
   end
 
+  #automatically follow any question that you leave an answer for
+  def create_follow
+    user.follow_questions.create(question: self.question)
+  end
+
+  # send emails to anyone following a question when a new answer is left.
+  # do not email the user that left the question
+  # do not email any user that wishs not to receive following emails
+  # which is a preference they can set in their user settings panel
   def send_following_emails
     self.question.follow_questions.each do | follow |
-      FollowQuestionMailer.new_answer(follow.user, self.question, self).deliver
+      if follow.user_id != self.user_id && follow.user.email_follows?
+        FollowQuestionMailer.new_answer(follow.user, self.question, self).deliver
+      end
     end
   end
 

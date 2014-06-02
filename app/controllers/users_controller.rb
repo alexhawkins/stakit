@@ -36,9 +36,6 @@ class UsersController < ApplicationController
     @stack = @user.stacks.find(:first, :order => 'created_at DESC')
     respond_to do |format|
       if @user.update_attributes(user_params)
-        params[:user_attachments]['image'].each do |image|
-          @user_attachment = @user.user_attachments.create!(:image => image, :user_id => @user.id)
-        end
         format.html { 
           flash[:notice] = "Your account was successfully updated."
           redirect_to edit_user_registration_path(@user)
@@ -54,6 +51,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :avatar, :location, user_attachments_attributes: [:id, :user_id, :image] )
+    params.require(:user).permit(:name, :email_follows, :avatar, :avatar_cache, :location, user_attachments_attributes: [:id, :user_id, :image])
   end
 end

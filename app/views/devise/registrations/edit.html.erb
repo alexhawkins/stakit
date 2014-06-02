@@ -1,5 +1,3 @@
-
-
 <div class="row">
 <!-- SIDEBAR -->
   <div class="col-md-3">
@@ -45,6 +43,12 @@
                 <%= f.file_field :avatar %>
                 <%= f.hidden_field :avatar_cache %>
               </div>
+
+               <div class="form-group">
+                  <%= f.label "Receive Following Emails?" %>
+                  <%= f.check_box :email_follows %>
+                 <p class="help-block">Be notified via e-mail when new Answers are left on Questions that you are following. We recommend you leave this checked.</p>
+               </div> 
 
                <div class="form-group">
                 <%= f.submit "Update", class: 'btn btn-success' %>
