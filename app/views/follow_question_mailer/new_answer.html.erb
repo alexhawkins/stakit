@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>New answer to "<%= @question.name %>"</h1>
+    <small>
+      By: <%= @answer.user.name %>
+    </small>
+    <p>
+      <%= @answer.body %>
+    </p>
+    <p>
+      <%= link_to "View Answer on site", question_url(@answer.question, anchor: "answer-#{@answer.id}") %>
+    </p>
+  </body>
+</html>

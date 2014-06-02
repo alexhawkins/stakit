@@ -1,13 +1,11 @@
 <% if @answer.valid? %>
 $('.js-answers').prepend("<%= escape_javascript(render(@answer)) %>");
-
-$('.new_a$('.js-answers-count').html("<%= @question.answers.count %> Answers");nswer').html("<%= escape_javascript(render partial: 'answers/answers_form', locals: { question: @question, answer: @new_answer }) %>");
+$('#answer-' +<%= @answer.id %>).hide().fadeIn(500);
+$('.js-answers-count').html("<%= @question.answers.count %> Answers");
+$('.new_answer').html("<%= escape_javascript(render partial: 'answers/answers_form', locals: { question: @question, answer: @new_answer }) %>");
 <% else %>
 //render a new answer form
 $('.new_answer').html("<%= escape_javascript(render partial: 'answers/answers_form', locals: { question: @question, answer: @new_answer }) %>");
 <% end %>
 //update answer count
-$('#js-question-answer-' +<%= @question.id %>).html("<%= escape_javascript(render(@answer)) %>");
-$('#js-answers-count-' +<%= @question.id %>).html("<%= @question.answers.count %> Answers");
-
-$('.supplement-tip').tooltip()
+$('.supplement-tip').tooltip();

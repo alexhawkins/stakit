@@ -1,0 +1,8 @@
+New answer to "<%= @question.name %>"
+<%= "=" * (@question.name.length + 12) %>
+
+By: <%= @answer.user.name %>
+
+<%= @answer.body %>
+
+Visit online at: <%= link_to "View Answer on site", question_url(@answer.question, anchor: "answer-#{@answer.id}") %>
