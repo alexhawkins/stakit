@@ -2,13 +2,19 @@
    <!-- FOLLOW QUESTION BUTTON -->
        <!--ADD FOLLOW HERE LATER -->
         <div class="media-body">
+        <!-- QUESTION FOLLOW -->
+        <span id="js-follow">
+            <%= render partial: 'follow_questions/follow_questions', locals: { question: question } %>
+         </span>
           <div class="question-added-section">
           <!--QUESTION ADDED TO WHAT TOPIC? -->
             Question added to topic <%= link_to @topic.name, topic_path(@topic),  class: "label label-default" %> &bull; <%= link_to "#{time_ago_in_words(question.created_at)} ago", question_path(question) %> 
+
             <!--DELETE BUTTON-->
             <% if policy(question).destroy? %>
               &bull; <%= link_to "Delete", question_path(question), method: :delete, remote: true, class: 'label label-danger' %>
             <% end %>
+
           </div>
            <!-- QUESTION TITLE + LINK -->
           <h3 class="media-heading question-title-space">

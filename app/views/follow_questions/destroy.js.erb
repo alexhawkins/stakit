@@ -1,0 +1,3 @@
+$('#js-follow-' +<%= @question.id %>).html("<%= escape_javascript(render partial: 'follow_questions/follow_questions', locals: { question: @question }) %>");
+$('#js-follow-text-' +<%= @question.id %>).html("<%= escape_javascript(render partial: 'follow_questions/follow_questions_text', locals: { question: @question }) %>");
+$('.supplement-tip').tooltip();

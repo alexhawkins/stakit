@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :answer_votes, dependent: :destroy
+  has_many :follow_questions, dependent: :destroy
   
   accepts_nested_attributes_for :user_attachments
   mount_uploader :avatar, AvatarUploader
@@ -24,6 +25,13 @@ class User < ActiveRecord::Base
   # will allow us to toggle favorite / unfavorite links.
   def favorited_stack(stack)
     self.favorite_stacks.where(stack_id: stack.id).first
+  end
+
+  # toggle between followed and unfollowed states
+  # Method returns true if question is already being followed
+  # and will show 'unfollow' in the UI
+  def followed_question(question)
+    self.follow_questions.where(question_id: question.id).first
   end
   
 end

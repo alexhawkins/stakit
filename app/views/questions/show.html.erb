@@ -4,15 +4,27 @@
   <div class="col-md-7">
     <% @question.topics.each do |topic| %>
      <%= link_to topic.name, topic_path(topic), class: 'label label-primary' %>
-    <% end %>
 
+    <% end %>
     <!-- QUESTION TITLE & DETAILS-->
-    <div id="js-edit-question">
+    <div>
+       <span id="js-follow">
+        <%= render partial: 'follow_questions/follow_questions', locals: { question: @question } %>
+      </span>
+
+      <span id="js-edit-question">
       <%= render partial: 'questions/question_title', locals: { question: @question } %>
+     </span>
     </div>
+      <!-- FOLLOW QUESTION -->
+   
     <!-- ANSWER COUNT -->
-    <div class="answers-lead js-answers-count">
-      <%= pluralize(@question.answers.count, 'Answer') %>
+    <div class="answers-lead">
+      <span class="js-answers-count">
+        <%= pluralize(@question.answers.count, 'Answer') %>
+      </span>
+       <!-- FOLLOW QUESTION TEXT -->
+      <%= render partial: 'follow_questions/follow_questions_text', locals: { question: @question } %>
     </div>
 
     <!-- ANSWER FORM -->

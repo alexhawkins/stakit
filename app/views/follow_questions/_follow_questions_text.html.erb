@@ -1,0 +1,9 @@
+<%= content_tag :span, id: "js-follow-text-#{question.id}" do %>
+  <div class="favorite pull-right">
+    <% if follow = current_user.followed_question(question)  %>
+     Your are following this Question
+    <% else %>
+     Check the green box above to follow Question
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<%= content_tag :div, id: "js-follow-#{question.id}" do %>
+  <div class="favorite pull-right">
+    <% if follow = current_user.followed_question(question)  %>
+      <%= link_to question_follow_question_path(question, follow), class: 'supplement-tip', data: { toggle: :tooltip, placement: :left}, title: "Click to Unfollow Question", remote: true, method: :delete do %>
+        <i class ="glyphicon glyphicon-check question-follow"></i>
+      <% end %>
+    <% else %>
+      <%= link_to [question, FollowQuestion.new], class: 'supplement-tip',data: { toggle: :tooltip, placement: :left}, title: "Click to Follow Question", remote: true, method: :post do %>
+        <i class ="glyphicon glyphicon-unchecked question-follow"></i>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

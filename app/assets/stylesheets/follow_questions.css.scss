@@ -1,0 +1,12 @@
+// Place all the styles related to the FollowQuestions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.question-follow {
+  padding: 0 0 0 10px;
+  font-size: 2.5em;
+  color: #1eb760;
+  &:hover {
+    color: darken(#1eb760, 5.5%);
+  }
+}

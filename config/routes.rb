@@ -2,6 +2,7 @@ Stakit::Application.routes.draw do
 
   resources :topics
   resources :questions do
+    resources :follow_questions, only: [:create, :destroy]
     resources :answers, only: [:create, :destroy, :show, :edit, :new] do
       get '/up-vote' => 'answer_votes#up_vote', as: :up_vote
       get '/down-vote' => 'answer_votes#down_vote', as: :down_vote
