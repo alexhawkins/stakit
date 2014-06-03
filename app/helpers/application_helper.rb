@@ -16,11 +16,19 @@ module ApplicationHelper
     end
   end
 
+  def render_follower_avatar_for(follower)
+    if follower.avatar?
+      image_tag(follower.avatar.followers.url, class: 'img-responsive img-rounded').html_safe
+    else
+      image_tag('fallback/default.gif', height: '35px', width: '35px',  class: 'img-responsive img-rounded').html_safe
+    end
+  end
+
   def render_tiny_avatar_for(user)
     if user.avatar?
-      image_tag(user.avatar.tiny.url, class: 'img-rounded').html_safe
+      image_tag(user.avatar.tiny.url, class: 'img=responsive img-rounded').html_safe
     else
-      image_tag('fallback/default.gif', height: '20px', width: '20px',  class: 'img-rounded').html_safe
+      image_tag('fallback/default.gif', height: '20px', width: '20px',  class: 'img-responsive img-rounded').html_safe
     end
   end
 

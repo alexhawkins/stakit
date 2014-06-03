@@ -11,6 +11,7 @@
  <% end %>
  <div class="page-header squashed-header">
     <h3><strong><%= @user.name %></strong></h3>
+    <%= render partial: 'users/follow_form' if signed_in? %>
  </div>
  <!-- Location Info/ Joined Info-->
  <div class="page-header squashed-header">
@@ -46,14 +47,13 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack").html_safe %>
-                Posts
+               <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack").html_safe %>
+                <%= link_to "Followers (#{@user.followers.count})", followers_user_path(@user) %>
             </h4>
           </div>
           <div id="collapseNewStack" class="panel-collapse collapse in">
             <div class="panel-body">
-            <!-- NEW STACK FORM -->
-             
+               <%= render 'shared/followers' %>
             </div>
           </div>
         </div>
@@ -63,12 +63,12 @@
           <div class="panel-heading">
             <h4 class="panel-title">
               <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack1").html_safe %>
-                Followers
+                <%= link_to "Following (#{@user.followed_users.count})", following_user_path(@user) %>
             </h4>
           </div>
-          <div id="collapseNewStack1" class="panel-collapse collapse">
+          <div id="collapseNewStack1" class="panel-collapse collapse in">
             <div class="panel-body">
-             <p>John</p>
+              <%= render 'shared/following' %>
             </div>
           </div>
         </div>

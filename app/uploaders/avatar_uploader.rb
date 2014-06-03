@@ -36,6 +36,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [20, 20]
   end
 
+  version :followers do
+    process resize_to_fill: [35, 35]
+  end
+
   version :small do
     process resize_to_fill: [70, 70]
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602172353) do
+ActiveRecord::Schema.define(version: 20140603000811) do
 
   create_table "answer_votes", force: true do |t|
     t.integer  "user_id"
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(version: 20140602172353) do
   add_index "follow_questions", ["question_id"], name: "index_follow_questions_on_question_id"
   add_index "follow_questions", ["user_id"], name: "index_follow_questions_on_user_id"
 
+  create_table "follows", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "follows", ["user_id"], name: "index_follows_on_user_id"
+
   create_table "frequencies", force: true do |t|
     t.string   "value"
     t.datetime "created_at"
@@ -81,6 +89,13 @@ ActiveRecord::Schema.define(version: 20140602172353) do
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id"
+
+  create_table "relationships", force: true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stack_supplements", force: true do |t|
     t.integer  "stack_id",                        null: false

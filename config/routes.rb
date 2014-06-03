@@ -37,7 +37,12 @@ Stakit::Application.routes.draw do
               :sign_up => "register",
               :edit => "settings" }
 
-  resources :users, only: [:update, :show]
+  resources :users, only: [:update, :show] do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
   resources :favorite_stacks, only: [:create, :destroy]
 
   root to: 'stacks#index'

@@ -1,0 +1,7 @@
+<% if @following.any? %>
+  <% @following.each do |follower| %>
+    <div class="pull-left follow-avatar">
+      <%= link_to render_follower_avatar_for(follower), user_path(follower) %>
+    </div>
+  <% end %>
+<% end %>
