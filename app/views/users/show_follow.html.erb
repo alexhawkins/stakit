@@ -1,0 +1,98 @@
+<div class="row">
+  <!--*******************************-->
+  <!-- USER MAIN SIDE PANEL/NAVIGATION-->
+  <!--*******************************-->
+ <div class="col-md-3">
+ <!-- if the user is the current_user, let his profile image link to his settings page -->
+ <% if current_user == @user %>
+    <%= link_to render_profile_avatar_for(@user), edit_user_registration_path %>
+ <% else %>
+    <%= render_profile_avatar_for(@user) %>
+ <% end %>
+ <div class="page-header squashed-header">
+    <h3><strong><%= @user.name %></strong></h3>
+    <%= render partial: 'users/follow_form' if signed_in? %>
+ </div>
+ <!-- Location Info/ Joined Info-->
+ <div class="page-header squashed-header">
+    <h5>
+      <%= link_to " ", "#", class: 'glyphicon glyphicon-map-marker supplement-tip', data: { toggle: :tooltip, placement: :top }, title: @user.location %>
+      <%= @user.location %>
+    </h5>
+    <h5>
+       <%= link_to " ", "#", class: 'glyphicon glyphicon-time supplement-tip', data: { toggle: :tooltip, placement: :bottom }, title: "#{time_ago_in_words(@user.created_at)} ago" %>
+       <%= @user.created_at.strftime("Joined on %B %d, %Y") %>
+    </h5>
+ </div>
+
+  <!--ACCORDIAN PANEL 1 - ABOUT-->
+  <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+             <%= render_arrow_collapse_for("#accordion", "#collapseMyStacks").html_safe %>
+              About
+          </h4>
+        </div>
+        <div id="collapseMyStacks" class="panel-collapse collapse in">
+        <!--MY STACK MAIN BODY -->
+          <div class="panel-body">
+           
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="panel-group" id="accordion3">
+        <!--ACCORDIAN PANEL 2 - CREATE A NEW STACK -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+               <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack").html_safe %>
+                <%= link_to "Followers (#{@user.followers.count})", followers_user_path(@user) %>
+            </h4>
+          </div>
+          <div id="collapseNewStack" class="panel-collapse collapse in">
+            <div class="panel-body">
+               <%= render 'shared/followers' %>
+            </div>
+          </div>
+        </div>
+
+        <!--ACCORDIAN PANEL 2 - FOLLOWERS -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack1").html_safe %>
+                <%= link_to "Following (#{@user.followed_users.count})", following_user_path(@user) %>
+            </h4>
+          </div>
+          <div id="collapseNewStack1" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <%= render 'shared/following' %>
+            </div>
+          </div>
+        </div>
+      </div>
+   </div>
+
+  <!--*******************************-->
+  <!-- MAIN BODY/ RIGHT COLUMN-->
+  <!--*******************************-->
+  <div class="col-md-9">
+    <h1 class="page-header"><%= @users.count %> <%= @title %></h1>
+    <% if @users.any? %>
+      <% @users.each do |user| %>
+        <div class="col-xs-6 col-md-3 pull-left user-profile-images">
+          <p><strong>
+            <%= link_to user.name, user_path(user) %>
+          </strong></p>
+          <p>
+            <%= link_to render_profile_avatar_for(user).html_safe, user_path(user) %>
+          </p>
+          <!-- FOLLOW BUTTON FOR USERS --> 
+          <%= render partial: 'users/user_follow_form', locals: { user: user } %>
+        </div> 
+      <% end %>
+    <% end %>   
+  </div>
+</div>

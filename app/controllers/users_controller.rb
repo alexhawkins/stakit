@@ -1,14 +1,12 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  before_action :set_follow, only: [:show, :following, :followers]
   respond_to :html, :json
 
 
   def show
-    @user = User.find(params[:id])
     @stacks = @user.stacks
     @user_attachments = @user.user_attachments
-    @followers = @user.followers
-    @following = @user.followed_users
   end
 
   def new
@@ -52,19 +50,23 @@ class UsersController < ApplicationController
 
   def following
     @title = "Following"
-    @user = User.find(params[:id])
-    @users = @user.folowed_users.paginate(page: params[:page])
+    @users = @user.followed_users.alphabetically.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def followers
     @title = "Followers"
-    @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
+    @users = @user.followers.alphabetically.paginate(page: params[:page])
     render 'show_follow'
   end
 
   private
+
+  def set_follow
+    @user = User.find(params[:id])
+    @followers = @user.followers.alphabetically
+    @following = @user.followed_users.alphabetically
+  end
 
   def user_params
     params.require(:user).permit(:name, :followed_id, :email_follows, :avatar, :avatar_cache, :location, user_attachments_attributes: [:id, :user_id, :image])

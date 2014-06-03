@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :user_attachments
   mount_uploader :avatar, AvatarUploader
 
+  scope :alphabetically, -> { order('name ASC') }
+
   def role?(base_role)
     role == base_role.to_s
   end
