@@ -33,6 +33,7 @@ class UserAttachmentsController < ApplicationController
     if (@user_attachments.count < 8)
       respond_to do |format|
          if @user_attachment.save 
+          track_activity @user_attachment
           format.html { 
             flash[:notice] = 'Your image was successfully uploaded.'
             redirect_to :back 
@@ -74,6 +75,7 @@ class UserAttachmentsController < ApplicationController
   # DELETE /user_attachments/1.json
   def destroy
     @user_attachment.destroy
+    track_activity @user_attachment
     respond_to do |format|
       format.html { 
         flash[:notice] = 'Your image was successfully deleted.'

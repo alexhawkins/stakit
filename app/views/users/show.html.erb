@@ -4,51 +4,34 @@
   <!--*******************************-->
  <div class="col-md-3">
  <!-- if the user is the current_user, let his profile image link to his settings page -->
- <% if current_user == @user %>
-    <%= link_to render_profile_avatar_for(@user), edit_user_registration_path %>
- <% else %>
-    <%= render_profile_avatar_for(@user) %>
- <% end %>
- <div class="page-header squashed-header">
-    <h3><strong><%= @user.name %></strong></h3>
-    <%= render partial: 'users/follow_form' if signed_in? %>
- </div>
- <!-- Location Info/ Joined Info-->
- <div class="page-header squashed-header">
-    <h5>
-      <%= link_to " ", "#", class: 'glyphicon glyphicon-map-marker supplement-tip', data: { toggle: :tooltip, placement: :top }, title: @user.location %>
-      <%= @user.location %>
-    </h5>
-    <h5>
-       <%= link_to " ", "#", class: 'glyphicon glyphicon-time supplement-tip', data: { toggle: :tooltip, placement: :bottom }, title: "#{time_ago_in_words(@user.created_at)} ago" %>
-       <%= @user.created_at.strftime("Joined on %B %d, %Y") %>
-    </h5>
- </div>
+     <% if current_user == @user %>
+        <%= link_to render_profile_avatar_for(@user), edit_user_registration_path %>
+     <% else %>
+        <%= render_profile_avatar_for(@user) %>
+     <% end %>
+     <div class="page-header squashed-header">
+        <h3><strong><%= @user.name %></strong></h3>
+        <%= render partial: 'users/follow_form' if signed_in? %>
+     </div>
+     <!-- Location Info/ Joined Info-->
+     <div class="page-header squashed-header">
+        <h5>
+          <%= link_to " ", "#", class: 'glyphicon glyphicon-map-marker supplement-tip', data: { toggle: :tooltip, placement: :top }, title: @user.location %>
+          <%= @user.location %>
+        </h5>
+        <h5>
+           <%= link_to " ", "#", class: 'glyphicon glyphicon-time supplement-tip', data: { toggle: :tooltip, placement: :bottom }, title: "#{time_ago_in_words(@user.created_at)} ago" %>
+           <%= @user.created_at.strftime("Joined on %B %d, %Y") %>
+        </h5>
+     </div>
 
-  <!--ACCORDIAN PANEL 1 - ABOUT-->
-  <div class="panel-group" id="accordion">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-             <%= render_arrow_collapse_for("#accordion", "#collapseMyStacks").html_safe %>
-              About
-          </h4>
-        </div>
-        <div id="collapseMyStacks" class="panel-collapse collapse in">
-        <!--MY STACK MAIN BODY -->
-          <div class="panel-body">
-           
-          </div>
-        </div>
-      </div>
-      </div>
       <div class="panel-group" id="accordion3">
-        <!--ACCORDIAN PANEL 2 - CREATE A NEW STACK -->
+        <!--ACCORDIAN PANEL 1 - FOLLOWERS-->
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
                <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack").html_safe %>
-                <%= link_to "Followers (#{@user.followers.count})", followers_user_path(@user) %>
+                <span id="followers"><%= link_to "Followers (#{@user.followers.count})", followers_user_path(@user) %></span>
             </h4>
           </div>
           <div id="collapseNewStack" class="panel-collapse collapse in">
@@ -58,17 +41,35 @@
           </div>
         </div>
 
-        <!--ACCORDIAN PANEL 2 - FOLLOWERS -->
+        <!--ACCORDIAN PANEL 2 - FOLLOWING -->
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
               <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack1").html_safe %>
-                <%= link_to "Following (#{@user.followed_users.count})", following_user_path(@user) %>
+                <span id="following"><%= link_to "Following (#{@user.followed_users.count})", following_user_path(@user) %></span>
             </h4>
           </div>
           <div id="collapseNewStack1" class="panel-collapse collapse in">
             <div class="panel-body">
               <%= render 'shared/following' %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--ACCORDIAN PANEL 1 - ABOUT-->
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+               <%= render_arrow_collapse_for("#accordion", "#collapseMyStacks").html_safe %>
+                About
+            </h4>
+          </div>
+          <div id="collapseMyStacks" class="panel-collapse collapse in">
+          <!--MY STACK MAIN BODY -->
+            <div class="panel-body">
+             
             </div>
           </div>
         </div>
@@ -85,6 +86,9 @@
       <ul class="nav nav-tabs user-nav-tabs">
         <li class="active">
           <%= link_to " Stacks", "#stacks", class: 'glyphicon glyphicon-th-list', data: { toggle: :tab } %>
+        </li>
+        <li>
+          <%= link_to " Activity", "#activity", class: 'glyphicon glyphicon-fire', data: { toggle: :tab } %>
         </li>
         <li>
           <%= link_to " Pictures", "#pictures", class: 'glyphicon glyphicon-picture', data: { toggle: :tab } %>
@@ -188,6 +192,29 @@
         </div>
         <!--END OF TAB 1 -->
       </div> 
+
+      <!--ACTIVITY FEED TAB -->
+      <div class="tab-pane fade" id="activity">
+        <div class="panel-group" id="accordion-active">
+        <!--ACCORDIAN PANEL 2/MAIN BODY - VIDEO LINKS-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <%= render_arrow_collapse_for("#accordion-active", "#collapseActive").html_safe %>
+                Activity
+            </h4>
+          </div>
+          <div id="collapseActive" class="panel-collapse collapse in">
+            <div class="panel-body">
+             <%= render partial: 'activity_feed' %>
+            </div>
+          </div>
+          </div>
+        </div>
+     </div>
+
+
+      <!--END OF ACTIVITY FEED-->
       
       <div class="tab-pane fade" id="pictures">
       <!-- CONTENT FOR TAB 2 -->

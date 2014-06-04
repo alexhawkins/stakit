@@ -17,10 +17,10 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :activities, dependent: :destroy
 
   accepts_nested_attributes_for :user_attachments
   mount_uploader :avatar, AvatarUploader
-
   scope :alphabetically, -> { order('name ASC') }
 
   def role?(base_role)

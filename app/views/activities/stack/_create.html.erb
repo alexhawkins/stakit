@@ -1,0 +1,5 @@
+<%if stack.public?  %>
+  created a new stack called <%= link_to stack.name,  user_path(stack.user) %>
+<% else %>
+  created a private stack
+<% end %>

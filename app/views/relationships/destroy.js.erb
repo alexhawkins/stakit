@@ -1,0 +1,2 @@
+$('#follow_form').html("<%= escape_javascript(render('users/follow')) %>").hide().fadeIn(150);
+$('#followers').html('<%= link_to "Followers (#{@user.followers.count})", followers_user_path(@user) %>');

@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #create an acivity for speficic user actions. See controller methods for Objects.
+  def track_activity(trackable, action = params[:action])
+    current_user.activities.create! action: action, trackable: trackable
+  end
+
   protected
 
   def configure_permitted_parameters

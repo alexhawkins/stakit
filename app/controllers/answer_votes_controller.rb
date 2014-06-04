@@ -4,6 +4,7 @@ class AnswerVotesController < ApplicationController
 
   def up_vote
     update_vote(1)
+    track_activity @answer_vote
     respond_with(@answer) do |format|
       format.html { redirect_to :back }
       format.js
@@ -12,6 +13,7 @@ class AnswerVotesController < ApplicationController
 
   def down_vote
     update_vote(-1)
+    track_activity @answer_vote
     respond_with(@answer) do |format|
       format.html { redirect_to :back }
       format.js

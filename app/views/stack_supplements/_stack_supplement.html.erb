@@ -19,7 +19,7 @@
   </td>
 
   <td>
-    <%= link_to " ", stack_stack_supplement_path(@stack, stack_supplement), method: :delete, class: 'glyphicon glyphicon-remove-circle supplement-tip', remote: true, data: { confirm: 'Are you sure?' }, toggle: :tooltip, placement: :top, title: 'Delete Supplement' %>
+    <%= link_to " ", stack_stack_supplement_path(@stack, stack_supplement), method: :delete, class: 'glyphicon glyphicon-trash supplement-tip', remote: true, data: { confirm: 'Are you sure?' }, toggle: :tooltip, placement: :top, title: 'Delete Entry' %>
   </td>
 <% end %>
 

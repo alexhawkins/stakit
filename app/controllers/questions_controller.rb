@@ -43,6 +43,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
+        track_activity @question
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
         format.json { render action: 'show', status: :created, location: @question }
         format.js
@@ -58,6 +59,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1.json
   def update
       if @question.update(question_params)
+        track_activity @question
         respond_with(@question) do |format|
           format.html { redirect_to @question, notice: 'Question was successfully updated.' }
           format.json { head :no_content }

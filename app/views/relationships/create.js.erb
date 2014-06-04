@@ -1,0 +1,4 @@
+$('#follow_form').html("<%= escape_javascript(render('users/unfollow')) %>").hide().fadeIn(150);
+$('#followers').html('<%= link_to "Followers (#{@user.followers.count})", followers_user_path(@user) %>');
+$('.follower-count').html('<%= @user.followers.count %> Followers');
+$('#avatars-for-followers').prepend('<%= link_to render_profile_avatar_for(current_user).html_safe, user_path(current_user) %>');

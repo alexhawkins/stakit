@@ -6,6 +6,7 @@ class FollowQuestionsController < ApplicationController
       @question = Question.find(params[:question_id])
       follow = @user.follow_questions.build(question: @question)
       if follow.save
+        track_activity follow
         respond_to do |format|
          format.html {
             flash[:notice] = "You are now following this question"

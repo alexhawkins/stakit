@@ -9,7 +9,7 @@ class Question < ActiveRecord::Base
 
   attr_reader :topic_tokens
 
-   default_scope { order('created_at DESC') }
+  default_scope { order('created_at DESC') }
    
   def topic_tokens=(tokens)
     self.topic_ids = Topic.ids_from_tokens(tokens)

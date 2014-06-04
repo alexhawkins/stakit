@@ -29,6 +29,8 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
+        #create an Activity when we create an answer!
+        track_activity @answer
         format.html { redirect_to :back, notice: 'Answer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @question }
         format.js
@@ -45,6 +47,7 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
+        track_activity @answer
         format.html { redirect_to :back, notice: 'Answer was successfully updated.' }
         format.json { head :no_content }
         format.js

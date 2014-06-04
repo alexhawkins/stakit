@@ -1,0 +1,17 @@
+// Place all the styles related to the activities controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.activity-time{
+  color: #bbb;
+}
+
+.activity{
+  padding: 10px 0 25px 40px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.activity {
+ &:last-child{
+  border-bottom: none;
+  }
+}

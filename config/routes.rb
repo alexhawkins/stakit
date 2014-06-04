@@ -1,5 +1,7 @@
 Stakit::Application.routes.draw do
 
+  resources :activities
+
   resources :topics
   resources :questions do
     resources :follow_questions, only: [:create, :destroy]

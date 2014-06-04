@@ -1,8 +1,8 @@
 <!--Since we will be including the stats on both the user show pages and on other pages, the first line below picks the right one using -->
   <% if @followers.any? %>
     <% @followers.each do |follower| %>
-        <div class="pull-left follow-avatar">
-            <%= link_to render_follower_avatar_for(follower).html_safe, user_path(follower) %>
+        <div class="pull-left follow-avatar" id="all-followers">
+            <span class="all-followers" id="follow-avatar-<%= follower.id%>"><%= link_to render_follower_avatar_for(follower).html_safe, user_path(follower) %></span>
         </div> 
     <% end %>
   <% end %>
