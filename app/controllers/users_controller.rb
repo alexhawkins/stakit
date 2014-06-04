@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
 
   def show
-    @stacks = @user.stacks
+    @stacks = @user.stacks.includes(:stack_supplements)
+    @activities = @user.activities.includes(:trackable)
     @user_attachments = @user.user_attachments
   end
 
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
     @user = User.new
     @user_attachment = @user.user_attachments.build
   end
+
 
   def create
     @user = User.new(user_params)
@@ -26,9 +28,7 @@ class UsersController < ApplicationController
        format.html { render action: 'new' }
      end
    end
-
   end
-
 
   def update
     @user = current_user

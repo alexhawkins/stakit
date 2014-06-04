@@ -1,5 +1,5 @@
 <%if stack.public?  %>
-  updated <%= link_to stack.name,  user_path(stack.user) %>
+  updated <%= link_to stack.name user_path(stack.user, anchor: "collapseTop-#{stack.id}") %>
 <% else %>
   updated a private stack
 <% end %>

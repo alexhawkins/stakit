@@ -1,15 +1,18 @@
- <% @user.activities.each do |activity| %>
-   <p>
-    <%= div_for activity do %>
-      <span class="activity-time"><%= time_ago_in_words(activity.created_at)%> ago</span> <br />
-      <strong>
-      <% if activity.user == current_user %>
-        <%= link_to "You", user_path(current_user) %>
-      <% else %>
-        <%= link_to activity.user.name, user_path(activity.user) %>
-      <% end %>
-      <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity.trackable_type.underscore.to_sym => activity.trackable %>
-      </strong>
-    <% end  %>
-   </p>
+<% @activities.each do |activity| %>
+  <div class="media">
+    <%= render "activities/activity_glyphs/#{activity.trackable_type.underscore}/#{activity.action}" %>
+    <div class="media-body">
+       <%= div_for activity do %>
+        <span class="activity-time"><%= time_ago_in_words(activity.created_at)%> ago</span> <br />
+        <strong>
+        <% if activity.user == current_user %>
+          <%= link_to "You", user_path(current_user) %>
+        <% else %>
+          <%= link_to activity.user.name, user_path(activity.user) %>
+        <% end %>
+        <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity.trackable_type.underscore.to_sym => activity.trackable %>
+        </strong>
+      <% end  %>
+    </div>
+  </div>
 <% end %>
