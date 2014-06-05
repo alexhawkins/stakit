@@ -20,6 +20,8 @@
 ## require select2
 #= require bootstrap
 #= require bootstrap3-editable/bootstrap-editable
+## require bootstrap-wysihtml5/b3
+#= require bootsy
 ## require turbolinks
 #= require_tree .
 

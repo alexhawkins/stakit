@@ -30,7 +30,7 @@
           <% end %>
         </div>
         <!--ANSWER BODY -->
-        <p> <%= truncate(strip_tags(answer.body), length: 500) %></p>
+        <p> <%= markdown answer.body %></p>
         <p>
           <!--DATE ANSWER WAS CREATED-->
            <span>

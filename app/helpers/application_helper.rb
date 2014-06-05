@@ -1,4 +1,41 @@
 module ApplicationHelper
+
+  #REDCARPET MARKDOWN TEXT
+  def markdown(text)
+    renderer = Redcarpet::Render::HTML.new(safe_links_only: true, hard_wrap: true)
+    extensions = {fenced_code_blocks: true, autolink: true, highlight: true, strikethrough: true}
+    redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+    (redcarpet.render text).html_safe
+  end
+
+  #ERROR FORM HELPERS
+
+  def form_group_tag(errors, &block)
+    if errors.any?
+      content_tag :div, capture(&block), class: 'form-group has-error'
+    else
+      content_tag :div, capture(&block), class: 'form-group'
+    end
+  end
+
+   def form_group_question(errors, &block)
+    if errors.any?
+      content_tag :div, capture(&block), class: 'form-group has-error'
+    else
+      content_tag :div, capture(&block), class: 'form-group answer-form ask-question-form'
+    end
+  end
+
+  def form_group_answer(errors, &block)
+    if errors.any?
+      content_tag :div, capture(&block), class: 'form-group has-error'
+    else
+      content_tag :div, capture(&block), class: 'form-group answer-form'
+    end
+  end
+
+
+
  #arrow collapse
   def render_arrow_collapse_for(parent, href)
     output = ""

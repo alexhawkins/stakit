@@ -1,5 +1,16 @@
 <!-- add remote: true to enable Ajax on the form -->
 <%= form_for [question, answer], remote: true do |f| %>
+<% if answer.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>There are <%= pluralize(answer.errors.count, "error") %>.</h4>
+      <ul>
+        <% answer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 
 <!-- DETERMINE PLAEHOlDER TEXT BASED UPON NUMBER OF FOLLOWERS -->
 
@@ -7,9 +18,9 @@
       <% answer_placeholder = "Add your answer" %>
     <% end %>         
 
-  <div class="form-group answer-form">
-    <%= f.text_area :body, rows: 4, cols: 40, class: 'form-control', placeholder: "#{answer_placeholder}" %>
-  </div>
+  <%= form_group_tag(answer.errors[:body]) do %>
+    <%= f.bootsy_area :body, rows: 4, cols: 40, class: 'form-control', placeholder: "#{answer_placeholder}" %>
+  <% end %>
 
   <div class="form-group">
     <%= f.submit "Add Answer", class: 'btn btn-primary' %>

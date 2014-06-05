@@ -2,8 +2,7 @@
 <%= form_for [question] do |f| %>
  <% if question.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
+      <h4><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h4>
       <ul>
       <% question.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -12,9 +11,9 @@
     </div>
   <% end %>
 
-  <div class="form-group answer-form ask-question-form">
+   <%= form_group_question(question.errors[:name]) do %>
     <%= f.text_area :name, rows: 1, cols: 40, class: 'form-control', placeholder: "What is your question about #{topic.name.capitalize}?" %>
-  </div>
+  <% end %>
 
   <%= hidden_field_tag "topic_id", topic.id %>
  
