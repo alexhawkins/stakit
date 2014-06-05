@@ -1,6 +1,13 @@
 class Topic < ActiveRecord::Base
   has_many :question_topics, dependent: :destroy
   has_many :questions, through: :question_topics
+  validates :name, length: {
+    minimum: 3,
+    maximum: 30,
+    too_short: "must have at least 3 characters",
+    too_long: "must have less than 30 characters",
+    presence: true 
+  }
 
   scope :alphabetically, -> { order('title ASC') }
 

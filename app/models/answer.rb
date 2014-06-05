@@ -5,6 +5,17 @@ class Answer < ActiveRecord::Base
   after_create :create_vote
   after_create :create_follow
   after_create :send_following_emails
+  has_many :activities, as: :trackable, dependent: :destroy
+
+  #VALIDATIONS
+  validates_presence_of :question, :user
+  validates :body, length: {
+    minimum: 10,
+    maximum: 2000,
+    too_short: "must have at least 10 characters",
+    too_long: "must have less than 2000 characters",
+    presence: true 
+  }
 
   default_scope { order('rank DESC') }
 

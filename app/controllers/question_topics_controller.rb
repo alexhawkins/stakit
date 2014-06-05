@@ -4,7 +4,7 @@ class QuestionTopicsController < ApplicationController
   # GET /question_topics
   # GET /question_topics.json
   def index
-    @question_topics = QuestionTopic.all
+    @question_topics = QuestionTopic.all.load
   end
 
   # GET /question_topics/1

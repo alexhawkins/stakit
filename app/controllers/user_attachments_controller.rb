@@ -75,7 +75,6 @@ class UserAttachmentsController < ApplicationController
   # DELETE /user_attachments/1.json
   def destroy
     @user_attachment.destroy
-    track_activity @user_attachment
     respond_to do |format|
       format.html { 
         flash[:notice] = 'Your image was successfully deleted.'

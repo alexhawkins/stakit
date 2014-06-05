@@ -14,6 +14,8 @@ class StackSupplementsController < ApplicationController
     @frequencies = Frequency.all.load
     @public = @stack.public
     @user_attachment = UserAttachment.new
+    @following = @user.followed_users
+    @following_activities = collect_activities @following
   end
 
   # GET /stack_supplements/1
@@ -108,5 +110,19 @@ class StackSupplementsController < ApplicationController
        flash[:error] = "Unable to view page. Better luck next time:)"
        redirect_to stack_stack_supplements_path(@stack)
      end
+    end
+
+    #get all the user and followed user activities 
+    def collect_activities(following)
+      unless following.nil?
+        activities_array = following.collect(&:activities).flatten.sort { |x,y| y.created_at <=> x.created_at }[0..30]
+      end
+      #if current_user.activities.any?
+        #current_user.activities.each do |activity|
+      #    activities_array << activity
+      #  end
+     # end
+      #limit(10)
+       #activities_array.sort { |x,y| y.created_at <=> x.created_at }.paginate(page: params[:page], per_page: 10)
     end
 end

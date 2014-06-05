@@ -1,0 +1,6 @@
+$('#js-activities').append("<%= escape_javascript(render partial: 'activity_feed') %>");
+<% if @following_activities.next_page %>
+  $('.pagination').replaceWith('<%= escape_javascript( will_paginate(@following_activities)) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>

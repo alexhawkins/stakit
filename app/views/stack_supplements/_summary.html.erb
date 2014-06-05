@@ -1,0 +1,23 @@
+ <p>Votes(<%= @user.answer_votes.count %>)</p>
+              <p>Stacks created(<%= @user.stacks.count %>)</p>
+              <p>Images uploaded(<%= @user.user_attachments.count %>)</p>
+              <h4 class="page-header">Questions asked(<%= @user.questions.count %>)</h4>
+              <ul>  
+                <% @user.questions.each do |question| %>
+                  <li><%= link_to question.name, question_path(question) %></li>
+                <% end %>
+              </ul>
+
+              <h4 class="page-header">Answers left(<%= @user.answers.count %>)</h4>
+              <ul>  
+                <% @user.answers.each do |answer| %>
+                  <li><%= link_to truncate(answer.body, :length => 100), question_path(answer.question, anchor: "answer-#{answer.id}") %></li>
+                <% end %>
+              </ul>
+
+               <h4 class="page-header">Questions Followed(<%= @user.follow_questions.count %>)</h4>
+              <ul>  
+                <% @user.follow_questions.each do |follow| %>
+                  <li><%= link_to truncate(follow.question.name, :length => 100), question_path(follow.question) %></li>
+                <% end %>
+              </ul>

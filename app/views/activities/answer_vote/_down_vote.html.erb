@@ -1,1 +1,1 @@
-down voted <%= link_to truncate(answer_vote.answer.body, :length => 75), question_path(answer_vote.answer.question, anchor: "answer-#{answer_vote.answer.id}") %>
+down voted <%= link_to truncate(answer_vote.answer.body, :length => 150), question_path(answer_vote.answer.question, anchor: "answer-#{answer_vote.answer.id}") %>
