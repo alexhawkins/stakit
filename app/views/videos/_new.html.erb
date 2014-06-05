@@ -1,0 +1,15 @@
+<div class="panel-body">
+  <div class="row">
+    <% if @user.videos.present? %>
+      <% @user.videos.each do |video| %>
+       <div class="col-xs-6">
+          <%= link_to video.link_html,  class: 'videowrapper' %>
+          <p class="pull-left"><%= link_to 'Delete', video, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-sm btn-danger btn-images' %></p>
+        </div>
+      <% end %>
+     </div>
+    <% end %>
+</div>
+<p>
+<%= render partial: 'videos/form', locals: { video: video } %>
+</p>

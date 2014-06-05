@@ -1,1 +1,1 @@
-answered <%= link_to truncate(answer.question.name, :length => 100), question_path(answer.question, anchor: "answer-#{answer.id}") %>
+answered <%= link_to truncate( sanitize answer.question.name, :length => 150), question_path(answer.question, anchor: "answer-#{answer.id}") %>

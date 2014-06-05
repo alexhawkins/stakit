@@ -1,7 +1,8 @@
 Stakit::Application.routes.draw do
 
-  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+  resources :videos
   resources :activities
+  resources :user_attachments
 
   resources :topics
   resources :questions do
@@ -11,8 +12,6 @@ Stakit::Application.routes.draw do
       get '/down-vote' => 'answer_votes#down_vote', as: :down_vote
     end
   end
-
-  resources :user_attachments
 
   resources :stacks do
     resources :stack_supplements

@@ -1,5 +1,4 @@
 class Answer < ActiveRecord::Base
-  include Bootsy::Container
   belongs_to :question
   belongs_to :user
   has_many :answer_votes, dependent: :destroy

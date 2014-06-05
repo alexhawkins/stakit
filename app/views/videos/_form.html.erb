@@ -1,0 +1,22 @@
+<%= form_for(video) do |f| %>
+  <% if video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(video.errors.count, "error") %> prohibited this video from being saved:</h2>
+
+      <ul>
+      <% video.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "Add a video" %><br>
+    <%= f.text_field :link, class: 'form-control', placeholder: "Paste a Video Link here" %>
+  </div>
+  
+   <div class="form-group">
+    <%= f.submit "Add Video", class: 'btn btn-primary' %>
+  </div>
+<% end %>

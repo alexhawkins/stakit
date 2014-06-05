@@ -16,6 +16,7 @@ class StackSupplementsController < ApplicationController
     @user_attachment = UserAttachment.new
     @following = @user.followed_users
     @following_activities = collect_activities @following
+    @video = Video.new
   end
 
   # GET /stack_supplements/1

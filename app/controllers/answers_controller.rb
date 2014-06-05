@@ -62,6 +62,7 @@ class AnswersController < ApplicationController
   # DELETE /answers/1
   # DELETE /answers/1.json
   def destroy
+    @new_answer = Answer.new
     @question = Question.find(params[:question_id])
     @answer.destroy
     respond_to do |format|

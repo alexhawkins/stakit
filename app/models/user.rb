@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
   has_many :activities, dependent: :destroy
+  has_many :videos, dependent: :destroy
 
   accepts_nested_attributes_for :user_attachments
   mount_uploader :avatar, AvatarUploader
