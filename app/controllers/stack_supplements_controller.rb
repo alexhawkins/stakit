@@ -107,7 +107,7 @@ class StackSupplementsController < ApplicationController
      else #CREATE A REDIRECT
        #otherwise, find the last stack that this user created and redirect
        @stack = current_user.stacks.first
-       flash[:error] = "Unable to view page. Better luck next time:)"
+       flash[:error] = "There was error processing your request"
        redirect_to stack_stack_supplements_path(@stack)
      end
     end

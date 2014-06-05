@@ -25,6 +25,7 @@ class UserAttachmentsController < ApplicationController
   # POST /user_attachments
   # POST /user_attachments.json
   def create
+    @stack = Stack.find(params[:stack_id])
     @user = current_user
     @user_attachments = @user.user_attachments
     @user_attachment = @user.user_attachments.build(user_attachment_params)
@@ -36,13 +37,13 @@ class UserAttachmentsController < ApplicationController
           track_activity @user_attachment
           format.html { 
             flash[:notice] = 'Your image was successfully uploaded.'
-            redirect_to :back 
+            redirect_to stack_stack_supplements_path(@stack, anchor: "pictures")
           }
            format.json { render action: 'show', status: :created, location: @user_attachment }
          else
            format.html { 
-              flash[:error] = "There was an error uploading the image."
-              render action: 'new' 
+              flash[:error] = "There was an error uploading the image. Possible duplicate?"
+              redirect_to stack_stack_supplements_path(@stack, anchor: "pictures")
             }
            format.json { render json: @user_attachment.errors, status: :unprocessable_entity }
          end
@@ -51,7 +52,7 @@ class UserAttachmentsController < ApplicationController
        respond_to do |format|
           format.html {
             flash[:error] = 'There was an error uploading the image. 8 image max.'
-            redirect_to :back 
+            redirect_to stack_stack_supplements_path(@stack, anchor: "pictures")
           }
        end
     end

@@ -16,6 +16,9 @@
     <%= f.label :image %><br>
     <%= f.file_field :image %>
   </div>
+
+  <%= hidden_field_tag "stack_id", @stack.id %>
+  
    <div class="form-group">
     <%= f.submit "Upload Image", class: 'btn btn-primary' %>
   </div>
