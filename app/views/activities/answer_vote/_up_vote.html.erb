@@ -1,1 +1,1 @@
-up voted <%= link_to truncate( sanitize answer_vote.answer.body, :length => 150), question_path(answer_vote.answer.question, anchor: "answer-#{answer_vote.answer.id}") %>
+up voted <%= link_to truncate(sanitize(answer_vote.answer.body), :length => 100), question_path(answer_vote.answer.question, anchor: "answer-#{answer_vote.answer.id}") %>by <%= link_to answer_vote.answer.user.name, user_path(answer_vote.answer.user) %>

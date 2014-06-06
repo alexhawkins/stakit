@@ -4,7 +4,6 @@ class AnswerVotesController < ApplicationController
 
   def up_vote
     update_vote(1)
-    track_activity @answer_vote
     respond_with(@answer) do |format|
       format.html { redirect_to :back }
       format.js
@@ -13,7 +12,6 @@ class AnswerVotesController < ApplicationController
 
   def down_vote
     update_vote(-1)
-    track_activity @answer_vote
     respond_with(@answer) do |format|
       format.html { redirect_to :back }
       format.js
@@ -46,6 +44,8 @@ class AnswerVotesController < ApplicationController
       @answer_vote = current_user.answer_votes.build(value: new_value, answer: @answer)
       authorize @answer_vote, :create?
       @answer_vote.save
+     #only track activity if the vote is completely new. Don't track updates
+     track_activity @answer_vote
     end
   end
 

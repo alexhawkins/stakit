@@ -11,14 +11,16 @@ class Stack < ActiveRecord::Base
   scope :active, -> { where(default: true) }
 
   #VALIDATIONS
-  validates :public, presence: true
+  validates :public, inclusion: { in: [true, false], message: "%{public} is not a valid boolean." }
   validates :user, presence: true
-  validates :name, length: {
+  validates :name, 
+    presence: true,
+    uniqueness: { scope: :user_id, case_sensitive: false },
+    length: {
     minimum: 3,
     maximum: 40,
     too_short: "must have at least 3 characters",
     too_long: "must have less than 40 characters",
-    presence: true 
-  }
+    }
 
 end

@@ -3,12 +3,14 @@ class VideosController < ApplicationController
   before_action :set_video, only: [:create, :destroy]
 
   def create
-    @video = @user.videos.build(video_params)
-    if @video.save
-      track_activity @video
-      respond_to do |format|
-        format.html { redirect_to :back }
-        format.js
+    unless @user.videos.count > 5
+      @video = @user.videos.build(video_params)
+      if @video.save
+        track_activity @video
+        respond_to do |format|
+          format.html { redirect_to :back }
+          format.js
+        end
       end
     end
   end

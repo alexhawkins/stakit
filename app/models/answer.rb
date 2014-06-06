@@ -9,12 +9,16 @@ class Answer < ActiveRecord::Base
 
   #VALIDATIONS
   validates_presence_of :question, :user
-  validates :body, length: {
+  #make sure that each user can only answer a question once
+  validates :user_id, uniqueness: { scope: :question_id }
+  validates :body,
+    presence: true,
+    uniqueness: { scope: :question_id, case_sensitive: false },
+    length: {
     minimum: 10,
     maximum: 2000,
     too_short: "must have at least 10 characters",
     too_long: "must have less than 2000 characters",
-    presence: true 
   }
 
   default_scope { order('rank DESC') }

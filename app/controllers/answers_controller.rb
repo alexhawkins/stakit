@@ -22,10 +22,15 @@ class AnswersController < ApplicationController
   # POST /answers.json
   def create
     @question = Question.find(params[:question_id])
-    @answers = @question.answers
-    @answer = current_user.answers.build(answer_params)
-    @answer.question = @question
     @new_answer = Answer.new
+    #prevent user from answer same question twice
+    if @question.answers.where(user_id: current_user.id).exists?
+      flash[:error] = "You can only answer a question once."
+    else
+      @answers = @question.answers
+      @answer = current_user.answers.build(answer_params)
+      @answer.question = @question
+    end
 
     respond_to do |format|
       if @answer.save

@@ -37,16 +37,18 @@ class StacksController < ApplicationController
   # POST /stacks
   # POST /stacks.json
   def create
-    @stack = Stack.new(stack_params)
-    @stack.user = current_user
-    respond_to do |format|
-      if @stack.save
-        track_activity @stack
-        format.html { redirect_to stack_stack_supplements_path(@stack), notice: 'Stack was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @stack }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @stack.errors, status: :unprocessable_entity }
+    unless current_user.stacks.count > 20
+      @stack = Stack.new(stack_params)
+      @stack.user = current_user
+      respond_to do |format|
+        if @stack.save
+          track_activity @stack
+          format.html { redirect_to stack_stack_supplements_path(@stack), notice: 'Stack was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @stack }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @stack.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

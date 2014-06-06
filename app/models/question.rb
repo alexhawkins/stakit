@@ -9,13 +9,15 @@ class Question < ActiveRecord::Base
   after_create :create_follow
 
   validates :user, presence: true
-  validates :name, length: {
-    minimum: 10,
-    maximum: 300,
-    too_short: "must have at least 10 characters",
-    too_long: "must have less than 300 characters",
-    presence: true 
-  }
+  validates :name, 
+    presence: true,
+    uniqueness: { scope: :user_id, case_sensitive: false },
+    length: {
+      minimum: 10,
+      maximum: 300,
+      too_short: "must have at least 10 characters",
+      too_long: "must have less than 300 characters",
+    }
 
   attr_reader :topic_tokens
 
