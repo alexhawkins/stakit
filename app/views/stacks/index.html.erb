@@ -4,15 +4,17 @@
           <h4 class="panel-title">
             <%= render_arrow_collapse_for("#accordion", "#collapseOne").html_safe %>
             My Stack Manager
-            <%= link_to " ", stacks_path, class: 'glyphicon glyphicon-th-list supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Reload My Stacks Manager' %>
+            <%= link_to " ", stacks_path, class: 'glyphicon glyphicon-refresh supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Reload My Stacks Manager' %>
           </h4>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
           <div class="panel-body">
              <ul class="pager">
              <!-- List at the supplements in the default stack, where default = true -->
-              <% @stack.supplements.each do |supplement| %>
-                <li><%= link_to supplement.name, '#' %></li>
+             <% unless @default_stack.nil? %>
+               <% @default_stack.supplements.each do |supplement| %>
+                  <li><%= link_to supplement.name, '#' %></li>
+               <% end %>
               <% end %>
              </ul>
              <table class="table table-striped">
@@ -62,14 +64,18 @@
                          <% end %>
                       </td>
 
-                      <td><%= link_to " ", stack, method: :delete, class: 'glyphicon glyphicon-remove-circle supplement-tip', remote: true, data: { confirm: 'Are you sure?' }, toggle: :tooltip, placement: :top, title: 'Delete Stack' %>
+                      <td><%= link_to " ", stack, method: :delete, class: 'glyphicon glyphicon-trash supplement-tip', remote: true, data: { confirm: 'Are you sure?' }, toggle: :tooltip, placement: :top, title: 'Delete Stack' %>
                       </td>
                     </tr>
                   <% end %>
                 </tbody>
               </table>
               <div class="panel-footer">
-              <%= link_to 'Back to Main', stack_stack_supplements_path(@stack), class: 'btn btn-primary' %>
+                <% if @default_stack.nil? %>
+                  <%= link_to 'Back to Main', stack_stack_supplements_path(@user.stacks.first), class: 'btn btn-primary' %>
+                <% else %>
+                  <%= link_to 'Back to Main', stack_stack_supplements_path(@default_stack), class: 'btn btn-primary' %>
+                <% end %>
               </div>
           </div>
         </div>
@@ -89,15 +95,17 @@
               <li><%= render_supplements_for(@stacks).html_safe %></li> 
             </ul>
           </div>
-           <div class="panel-footer">
-          <%= link_to 'Back to Main', stack_stack_supplements_path(@stack), class: 'btn btn-primary' %>
-        </div>
+          <div class="panel-footer">
+            <% if @default_stack.nil? %>
+              <%= link_to 'Back to Main', stack_stack_supplements_path(@user.stacks.first), class: 'btn btn-primary' %>
+            <% else %>
+              <%= link_to 'Back to Main', stack_stack_supplements_path(@default_stack), class: 'btn btn-primary' %>
+            <% end %>
+          </div>
         </div>
         <!-- GO BACK BUTTON -->
-       
       </div>
       <!--END OF SECOND PANEL IN ACCORDIAN -->
-
     </div>
 
 

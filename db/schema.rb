@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(version: 20140605180642) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description", default: "Details about my stack..."
-    t.string   "links",       default: "Video Links to my stack..."
     t.boolean  "public",      default: true
     t.boolean  "default",     default: false
   end

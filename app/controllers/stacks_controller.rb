@@ -11,7 +11,7 @@ class StacksController < ApplicationController
       @stacks = current_user.stacks
       authorize @stacks
       #set up stack for user to go back to when he click 'back'
-      @stack = current_user.stacks.where(default: true).first
+      @default_stack = current_user.stacks.where(default: true).first
     else
       flash[:notice] = "You can not view this page."
       redirect_to new_user_session_path
