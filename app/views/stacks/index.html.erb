@@ -60,7 +60,7 @@
                          <% if stack.default? %>
                             <%= link_to " ", "#", class: 'glyphicon glyphicon-flag supplement-tip default-tag', data: { toggle: :tooltip, placement: :right}, title: 'Default stack' %>
                          <% else %>
-                            <%= link_to "Make Default", default_stack_stack_path(stack), class: 'btn-sm btn-grey', :method => :put  %>
+                            <%= link_to "Make Default", default_stack_stack_path(stack), class: 'btn-xs btn-grey', :method => :put  %>
                          <% end %>
                       </td>
 

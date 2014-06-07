@@ -1,7 +1,13 @@
 class ActivitiesController < ApplicationController
+  respond_to :html, :js
 
   def index
-    @activities = Activity.order("created_at DESC")
+    @activities = Activity.includes(:user).includes(:trackable).paginate(page: params[:page], per_page: 10)
+    respond_to do |format|
+        format.html
+        format.json { head :no_content }
+        format.js
+    end
   end
 
   private

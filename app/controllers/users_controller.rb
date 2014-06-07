@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
 
   def show
-    @stacks = @user.stacks.includes(:stack_supplements)
+    @stacks = @user.stacks.includes(:stack_supplements).includes(:supplements)
     @activities = @user.activities.includes(:trackable)[0..20] #limit to last 20 activities
     @user_attachments = @user.user_attachments
   end

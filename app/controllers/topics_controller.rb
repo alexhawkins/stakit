@@ -15,12 +15,13 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @questions = @topic.questions.includes(:user).includes(:answers).paginate(page: params[:page], per_page: 5)
+    @questions = @topic.questions.includes(:user).includes(:answers).includes(:follow_questions).paginate(page: params[:page], per_page: 5)
     @new_question = Question.new
     @new_answer = Answer.new
     respond_to do |format|
-      format.html
-      format.js
+        format.html
+        format.json { head :no_content }
+        format.js
     end
   end
 

@@ -77,7 +77,6 @@
              <div class="create-new-stack">
               <%= render partial: 'stack_supplements/stacks/form', locals: {stack: @new_stack} %>
              </div>
-             <%= link_to "My activity", user_path(current_user, anchor: "activity") %>
             </div>
           </div>
         </div>
@@ -130,7 +129,7 @@
         <!--CONTENT FOR TAB 1 -->
     <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
     <div class="panel-group" id="accordion-top">
-      <div class="panel panel-default">
+      <div class="panel panel-default default-accordian">
         <div class="panel-heading">
           <h4 class="panel-title">
           <%= render_arrow_collapse_for("#accordion-top", "#collapseTop").html_safe %>
@@ -145,7 +144,7 @@
              <% if @stack.default? %>
                 <%= link_to " ", "#", class: 'glyphicon glyphicon-flag supplement-tip default-tag pull-right', data: { toggle: :tooltip, placement: :left}, title: 'This is your default stack' %>
              <% else %>
-              <%= link_to "Make Default", default_stack_stack_path(@stack), class: 'btn-xs btn-primary default-stack-button pull-right', :method => :put  %>
+              <%= link_to "Make Default", default_stack_stack_path(@stack), class: 'btn-xs btn-grey default-stack-button pull-right', :method => :put  %>
              <% end %>
 
           </h4>

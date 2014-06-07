@@ -92,7 +92,7 @@ class QuestionsController < ApplicationController
     end
 
     def get_and_show_answers
-      @answers = @question.answers.paginate(page: params[:page], per_page: 5)
+      @answers = @question.answers.includes(:user).includes(:answer_votes).paginate(page: params[:page], per_page: 5)
       @answer = Answer.new
       respond_to do |format|
         format.html

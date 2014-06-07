@@ -7,12 +7,12 @@
     <%= render partial: 'questions/questions_form', locals: {question: @new_question, topic: @topic } %> 
     </div>
     <!--QUESTIONS-->
-    <div id="js-questions">
-     <%= render @questions %> 
+    <div class="js-questions", id="js-questions">
+        <%= render @questions %>
     </div>
-    <!--INFINITE SCROLLING -->
+
     <div id="infinite-scrolling">
-    <%= will_paginate @questions %>
+      <%= will_paginate @questions %>
     </div>
   </div>
 

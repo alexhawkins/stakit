@@ -8,8 +8,7 @@ class FavoriteStacksController < ApplicationController
     else
       flash[:error] = "Unable to add favorite. Please try again."
       redirect_to :back
-    end
-   
+    end  
   end
 
   def destroy

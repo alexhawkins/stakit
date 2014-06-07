@@ -1,4 +1,4 @@
-('#js-questions').append('<%= j render @questions %>');
+$('#js-questions').append('<%= j render @questions %>');
 <% if @questions.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate @questions %>');
 <% else %>
