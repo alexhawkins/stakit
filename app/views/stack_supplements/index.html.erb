@@ -62,7 +62,7 @@
         </div>
       </div>
       </div>
-      <div class="panel-group" id="accordion#3">
+      <div class="panel-group" id="accordion3">
         <!--ACCORDIAN PANEL 2 - CREATE A NEW STACK -->
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -80,18 +80,37 @@
             </div>
           </div>
         </div>
-
-        <!--ACCORDIAN PANEL 2 - FOLLOWERS -->
+      </div>
+      <!--ACCORDIAN PANEL 2 - FOLLOWERS -->
+      <div class="panel-group" id="accordionFollow">
+        <!--ACCORDIAN PANEL 1 - FOLLOWERS-->
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-             <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack").html_safe %>
-                Followers
+               <%= render_arrow_collapse_for("#accordionFollow", "#collapseFollowStack").html_safe %>
+                <span id="followers"><%= link_to "Followers (#{@user.followers.count})", followers_user_path(@user) %></span>
             </h4>
           </div>
-          <div id="collapseNewStack" class="panel-collapse collapse">
+          <div id="collapseFollowStack" class="panel-collapse collapse in">
             <div class="panel-body">
-             <p>John</p>
+               <%= render 'shared/followers' %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!--ACCORDIAN PANEL 2 - FOLLOWING -->
+      <div class="panel-group" id="accordionFollowing">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <%= render_arrow_collapse_for("#accordionFollowing", "#collapseNewStack1").html_safe %>
+                <span id="following"><%= link_to "Following (#{@user.followed_users.count})", following_user_path(@user) %></span>
+            </h4>
+          </div>
+          <div id="collapseNewStack1" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <%= render 'shared/following' %>
             </div>
           </div>
         </div>

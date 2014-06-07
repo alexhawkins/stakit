@@ -3,7 +3,7 @@ class StackSupplementsController < ApplicationController
   respond_to :html, :js
   before_action :set_stack, except: [:sort]
   before_action :set_stack_supplement, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_follow, only: [:index]
   # GET /stack_supplements
   # GET /stack_supplements.json
   def index
@@ -14,7 +14,6 @@ class StackSupplementsController < ApplicationController
     @frequencies = Frequency.all.load
     @public = @stack.public
     @user_attachment = UserAttachment.new
-    @following = @user.followed_users
     @following_activities = collect_activities @following
     @video = Video.new
   end
@@ -117,6 +116,13 @@ class StackSupplementsController < ApplicationController
        redirect_to stack_stack_supplements_path(@stack)
      end
     end
+
+    def set_follow
+      #show the first 20 following and followed only
+      @followers = current_user.followers.limit(20)
+      @following = current_user.followed_users.limit(20)
+    end
+
 
     #get all the user and followed user activities 
     def collect_activities(following)

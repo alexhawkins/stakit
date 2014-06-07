@@ -71,16 +71,17 @@ class StacksController < ApplicationController
   # DELETE /stacks/1
   # DELETE /stacks/1.json
   def destroy
-    #maker sure each user has at least 1 stack
-    if current_user.stacks.count > 1
+    #maker sure each user has at least 1 stack and that we're not deleting the default
+    unless @stack.default? || current_user.stacks.count <= 1
       @stack.destroy
       respond_to do |format|
         format.html { redirect_to stacks_url }
         format.json { head :no_content }
+        format.js
       end
     else
       #redirect user to his only remaining stack when he tries to delete it
-      flash[:error] = "You must have at least one stack. Click Manage Stacks below to rename it."
+      flash[:error] = "You must have at least one stack. Default stacks cannot be deleted."
       @stack = current_user.stacks.first
       redirect_to stack_stack_supplements_path(@stack)
     end

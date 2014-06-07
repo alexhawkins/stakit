@@ -64,8 +64,8 @@ class UsersController < ApplicationController
 
   def set_follow
     @user = User.find(params[:id])
-    @followers = @user.followers.alphabetically
-    @following = @user.followed_users.alphabetically
+    @followers = @user.followers.limit(20)
+    @following = @user.followed_users.limit(20)
   end
 
   def user_params

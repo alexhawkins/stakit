@@ -22,7 +22,7 @@
                   <tr>
                     <th>Name (Click to Edit) </th>
                     <th>Created</th>
-                    <th>Supplments</th>
+                    <th>Supplements</th>
                     <th></th>
                     <th>Privacy</th>
                     <th>Default Stack</th>
@@ -32,7 +32,7 @@
 
                 <tbody>
                   <% @stacks.each do |stack| %>
-                    <tr>
+                    <%= content_tag :tr, id: "js-stack-#{stack.id}" do %>
                       <td>
                         <a href="#" data-xeditable="true" data-pk="<%= stack.id %>" data-model="stack" data-name="name" data-url="<%= stack_path(stack)%>" data-title="Edit your stack name">
                         <%= stack.name %>
@@ -66,7 +66,7 @@
 
                       <td><%= link_to " ", stack, method: :delete, class: 'glyphicon glyphicon-trash supplement-tip', remote: true, data: { confirm: 'Are you sure?' }, toggle: :tooltip, placement: :top, title: 'Delete Stack' %>
                       </td>
-                    </tr>
+                    <% end %>
                   <% end %>
                 </tbody>
               </table>

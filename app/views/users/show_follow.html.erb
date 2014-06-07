@@ -26,30 +26,30 @@
    </div>
 
   
-      <div class="panel-group" id="accordion3">
-        <!--ACCORDIAN PANEL 2 - FOLLOWERS-->
+     <!--ACCORDIAN PANEL 1 - FOLLOWERS -->
+      <div class="panel-group" id="accordionFollow">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-               <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack").html_safe %>
-                <span id="followers"><%= link_to "Followers (#{@user.followers.count})", followers_user_path(@user) %>
-                </span>
+               <%= render_arrow_collapse_for("#accordionFollow", "#collapseFollowStack").html_safe %>
+                <span id="followers"><%= link_to "Followers (#{@user.followers.count})", followers_user_path(@user) %></span>
             </h4>
           </div>
-          <div id="collapseNewStack" class="panel-collapse collapse in">
-            <div class="panel-body" id="avatar-follows">
+          <div id="collapseFollowStack" class="panel-collapse collapse in">
+            <div class="panel-body">
                <%= render 'shared/followers' %>
             </div>
           </div>
         </div>
+      </div>
 
         <!--ACCORDIAN PANEL 2 - FOLLOWING -->
+      <div class="panel-group" id="accordionFollowing">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack1").html_safe %>
-                <span id="following"><%= link_to "Following (#{@user.followed_users.count})", following_user_path(@user) %>
-                </span>
+              <%= render_arrow_collapse_for("#accordionFollowing", "#collapseNewStack1").html_safe %>
+                <span id="following"><%= link_to "Following (#{@user.followed_users.count})", following_user_path(@user) %></span>
             </h4>
           </div>
           <div id="collapseNewStack1" class="panel-collapse collapse in">
