@@ -16,8 +16,13 @@
      <!-- Location Info/ Joined Info-->
      <div class="page-header squashed-header">
         <h5>
+        <% if @user.location? %>
           <%= link_to " ", "#", class: 'glyphicon glyphicon-map-marker supplement-tip', data: { toggle: :tooltip, placement: :top }, title: @user.location %>
-          <%= @user.location %>
+            <%= @user.location %>
+        <% else %>
+          <%= link_to " ", "#", class: 'glyphicon glyphicon-map-marker supplement-tip', data: { toggle: :tooltip, placement: :top }, title: 'Silicon Valley' %>
+            Silicon Valley, CA
+        <% end %>
         </h5>
         <h5>
            <%= link_to " ", "#", class: 'glyphicon glyphicon-time supplement-tip', data: { toggle: :tooltip, placement: :bottom }, title: "#{time_ago_in_words(@user.created_at)} ago" %>

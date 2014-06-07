@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140605180642) do
   create_table "answers", force: true do |t|
     t.integer  "user_id"
     t.integer  "question_id"
-    t.string   "body"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "rank"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20140605180642) do
 
   create_table "questions", force: true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20140605180642) do
     t.string   "default_frequency"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "tooltip"
+    t.text     "tooltip"
   end
 
   create_table "topics", force: true do |t|

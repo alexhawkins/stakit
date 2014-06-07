@@ -36,7 +36,7 @@ class SupplementsController < ApplicationController
 
     respond_to do |format|
       if @supplement.save
-        format.html { redirect_to @supplement, notice: 'Supplement was successfully created.' }
+        format.html { redirect_to new_supplement_path, notice: 'Supplement was successfully created.' }
         format.json { render action: 'show', status: :created, location: @supplement }
       else
         format.html { render action: 'new' }
