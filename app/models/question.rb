@@ -37,7 +37,7 @@ class Question < ActiveRecord::Base
         ts_rank(to_tsvector(name), plainto_tsquery(#{sanitize(search)})) +
         ts_rank(to_tsvector(description), plainto_tsquery(#{sanitize(search)}))
       RANK
-      where("to_tsvector('english', name) @@ :s or to_tsvector('english', description) @@ :s", s: search).order("#{rank} desc")
+      where("name @@ :s or description @@ :s", s: search).order("#{rank} desc")
     else
      order('created_at desc')
     end
