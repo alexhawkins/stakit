@@ -33,9 +33,13 @@ class Question < ActiveRecord::Base
 
   def self.search(search)
     if search.present?
-      where("name @@ :s or description @@ :s", s: search).order('created_at DESC')
+      rank = <<-RANK
+        ts_rank(to_tsvector(name), plainto_tsquery(#{sanitize(search)})) +
+        ts_rank(to_tsvector(content), plainto_tsquery(#{sanitize(search)}))
+      RANK
+      where("to_tsvector('english', name) @@ :s or to_tsvector('english', description) @@ :s", s: search).order("#{rank} desc")
     else
-     order('created_at DESC')
+     order('created_at desc')
     end
   end
 end
