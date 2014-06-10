@@ -30,7 +30,10 @@ class Question < ActiveRecord::Base
         tsearch: {
           dictionary: "english"
         }
-      }
+      },
+    associated_against: {
+      user: :name, answers: :body
+    }
    
   def topic_tokens=(tokens)
     self.topic_ids = Topic.ids_from_tokens(tokens)
