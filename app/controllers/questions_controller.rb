@@ -5,7 +5,15 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all.load
+    @questions = Question.search(params[:search]).paginate(page: params[:page], per_page: 5)
+    #includes(:user).includes(:answers).includes(:follow_questions).paginate(page: params[:page], per_page: 5)
+    @new_question = Question.new
+    @new_answer = Answer.new
+    respond_to do |format|
+        format.html
+        format.json { head :no_content }
+        format.js
+    end
   end
 
   # GET /questions/1

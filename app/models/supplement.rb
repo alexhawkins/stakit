@@ -13,4 +13,6 @@ class Supplement < ActiveRecord::Base
              }
 
   scope :alphabetically, -> { order('name ASC') }
+
+
 end

@@ -3,12 +3,13 @@ class VideosController < ApplicationController
   before_action :set_video, only: [:create, :destroy]
 
   def create
+    @stack = Stack.find(params[:stack_id])
     unless @user.videos.count > 5
       @video = @user.videos.build(video_params)
       if @video.save
         track_activity @video
         respond_to do |format|
-          format.html { redirect_to :back }
+          format.html { redirect_to stack_stack_supplements_path(@stack, anchor: "video")}
           format.js
         end
       end

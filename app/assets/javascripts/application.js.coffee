@@ -52,8 +52,9 @@ jQuery ->
         return railsParams
   #BEST IN PLACE EDITING
   $(".best_in_place").best_in_place()
+
   #WSYIHTML5
-  $("#answer-textarea").wysihtml5
+  $(".answer-textarea").wysihtml5
     "font-styles": false #Font styling, e.g. h1, h2, etc. Default true
     emphasis: true #Italics, bold, etc. Default true
     lists: true #(Un)ordered lists, e.g. Bullets, Numbers. Default true

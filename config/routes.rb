@@ -1,5 +1,4 @@
 Stakit::Application.routes.draw do
-
   resources :videos
   resources :activities
   resources :user_attachments

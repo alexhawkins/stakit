@@ -24,6 +24,7 @@ module Stakit
         ActionView::Base.sanitized_allowed_tags.delete 'div'
     end
     
+    #config.middleware.insert_before 0, "SupplementSuggestions"
     config.assets.version = '1.0'
     config.assets.initialize_on_precompile = false
   end

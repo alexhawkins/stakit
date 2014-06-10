@@ -10,7 +10,7 @@ $('#js-follow-text-' +<%= @answer.question.id %>).html("<%= escape_javascript(re
 $('.new_answer').html("<%= escape_javascript(render partial: 'answers/answers_form', locals: { question: @question, answer: @new_answer }) %>");
 <% end %>
 //update text-editor
-$('#answer-textarea').wysihtml5({
+$('#answer-textarea-'  +<%= question.id %>).wysihtml5({
     "font-styles": false, //Font styling, e.g. h1, h2, etc. Default true
     "emphasis": true, //Italics, bold, etc. Default true
     "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true

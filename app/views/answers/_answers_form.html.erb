@@ -19,7 +19,7 @@
     <% end %>         
 
   <%= form_group_tag(answer.errors[:body]) do %>
-    <%= f.text_area :body, id: 'answer-textarea', editor_options: { color: false, font_styles: false, image: false }, rows: 6, cols: 40, class: 'wysihtml5 form-control', placeholder: "#{answer_placeholder}" %>
+    <%= f.text_area :body, editor_options: { color: false, font_styles: false, image: false }, rows: 6, cols: 40, id: "answer-textarea-#{question.id}", class: 'wysihtml5 form-control answer-textarea', placeholder: "#{answer_placeholder}" %>
   <% end %>
 
   <div class="form-group">

@@ -13,6 +13,9 @@ end
 # Use Sqlite3 for development environment
 group :development do
   gem 'sqlite3', '1.3.8'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 # Use Twitter Bootsrap Framework
 gem 'bootstrap-sass', '~> 3.1.1'
@@ -65,6 +68,10 @@ gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem 'redcarpet'
 gem 'bootstrap-wysihtml5-rails'
 gem 'auto_html'
+gem 'rack-mini-profiler'
+gem 'redis'
+#gem 'parsley-rails'
+#gem 'judge'
 #gem 'bootsy'
 
 

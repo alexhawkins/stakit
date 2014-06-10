@@ -30,4 +30,12 @@ class Question < ActiveRecord::Base
   def create_follow
     user.follow_questions.create(question: self)
   end
+
+  def self.search(search)
+    if search.present?
+      where("name @@ :s or description @@ :s", s: search).order('created_at DESC')
+    else
+     order('created_at DESC')
+    end
+  end
 end

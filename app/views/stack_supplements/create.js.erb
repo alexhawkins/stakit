@@ -5,11 +5,15 @@ $('#stack-count-' +<%= @stack.id %>).html("<%= @stack.supplements.count %>");
 //CALL AGAIN AFTER NEW SUPPLEMENT IS CREATED
 $('#stack_supplement_supplement_name').autocomplete({
   source: $('#stack_supplement_supplement_name').data('autocomplete-source'),
+  selectFirst: true,
+  minLength: 2,
+  delay: 500,
   messages: {
       noResults: '',
       results: function() {}
   }
 });
+
 //CALL TOOLTIP AGAIN AFTER CREATION
 $('.supplement-tip').tooltip();
 //CALL X-EDITABLE AGAIN AFTER CREATION

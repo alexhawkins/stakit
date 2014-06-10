@@ -1,29 +1,18 @@
-<h1>Listing questions</h1>
+<div class="row">
+  <h1 class="page-header"><strong>Questions</strong></h1>
+  
+  <%= form_tag '/questions', method: :get do %>
+    <div class="form-group">
+      <%= search_field_tag :search, params[:search], options = { class: 'form-control', placeholder: 'Search' } %>
+    </div>
+    <div class="form-group">
+      <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+   </div>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.name %></td>
-        <td><%= question.description %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Question', new_question_path %>
+   <div class="js-questions", id="js-questions">
+        <%= render @questions %>
+   </div>
+      <%= will_paginate @questions %>
+      
+</div>
