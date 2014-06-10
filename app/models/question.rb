@@ -1,11 +1,6 @@
 class Question < ActiveRecord::Base
   include PgSearch
-  pg_search_scope :search, against: [:name, :description],
-    using: {
-      tsearch: {
-        dictionary: "english"
-      }
-    }
+  pg_search_scope :search, :against => [:name, :description]
 
   belongs_to :user
   has_many :question_topics, dependent: :destroy
@@ -41,7 +36,7 @@ class Question < ActiveRecord::Base
 
   def self.search(query)
     if query.present?
-     query = query.split(" ").join(" & ")
+     #query = query.split(" ").join(" & ")
      search(query)
     else
      order('created_at desc')
