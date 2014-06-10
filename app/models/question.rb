@@ -1,4 +1,9 @@
 class Question < ActiveRecord::Base
+  include PgSearch
+  pg_search_scope :search, against: [:name, :description],
+    using: {tsearch: {dictionary: "english"}},
+    associated_against: {user: :name, answers: [:body]}
+    
   belongs_to :user
   has_many :question_topics, dependent: :destroy
   # a question does have many topics as long as we go through question_topics to get there
@@ -31,13 +36,9 @@ class Question < ActiveRecord::Base
     user.follow_questions.create(question: self)
   end
 
-  def self.search(search)
-    if search.present?
-      rank = <<-RANK
-        ts_rank(to_tsvector(name), plainto_tsquery(#{sanitize(search)})) +
-        ts_rank(to_tsvector(description), plainto_tsquery(#{sanitize(search)}))
-      RANK
-      where("name @@ :s or description @@ :s", s: search).order("#{rank} desc")
+  def self.search(query)
+    if query.present?
+     search(query)
     else
      order('created_at desc')
     end
