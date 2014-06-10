@@ -25,7 +25,12 @@ class Question < ActiveRecord::Base
   default_scope { order('created_at DESC') }
 
   include PgSearch
-  pg_search_scope :search, against: [:name, :description]
+  pg_search_scope :search, against: [:name, :description],
+    using: {
+        tsearch: {
+          dictionary: "english"
+        }
+      }
    
   def topic_tokens=(tokens)
     self.topic_ids = Topic.ids_from_tokens(tokens)
