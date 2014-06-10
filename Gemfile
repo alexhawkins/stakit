@@ -16,6 +16,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'rack-mini-profiler'
 end
 # Use Twitter Bootsrap Framework
 gem 'bootstrap-sass', '~> 3.1.1'
@@ -68,8 +69,7 @@ gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem 'redcarpet'
 gem 'bootstrap-wysihtml5-rails'
 gem 'auto_html'
-gem 'rack-mini-profiler'
-gem 'redis'
+#gem 'redis'
 #gem 'texticle', require: 'texticle/rails'
 gem 'pg_search'
 #gem 'parsley-rails'

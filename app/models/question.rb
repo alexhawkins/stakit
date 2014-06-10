@@ -1,6 +1,4 @@
 class Question < ActiveRecord::Base
-  include PgSearch
-  pg_search_scope :search, :against => [:name, :description]
 
   belongs_to :user
   has_many :question_topics, dependent: :destroy
@@ -25,6 +23,9 @@ class Question < ActiveRecord::Base
   attr_reader :topic_tokens
 
   default_scope { order('created_at DESC') }
+
+  include PgSearch
+  pg_search_scope :search, against: [:name, :description]
    
   def topic_tokens=(tokens)
     self.topic_ids = Topic.ids_from_tokens(tokens)
@@ -34,7 +35,7 @@ class Question < ActiveRecord::Base
     user.follow_questions.create(question: self)
   end
 
-  def self.search(query)
+  def self.text_search(query)
     if query.present?
      #query = query.split(" ").join(" & ")
      search(query)
