@@ -7,7 +7,7 @@ class SupplementsController < ApplicationController
     #get all supplements where the name is like the auto complete query
     #and match it to the term parameter in jquery-ui
     #order the supplments by name
-      @supplements = Supplement.order(:name).where("name @@ ?", params[:term])
+      @supplements = Supplement.order(:name).where("name ilike ?", "%#{params[:term]}%")
       #return a json array of the supplements
       render json: @supplements.map(&:name)
     #authorize @supplements
