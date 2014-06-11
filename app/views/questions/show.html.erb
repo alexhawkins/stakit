@@ -44,7 +44,13 @@
 
   <!--Sidebar Column -->
   <div class="col-md-5">
-      <div class="list-group">
+
+    <!---RELATED QUESTIONS -->
+    <div>
+      <%= render partial: 'questions/related_questions', locals: { related_questions: @related_questions } %>
+    </div>
+
+    <div class="list-group">
       <a href="#" class="list-group-item active">
         Setup Your Account
       </a>
@@ -56,30 +62,20 @@
       <a href="#" class="list-group-item">Add details about what you know</a>
       <a href="#" class="list-group-item">Answer a question</a>
     </div>
+    
     <div class="list-group">
-    <a href="#" class="list-group-item active">
-      <h4 class="list-group-item-heading">Follow Question</h4>
-      <p class="list-group-item-text">
-        While not always necessary, sometimes you need to put your DOM in a box. For those situations, try the panel component.
-      </p>
-    </a>
-    <a href="#" class="list-group-item">
-      <h4 class="list-group-item-heading">Share Question</h4>
-      <p class="list-group-item-text">
-        While not always necessary, sometimes you need to put your DOM in a box. For those situations, try the panel component.
-      </p>
-    </a>
-  </div>
-  <!---RELATED QUESTIONS -->
-  <h3 class="page-header">Related Questions</h3>
-    <div class="list-group">
-      <!--loop  through each topic association with question object-->
-      <% @question.topics.each do |topic| %>
-        <!--of the related topics, loop through each question in said topic-->
-        <% topic.questions.each do |question| %>
-          <%= link_to question.name, question_path(question), class: 'list-group-item'%>
-        <% end %>
-      <% end %>
+      <a href="#" class="list-group-item active">
+        <h4 class="list-group-item-heading">Follow Question</h4>
+        <p class="list-group-item-text">
+          While not always necessary, sometimes you need to put your DOM in a box. For those situations, try the panel component.
+        </p>
+      </a>
+      <a href="#" class="list-group-item">
+        <h4 class="list-group-item-heading">Share Question</h4>
+        <p class="list-group-item-text">
+          While not always necessary, sometimes you need to put your DOM in a box. For those situations, try the panel component.
+        </p>
+      </a>
     </div>
   </div>
 </div>

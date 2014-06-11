@@ -8,7 +8,7 @@ class Question < ActiveRecord::Base
   has_many :follow_questions, dependent: :destroy
   has_many :activities, as: :trackable, dependent: :destroy
   after_create :create_follow
-
+  after_create :strip_it
   validates :user, presence: true
   validates :name, 
     presence: true,
@@ -27,12 +27,12 @@ class Question < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search, against: [:name, :description],
     using: {
-        tsearch: {
+       tsearch: {
           dictionary: "english"
         }
-      },
+     },
     associated_against: {
-      user: :name, answers: :body
+     answers: :body
     }
    
   def topic_tokens=(tokens)
@@ -41,6 +41,12 @@ class Question < ActiveRecord::Base
   #automatically follow your own Questions
   def create_follow
     user.follow_questions.create(question: self)
+  end
+
+  #strip any trailing punctuation
+  def strip_it
+    new_name = self.name.gsub(/^[^a-zA-Z]+/, '').gsub(/[^a-zA-Z]+$/, '') + "?"
+    self.update_attribute(:name, new_name)
   end
 
   def self.text_search(query)

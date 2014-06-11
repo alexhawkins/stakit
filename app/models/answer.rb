@@ -8,9 +8,10 @@ class Answer < ActiveRecord::Base
   has_many :activities, as: :trackable, dependent: :destroy
 
   #VALIDATIONS
-  validates_presence_of :question, :user
+  validates :question, presence: true
+  validates :user, presence: true
   #make sure that each user can only answer a question once
-  validates :user_id, uniqueness: { scope: :question_id }
+  #validates :user_id, uniqueness: { scope: :question_id }
   validates :body,
     presence: true,
     uniqueness: { scope: :question_id, case_sensitive: false },
@@ -18,7 +19,7 @@ class Answer < ActiveRecord::Base
     minimum: 10,
     maximum: 2000,
     too_short: "must have at least 10 characters",
-    too_long: "must have less than 2000 characters",
+    too_long: "must have less than 000 characters",
   }
 
   default_scope { order('rank DESC') }
@@ -57,5 +58,6 @@ class Answer < ActiveRecord::Base
       end
     end
   end
+  handle_asynchronously :send_following_emails, queue: 'email_answers', run_at: Proc.new { 1.minute.from_now }
 
 end

@@ -9,6 +9,7 @@ gem 'rails', '4.0.5'
 group :production do
   gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
+  gem 'pg_search'
 end
 # Use Sqlite3 for development environment
 group :development do
@@ -67,11 +68,12 @@ gem 'fog'
 gem 'will_paginate', '~> 3.0.5'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem 'redcarpet'
-gem 'bootstrap-wysihtml5-rails'
+#gem 'bootstrap-wysihtml5-rails'
 gem 'auto_html'
 #gem 'redis'
 #gem 'texticle', require: 'texticle/rails'
-gem 'pg_search'
+gem 'delayed_job_active_record'
+gem 'daemons'
 #gem 'parsley-rails'
 #gem 'judge'
 #gem 'bootsy'

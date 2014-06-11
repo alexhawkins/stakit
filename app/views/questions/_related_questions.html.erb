@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h4>Related Questions</h4></div>
+      <ul class="list-group">
+        <!--loop  through each topic association with question object-->
+        <% related_questions.each do |question| %>
+          <% unless question == @question %>
+              <li class="list-group-item">
+              <span class="badge badge-related-questions"><%= question.answers.count %></span>
+              <strong><%= link_to truncate("#{question.topics.first.name}: #{question.name}", length: 150, omission: '... (continued)'), question_path(question) %></strong>
+             </li>
+          <% end %>
+      <% end %>
+      </ul>
+  </div>
+
+
+   

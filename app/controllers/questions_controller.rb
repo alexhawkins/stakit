@@ -1,7 +1,6 @@
 class QuestionsController < ApplicationController
   respond_to :html, :js
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-
   # GET /questions
   # GET /questions.json
   def index
@@ -19,8 +18,9 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
-    get_and_show_answers
+    @related_questions = collect_related_questions @topics
     @stack = current_user.stacks.where(default: true).first
+    get_and_show_answers
   end
 
   # GET /questions/new
@@ -97,6 +97,7 @@ class QuestionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_question
       @question = Question.find(params[:id])
+      @topics = @question.topics
     end
 
     def get_and_show_answers
@@ -110,6 +111,11 @@ class QuestionsController < ApplicationController
        end
     end
 
+    def collect_related_questions(topics)
+      unless topics.nil?
+        question_array = topics.collect(&:questions).flatten.uniq.sort { |x,y| y.created_at <=> x.created_at }[0..15]
+      end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     # Because it is receiving an array of scalar values instead of just a scalar value, we
     # need to add { } around :topic_ids => []

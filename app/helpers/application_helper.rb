@@ -2,7 +2,7 @@ module ApplicationHelper
 
   #REDCARPET MARKDOWN TEXT
   def markdown(text)
-    renderer = Redcarpet::Render::HTML.new(safe_links_only: true, hard_wrap: true)
+    renderer = Redcarpet::Render::HTML.new(safe_links_only: true, hard_wrap: true, filter_html: true, prettify: true)
     extensions = {fenced_code_blocks: true, autolink: true, highlight: true, strikethrough: true}
     redcarpet = Redcarpet::Markdown.new(renderer, extensions)
     (redcarpet.render text).html_safe
@@ -55,9 +55,9 @@ module ApplicationHelper
 
   def render_follower_avatar_for(follower)
     if follower.avatar?
-      image_tag(follower.avatar.followers.url, class: 'img-responsive img-rounded').html_safe
+      image_tag(follower.avatar.followers.url, class: 'img-responsive img-rounded tiny-thumbnail').html_safe
     else
-      image_tag('fallback/default.gif', height: '35px', width: '35px',  class: 'img-responsive img-rounded').html_safe
+      image_tag('fallback/default.gif', height: '35px', width: '35px',  class: 'img-responsive img-rounded tiny-thumbnail').html_safe
     end
   end
 

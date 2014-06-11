@@ -47,8 +47,6 @@ GEM
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.10)
       will_paginate
-    bootstrap-wysihtml5-rails (0.3.1.24)
-      railties (>= 3.0)
     bootstrap-x-editable-rails (1.5.1.1)
       railties (>= 3.0)
     builder (3.1.4)
@@ -87,6 +85,11 @@ GEM
       sprockets (<= 2.11.0)
     daemons (1.1.9)
     debug_inspector (0.0.2)
+    delayed_job (4.0.1)
+      activesupport (>= 3.0, < 4.2)
+    delayed_job_active_record (4.0.1)
+      activerecord (>= 3.0, < 4.2)
+      delayed_job (>= 3.0, < 4.1)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -249,12 +252,13 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.1.1)
   bootstrap-will_paginate (~> 0.0.10)
-  bootstrap-wysihtml5-rails
   bootstrap-x-editable-rails
   capybara
   carrierwave
   chosen-rails
   coffee-rails (= 4.0.1)
+  daemons
+  delayed_job_active_record
   devise
   figaro
   fog

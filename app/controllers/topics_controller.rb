@@ -16,6 +16,7 @@ class TopicsController < ApplicationController
   # GET /topics/1.json
   def show
     @questions = @topic.questions.includes(:user).includes(:answers).includes(:follow_questions).paginate(page: params[:page], per_page: 5)
+    @related_topics = @topic.questions.collect(&:topics).flatten.uniq.sort { |x,y| y.questions.count <=> x.questions.count }[0..10]
     @new_question = Question.new
     @new_answer = Answer.new
     respond_to do |format|

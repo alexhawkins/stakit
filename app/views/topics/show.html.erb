@@ -18,7 +18,11 @@
 
   <!--Sidebar Column -->
  <div class="col-md-5">
-  
+      <!---RELATED TOPICS -->
+    <div>
+      <%= render partial: 'topics/related_topic_questions', locals: { related_topics: @related_topics} %>
+    </div>
+
       <div class="list-group">
       <a href="#" class="list-group-item active">
         Setup Your Account
@@ -45,16 +49,5 @@
       </p>
     </a>
   </div>
-  <!---RELATED QUESTIONS -->
-  <h3 class="page-header">Related Topics</h3>
-    <div class="list-group">
-      <!--loop through each question associated with the Topic object-->
-      <% @topic.questions.each do |question| %>
-        <!--of the related questions, find the other topics they share-->
-        <% question.topics.each do |topic| %>
-          <%= link_to topic.name, topic_path(topic), class: 'list-group-item'%>
-        <% end %>
-      <% end %>
-    </div>
   </div>
 </div>

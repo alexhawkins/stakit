@@ -14,15 +14,33 @@
 
 <!-- DETERMINE PLAEHOlDER TEXT BASED UPON NUMBER OF FOLLOWERS -->
 
-    <% if question.answers.empty? %>
-      <% answer_placeholder = "Add your answer" %>
-    <% end %>         
-
-  <%= form_group_tag(answer.errors[:body]) do %>
-    <%= f.text_area :body, editor_options: { color: false, font_styles: false, image: false }, rows: 6, cols: 40, id: "answer-textarea-#{question.id}", class: 'wysihtml5 form-control answer-textarea', placeholder: "#{answer_placeholder}" %>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.submit "Add Answer", class: 'btn btn-primary' %>
+<% if question.answers.empty? %>
+  <% answer_placeholder = "Add your answer" %>
+<% end %>         
+<div class="panel panel-default answer-panel">
+  <div class="panel-heading answer-heading">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#write" data-toggle="tab">Write</a></li>
+      <li><a href="#markdown" data-toggle="tab">Markdown</a></li>
+    </ul>    
   </div>
+  <!-- Tab panes -->
+  <div class="tab-content">
+     <div class="tab-pane active" id="write">
+      <div class="panel-body answer-body">
+        <%= form_group_tag(answer.errors[:body]) do %>
+          <%= f.text_area :body, rows: 6, cols: 40, id: "answer-textarea-#{question.id}", class: 'form-control answer-textarea', placeholder: "#{answer_placeholder}" %>
+        <% end %>
+
+        <%= f.submit "Add Answer", class: 'btn btn-primary pull-right' %>
+      </div>
+     </div>
+    <div class="tab-pane" id="markdown">
+     <div class="panel-body answer-body">
+      Markdown
+     </div>
+    </div>
+  </div>  
+ </div>
 <% end %>

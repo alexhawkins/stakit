@@ -11,7 +11,7 @@
           <%= link_to answer.user.name, user_path(answer.user)%>
           
           <!-- RENDER A TINY AVATAR FOR THE USER OF THIS ANSWER -->
-         <%= link_to render_answer_avatar_for(answer.user), user_path(answer.user), class: 'pull-right answer-image supplement-tip', data: { toggle: :tooltip, placement: :left}, title: "#{answer.user.name} profile" %>
+         <%= link_to render_follower_avatar_for(answer.user), user_path(answer.user), class: 'pull-right answer-image supplement-tip', data: { toggle: :tooltip, placement: :left}, title: "#{answer.user.name} profile" %>
           </h4>
        
         <!-- VOTERS NAME -->
@@ -30,7 +30,7 @@
           <% end %>
         </div>
         <!--ANSWER BODY -->
-        <p> <%= markdown answer.body %></p>
+        <span class="answer-body-text"> <%= markdown (answer.body) %></span>
         <p>
           <!--DATE ANSWER WAS CREATED-->
            <span>

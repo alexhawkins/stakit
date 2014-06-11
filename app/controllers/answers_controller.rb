@@ -24,14 +24,9 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @new_answer = Answer.new
     #prevent user from answer same question twice
-    if @question.answers.where(user_id: current_user.id).exists?
-      flash[:error] = "You can only answer a question once."
-    else
-      @answers = @question.answers
-      @answer = current_user.answers.build(answer_params)
-      @answer.question = @question
-    end
-
+    @answers = @question.answers
+    @answer = current_user.answers.build(answer_params)
+    @answer.question = @question
     respond_to do |format|
       if @answer.save
         #create an Activity when we create an answer!
@@ -85,6 +80,6 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:user_id, :question_id, :body)
+      params.require(:answer).permit(:user_id, :question_id, :body, :bootsy_image_gallery_id)
     end
 end

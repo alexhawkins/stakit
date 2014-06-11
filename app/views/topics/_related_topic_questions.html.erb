@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h4>Related Topics</h4></div>
+      <ul class="list-group">
+        <!--loop  through each topic association with question object-->
+        <% related_topics.each do |topic| %>
+          <% unless topic == @topic %>
+            <li class="list-group-item">
+              <span class="badge badge-related-questions"><%= topic.questions.count %></span>
+              <strong><%= link_to topic.name, topic_path(topic) %></strong>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+  </div>

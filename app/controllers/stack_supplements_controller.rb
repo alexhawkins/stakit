@@ -14,7 +14,7 @@ class StackSupplementsController < ApplicationController
     @frequencies = Frequency.all.load
     @public = @stack.public
     @user_attachment = UserAttachment.new
-    @following_activities = collect_activities @following
+    @following_activities = collect_activities @following_all
     @video = Video.new
   end
 
@@ -121,13 +121,13 @@ class StackSupplementsController < ApplicationController
       #show the first 20 following and followed only
       @followers = current_user.followers.limit(20)
       @following = current_user.followed_users.limit(20)
+      @following_all = current_user.followed_users
     end
 
-
     #get all the user and followed user activities 
-    def collect_activities(following)
-      unless following.nil?
-        activities_array = following.collect(&:activities).flatten.sort { |x,y| y.created_at <=> x.created_at }[0..30]
+    def collect_activities(following_all)
+      unless following_all.nil?
+        activities_array = following_all.collect(&:activities).flatten.sort { |x,y| y.created_at <=> x.created_at }[0..30]
       end
       #if current_user.activities.any?
         #current_user.activities.each do |activity|

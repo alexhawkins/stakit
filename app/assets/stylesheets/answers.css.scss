@@ -79,8 +79,29 @@ border-radius: 2px;
   font-size: 2em;
 }
 
-//USER SUPPLEMENTS SECTION
-.user-supplements{
+.answer-heading {
+  border-bottom: none !important;
+  padding: 7px 0 0 10px !important;
 }
-.unique-supplement{
+
+.answer-textarea{
+  font-size: .9em;
+  color: #333;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+ 
+}
+
+.answer-body{
+  padding: 10px;
+}
+
+.answer-panel{
+  margin-bottom: 25px;
+}
+
+.answer-body-text{
+ padding: 10px;
+ font-size: .96em;
 }
