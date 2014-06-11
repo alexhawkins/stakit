@@ -48,20 +48,6 @@ ActiveRecord::Schema.define(version: 20140610211408) do
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
   add_index "answers", ["user_id"], name: "index_answers_on_user_id"
 
-  create_table "bootsy_image_galleries", force: true do |t|
-    t.integer  "bootsy_resource_id"
-    t.string   "bootsy_resource_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "bootsy_images", force: true do |t|
-    t.string   "image_file"
-    t.integer  "image_gallery_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false

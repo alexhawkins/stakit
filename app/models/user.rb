@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -21,7 +22,6 @@ class User < ActiveRecord::Base
   has_many :videos, dependent: :destroy
 
   accepts_nested_attributes_for :user_attachments
-  mount_uploader :avatar, AvatarUploader
   scope :alphabetically, -> { order('name ASC') }
 
   def role?(base_role)
