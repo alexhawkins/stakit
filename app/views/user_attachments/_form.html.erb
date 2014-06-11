@@ -1,4 +1,4 @@
-<%= form_for(@user_attachment) do |f| %>
+<%= form_for(@user_attachment), validate: true do |f| %>
   <% if @user_attachment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user_attachment.errors.count, "error") %> prohibited this user_attachment from being saved:</h2>

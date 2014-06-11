@@ -24,16 +24,19 @@ class Question < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
 
+if Rails.env.production?
   include PgSearch
-  pg_search_scope :search, against: [:name, :description],
-    using: {
-       tsearch: {
-          dictionary: "english"
-        }
-     },
-    associated_against: {
-     answers: :body
-    }
+   pg_search_scope :search, against: [:name, :description],
+     using: {
+        tsearch: {
+           dictionary: "english"
+         }
+      },
+     associated_against: {
+      answers: :body
+     }
+end
+
    
   def topic_tokens=(tokens)
     self.topic_ids = Topic.ids_from_tokens(tokens)

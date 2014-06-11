@@ -19,7 +19,7 @@ class Answer < ActiveRecord::Base
     minimum: 10,
     maximum: 2000,
     too_short: "must have at least 10 characters",
-    too_long: "must have less than 000 characters",
+    too_long: "must have less than 2000 characters",
   }
 
   default_scope { order('rank DESC') }
@@ -58,6 +58,6 @@ class Answer < ActiveRecord::Base
       end
     end
   end
-  handle_asynchronously :send_following_emails, queue: 'email_answers', run_at: Proc.new { 1.minute.from_now }
+  handle_asynchronously :send_following_emails, queue: 'email_answers', run_at: Proc.new { 5.minute.from_now }
 
 end

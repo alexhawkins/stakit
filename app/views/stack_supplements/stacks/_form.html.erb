@@ -1,4 +1,4 @@
-<%= form_for @new_stack  do |f| %>
+<%= form_for (@new_stack)  do |f| %>
   <% if @new_stack.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@new_stack.errors.count, "error") %> prohibited this stack from being saved:</h2>

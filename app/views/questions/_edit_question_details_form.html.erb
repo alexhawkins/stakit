@@ -1,5 +1,5 @@
 <p>
-  <%= form_for [@question], remote: true do |f| %>
+  <%= form_for [@question], validate: true, remote: true do |f| %>
      <div class="form-group">
         <%= f.label :description %>
         <%= f.text_area :description, rows: 8, class: 'form-control', placeholder: "Add Detail" %>
