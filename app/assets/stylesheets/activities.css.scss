@@ -4,24 +4,23 @@
 
 .activity-time{
   color: #bbb;
-  font-size: .95em;
+  font-size: .85em;
 }
-
 
 .activity{
   margin-left: 2px;
-  padding: 0 0 15px 5px;
+  padding: 10px 0 15px 5px;
   border-bottom: 1px solid #f1f1f1 !important;
-}
-.activity {
- &:last-child{
-  border-bottom: none;
-  }
 }
 
 .activity-glyph {
   padding-left: 25px;
-  font-size: 1.5em;
+  font-size: 1.8em;
+  padding-top: 12px;
+  color: #3875d7;
+     &:hover{
+     color: #3875d7;
+  }
 }
 
 .js-activities, .user-activity-panel{

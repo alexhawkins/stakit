@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610211408) do
+ActiveRecord::Schema.define(version: 20140611234134) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -22,8 +25,8 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id"
-  add_index "activities", ["user_id"], name: "index_activities_on_user_id"
+  add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "answer_votes", force: true do |t|
     t.integer  "user_id"
@@ -33,8 +36,8 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.integer  "value"
   end
 
-  add_index "answer_votes", ["answer_id"], name: "index_answer_votes_on_answer_id"
-  add_index "answer_votes", ["user_id"], name: "index_answer_votes_on_user_id"
+  add_index "answer_votes", ["answer_id"], name: "index_answer_votes_on_answer_id", using: :btree
+  add_index "answer_votes", ["user_id"], name: "index_answer_votes_on_user_id", using: :btree
 
   create_table "answers", force: true do |t|
     t.integer  "user_id"
@@ -45,8 +48,8 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.float    "rank"
   end
 
-  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
-  add_index "answers", ["user_id"], name: "index_answers_on_user_id"
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -62,7 +65,7 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "favorite_stacks", force: true do |t|
     t.integer  "stack_id"
@@ -71,8 +74,8 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.datetime "updated_at"
   end
 
-  add_index "favorite_stacks", ["stack_id"], name: "index_favorite_stacks_on_stack_id"
-  add_index "favorite_stacks", ["user_id"], name: "index_favorite_stacks_on_user_id"
+  add_index "favorite_stacks", ["stack_id"], name: "index_favorite_stacks_on_stack_id", using: :btree
+  add_index "favorite_stacks", ["user_id"], name: "index_favorite_stacks_on_user_id", using: :btree
 
   create_table "follow_questions", force: true do |t|
     t.integer  "question_id"
@@ -81,8 +84,8 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.datetime "updated_at"
   end
 
-  add_index "follow_questions", ["question_id"], name: "index_follow_questions_on_question_id"
-  add_index "follow_questions", ["user_id"], name: "index_follow_questions_on_user_id"
+  add_index "follow_questions", ["question_id"], name: "index_follow_questions_on_question_id", using: :btree
+  add_index "follow_questions", ["user_id"], name: "index_follow_questions_on_user_id", using: :btree
 
   create_table "follows", force: true do |t|
     t.integer  "user_id"
@@ -90,7 +93,7 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.datetime "updated_at"
   end
 
-  add_index "follows", ["user_id"], name: "index_follows_on_user_id"
+  add_index "follows", ["user_id"], name: "index_follows_on_user_id", using: :btree
 
   create_table "frequencies", force: true do |t|
     t.string   "value"
@@ -105,18 +108,18 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.datetime "updated_at"
   end
 
-  add_index "question_topics", ["question_id"], name: "index_question_topics_on_question_id"
-  add_index "question_topics", ["topic_id"], name: "index_question_topics_on_topic_id"
+  add_index "question_topics", ["question_id"], name: "index_question_topics_on_question_id", using: :btree
+  add_index "question_topics", ["topic_id"], name: "index_question_topics_on_topic_id", using: :btree
 
   create_table "questions", force: true do |t|
-    t.string   "name"
+    t.text     "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
   end
 
-  add_index "questions", ["user_id"], name: "index_questions_on_user_id"
+  add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
@@ -125,31 +128,36 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.datetime "updated_at"
   end
 
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+
   create_table "stack_supplements", force: true do |t|
-    t.integer  "stack_id",                  null: false
-    t.integer  "supplement_id",             null: false
-    t.integer  "frequency_id",  default: 2, null: false
+    t.integer  "stack_id"
+    t.integer  "supplement_id"
+    t.integer  "frequency_id"
     t.string   "dose"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position"
   end
 
-  add_index "stack_supplements", ["frequency_id"], name: "index_stack_supplements_on_frequency_id"
-  add_index "stack_supplements", ["stack_id"], name: "index_stack_supplements_on_stack_id"
-  add_index "stack_supplements", ["supplement_id"], name: "index_stack_supplements_on_supplement_id"
+  add_index "stack_supplements", ["frequency_id"], name: "index_stack_supplements_on_frequency_id", using: :btree
+  add_index "stack_supplements", ["stack_id"], name: "index_stack_supplements_on_stack_id", using: :btree
+  add_index "stack_supplements", ["supplement_id"], name: "index_stack_supplements_on_supplement_id", using: :btree
 
   create_table "stacks", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "description", default: "Details about my stack..."
+    t.string   "description"
+    t.string   "links"
     t.boolean  "public",      default: true
     t.boolean  "default",     default: false
   end
 
-  add_index "stacks", ["user_id"], name: "index_stacks_on_user_id"
+  add_index "stacks", ["user_id"], name: "index_stacks_on_user_id", using: :btree
 
   create_table "supplements", force: true do |t|
     t.string   "name"
@@ -157,7 +165,7 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.string   "default_frequency"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "tooltip"
+    t.string   "tooltip"
   end
 
   create_table "topics", force: true do |t|
@@ -174,7 +182,7 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.datetime "updated_at"
   end
 
-  add_index "user_attachments", ["user_id"], name: "index_user_attachments_on_user_id"
+  add_index "user_attachments", ["user_id"], name: "index_user_attachments_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -202,8 +210,8 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.boolean  "email_follows",          default: true
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "videos", force: true do |t|
     t.integer  "user_id"
@@ -212,6 +220,6 @@ ActiveRecord::Schema.define(version: 20140610211408) do
     t.datetime "updated_at"
   end
 
-  add_index "videos", ["user_id"], name: "index_videos_on_user_id"
+  add_index "videos", ["user_id"], name: "index_videos_on_user_id", using: :btree
 
 end

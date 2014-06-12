@@ -1,5 +1,5 @@
 <!-- add remote: true to enable Ajax on the form -->
-<%= form_for [question], validate: true do |f| %>
+<%= form_for [question] do |f| %>
  <% if question.errors.any? %>
     <div id="error_explanation">
       <h4><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h4>

@@ -10,12 +10,13 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.text_field :name, class: 'form-control', placeholder: 'Give your stack a name' %>
+<div class="input-group stack-supp-input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
+  <div class="form-group main-stack">
+    <%= f.text_field :name, class: 'form-control main-stack-control', placeholder: 'Give your stack a name' %>
   </div>
-
+</div>
   <div class="form-group">
-    <%= f.submit "Create New Stack", class: 'btn btn-success' %>
+    <%= f.submit "Create New Stack", class: 'btn btn-green pull-right' %>
   </div>
 <% end %>

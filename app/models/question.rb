@@ -24,19 +24,22 @@ class Question < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
 
-if Rails.env.production?
   include PgSearch
-   pg_search_scope :search, against: [:name, :description],
+   pg_search_scope :search, against: { name: 'A', description: 'B' },
      using: {
+        trigram: { threshold: 0.5},
         tsearch: {
+           prefix: true,
            dictionary: "english"
          }
       },
      associated_against: {
-      answers: :body
-     }
-end
-
+      topics: { name: 'C' },
+      answers: { body: 'D' }
+     },
+     ignoring: :accents,
+     ranked_by: ":tsearch + (0.25 * :trigram)",
+     order_within_rank: "questions.updated_at DESC"
    
   def topic_tokens=(tokens)
     self.topic_ids = Topic.ids_from_tokens(tokens)
@@ -54,7 +57,7 @@ end
 
   def self.text_search(query)
     if query.present?
-     query = query.split(" ").join(" & ") 
+     #query = query.split(" ").join(" & ") 
      search(query)
     else
      order('created_at desc')

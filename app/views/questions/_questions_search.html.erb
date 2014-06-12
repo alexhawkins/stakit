@@ -1,0 +1,12 @@
+<%= form_tag '/questions', method: :get do %>
+<div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    <div class="form-group main-search" id="js-main-search">
+      <%= search_field_tag :query, params[:query], options = { class: 'form-control main-search-control', placeholder: 'Search questions', size: 40 } %>
+    </div>
+  </div>
+
+    <div class="form-group">
+      <%= submit_tag "Search", name: nil, class: 'btn btn-primary hide ' %>
+   </div>
+<% end %>

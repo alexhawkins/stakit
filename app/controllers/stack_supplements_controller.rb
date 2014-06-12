@@ -39,7 +39,9 @@ class StackSupplementsController < ApplicationController
     #prevent user form creating unlimited number of stack_supplements
     unless @stack.stack_supplements.count > 40
      @stack_supplement = @stack.stack_supplements.build(stack_supplement_params)
-      #set initial stack dose to default stack dose/RDA
+    #set initial stack dose to default stack dose/RDA
+    #set default frequency
+     @stack_supplement.frequency_id = 1
      @stack_supplement.dose = @stack_supplement.supplement.default_dose
     end
     @new_stack_supplement = StackSupplement.new

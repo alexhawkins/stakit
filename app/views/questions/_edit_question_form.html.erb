@@ -1,6 +1,6 @@
 <!--FORM TO EDIT QUESTION AND QUESTION DETAILS  -->
 <p>
-  <%= form_for [@question], validate: true, remote: true do |f| %>
+  <%= form_for [@question], remote: true do |f| %>
      <div class="form-group"><strong>
         <%= f.text_field :name, class: 'form-control' %>
      </strong>

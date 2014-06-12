@@ -5,7 +5,7 @@ class UserAttachment < ActiveRecord::Base
    validates :user, presence: true
    has_many :activities, as: :trackable, dependent: :destroy
 
-   #validate :validate_file_name_is_unique
+   validate :validate_file_name_is_unique
 
   private
 

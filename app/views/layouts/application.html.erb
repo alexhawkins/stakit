@@ -3,11 +3,11 @@
 <head>
   <title>StakIt</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application", "rails.validations" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
  <body>
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default header-logged-in" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -17,25 +17,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-         <%= link_to "STAKiT", root_path, :class => 'navbar-brand' %>
+         <%= link_to "", root_path, class: 'navbar-brand glyphicon glyphicon-tasks' %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
+           <div class="navbar-form navbar-left" role="search">
+               <%= render partial: 'questions/questions_search' %>
+           </div>
           <% if current_user %>
             <li><%= link_to "My Dashboard", stack_stack_supplements_path(current_user.stacks.first) %></li> 
             <li><%= link_to "Stack Manager", stacks_path %></li>
           <% end %>
             <li><%= link_to "Activity Feed", activities_path %></li>
           </ul>
-          <!-- SEARCH -->
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control", size="60", placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default hide"></button>
-            </form>
 
           
           <ul class="nav navbar-nav navbar-right">

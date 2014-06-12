@@ -1,10 +1,15 @@
 <div class="row">
-  <h1 class="page-header"><strong>Activity News Feed</strong></h1>
-  <div id="js-activities">
-    <%= render @activities %>
-  </div>
+  <div class="col-md-9">
+    <h1 class="page-header"><strong>Activity News Feed</strong></h1>
+    <div id="js-activities">
+      <%= render @activities %>
+    </div>
 
-  <div id="infinite-scrolling">
-    <%= will_paginate @activities %>
+    <div id="infinite-scrolling">
+      <%= will_paginate @activities %>
+    </div>
   </div>
+   <div class="col-md-3">
+   </div>
+
 </div>

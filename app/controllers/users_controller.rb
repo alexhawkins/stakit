@@ -32,7 +32,6 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user_attachment = @user.user_attachments.build
     @stack = @user.stacks.find(:first, :order => 'created_at DESC')
     respond_to do |format|
       if @user.update_attributes(user_params)

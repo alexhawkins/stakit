@@ -1,4 +1,4 @@
-<%= form_for(@supplement), validate: true do |f| %>
+<%= form_for(@supplement) do |f| %>
   <% if @supplement.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@supplement.errors.count, "error") %> prohibited this supplement from being saved:</h2>

@@ -39,7 +39,7 @@ ul.ui-autocomplete {
 // CREATE NEW STACK SECTION BENEATH STACKS
 
 .create-new-stack {
-  padding: 20px 10px 10px;
+  padding: 0;
 }
 
 .manage-stack-margin-space{
@@ -65,8 +65,52 @@ ul.ui-autocomplete {
   font-size: 0.8em;
 }
 
+.create-new-stack-panel {
+  background-color: #fafafa;
+}
 
+.stack-panel-from{
+   border-radius: 20px;
+   -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 0 #fff;
+    -moz-box-shadow: 1px 1px 0 #fff;
+    -webkit-box-shadow: 1px 1px 0 #fff;
+}
 
+.main-stack {
+  background: #fcfcfc;
+  box-shadow: 1px 1px 0 #fff;
+  -moz-box-shadow: 1px 1px 0 #fff;
+  -webkit-box-shadow: 1px 1px 0 #fff;
+}
+.main-stack-control {
+   border-color: #ccc;
+   border-top-right-radius: 20px !important;
+  -webkit-top-right-radius: 20px !important;
+  -moz-border-top-right-radius: 20px !important;
+   border-bottom-right-radius: 20px !important;
+  -webkit-bottom-right-radius: 20px !important;
+  -moz-border-bottom-right-radius: 20px !important;
+}
+
+.main-supplement {
+  background: #fcfcfc;
+  box-shadow: 1px 1px 0 #fff;
+  -moz-box-shadow: 1px 1px 0 #fff;
+  -webkit-box-shadow: 1px 1px 0 #fff;
+}
+.main-supplement-control {
+   border-color: #ccc;
+   margin-bottom: 0px !important;
+ }
+
+.stack-supp-input-group{
+ margin-bottom: 15px;
+}
 
 
 

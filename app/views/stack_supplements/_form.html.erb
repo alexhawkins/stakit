@@ -1,21 +1,23 @@
-<%= form_for [stack, stack_supplement], validate: true, remote: true do |f| %>
-  <% if stack_supplement.errors.any? %>
-    <div class="alert alert-danger">
-      <h2><%= pluralize(stack_supplement.errors.count, "error") %> prohibited this stack_supplement from being saved:</h2>
-      <ul>
-      <% stack_supplement.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for [stack, stack_supplement], remote: true do |f| %>
+    <% if stack_supplement.errors.any? %>
+      <div class="alert alert-danger">
+        <h2><%= pluralize(stack_supplement.errors.count, "error") %> prohibited this stack_supplement from being saved:</h2>
+        <ul>
+        <% stack_supplement.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="input-group stack-supp-input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
+      <div class="form-group main-supplement">
+        <%= f.text_field :supplement_name,  data: {autocomplete_source: supplements_path}, class: 'form-control', placeholder: "Enter Supplement" %>
+       </div>
     </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.text_field :supplement_name,  data: {autocomplete_source: supplements_path}, class: 'form-control', placeholder: "Enter Supplement" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.submit "Add a supplement to your Stack", class: 'btn btn-success' %>
-  </div>
+    <div class="form-group">
+      <%= f.submit "Add a supplement to your Stack", class: 'btn btn-success' %>
+    </div>
 <% end %>
+
 

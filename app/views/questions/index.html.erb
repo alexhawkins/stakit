@@ -1,18 +1,14 @@
 <div class="row">
-  <h1 class="page-header"><strong>Questions</strong></h1>
-  
-  <%= form_tag '/questions', method: :get do %>
-    <div class="form-group">
-      <%= search_field_tag :query, params[:query], options = { class: 'form-control', placeholder: 'Search' } %>
-    </div>
-    <div class="form-group">
-      <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
-   </div>
-  <% end %>
+  <div class="col-md-8">
+    <h1 class="page-header"><strong>Questions</strong></h1>
+    
 
-   <div class="js-questions", id="js-questions">
-        <%= render @questions %>
-   </div>
-      <%= will_paginate @questions %>
+     <div class="js-questions", id="js-questions">
+          <%= render @questions %>
+     </div>
+        <%= will_paginate @questions %>
+  </div>
+ <div class="col-md-4">
+ </div>
 
 </div>
