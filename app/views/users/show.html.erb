@@ -5,7 +5,8 @@
  <div class="col-md-3">
  <!-- if the user is the current_user, let his profile image link to his settings page -->
      <% if current_user == @user %>
-        <%= link_to render_profile_avatar_for(@user), edit_user_registration_path %>
+        <%= link_to render_profile_avatar_for(@user), edit_user_registration_path, class: 'supplement-tip',
+         data: { toggle: :tooltip, placement: :top }, title: 'Edit Settings'%>
      <% else %>
         <%= render_profile_avatar_for(@user) %>
      <% end %>
@@ -15,7 +16,24 @@
      </div>
      <!-- Location Info/ Joined Info-->
      <div class="page-header squashed-header">
-        <h5>
+       <!--SHORTBIO-->
+        <% if current_user.shortbio? %>
+          <h5>
+          <%= link_to "  ", "#", class: 'glyphicon glyphicon-book' %> 
+          <strong><%= current_user.shortbio %></strong>
+          </h5>
+        <% end %>
+        <!--WEBSITE URL -->
+        <% if current_user.url? %>
+          <h5>
+          <%= link_to "  ", "#", class: 'glyphicon glyphicon-globe' %> 
+          <strong><%= link_to strip_url(current_user.url), "http://#{current_user.url}" %></strong>
+          </h5>
+        <% end %>  
+        <% if current_user.shortbio? || current_user.url? %>
+          <hr>
+        <% end %>
+        <!--LOCATION-->
         <% if @user.location? %>
           <%= link_to " ", "#", class: 'glyphicon glyphicon-map-marker supplement-tip', data: { toggle: :tooltip, placement: :top }, title: @user.location %>
             <%= @user.location %>
@@ -24,10 +42,12 @@
             Silicon Valley, CA
         <% end %>
         </h5>
+        <!--JOINED-->
         <h5>
            <%= link_to " ", "#", class: 'glyphicon glyphicon-time supplement-tip', data: { toggle: :tooltip, placement: :bottom }, title: "#{time_ago_in_words(@user.created_at)} ago" %>
            <%= @user.created_at.strftime("Joined on %B %d, %Y") %>
         </h5>
+
      </div>
       <!--ACCORDIAN PANEL 1 - FOLLOWERS -->
       <div class="panel-group" id="accordionFollow">
@@ -40,7 +60,7 @@
           </div>
           <div id="collapseFollowStack" class="panel-collapse collapse in">
             <div class="panel-body">
-               <%= render 'shared/followers' %>
+                <%= render partial: 'shared/followers', locals: { followers: @followers } %>
             </div>
           </div>
         </div>
@@ -57,7 +77,7 @@
           </div>
           <div id="collapseNewStack1" class="panel-collapse collapse in">
             <div class="panel-body">
-              <%= render 'shared/following' %>
+              <%= render partial: 'shared/following', locals: { following: @following } %>
             </div>
           </div>
         </div>

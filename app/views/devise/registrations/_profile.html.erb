@@ -1,0 +1,73 @@
+ <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>Edit Public Profile</strong></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-8">
+            <!-- PERSONAL INFO AND AVATAR -->
+            <%= form_for(current_user) do |f| %>
+              <!-- NAME -->
+            <%= f.label :name %><br />
+            <div class="input-group stack-supp-input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <div class="form-group">
+                <%= f.text_field :name, class: 'form-control main-stack-control', placeholder: "Enter name", autofocus: true %>
+              </div>
+            </div>
+
+             <!--SHORT BIO -->
+             <%= f.label "Short bio" %><br />
+             <div class="input-group stack-supp-input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+
+              <div class="form-group">
+                <%= f.text_field :shortbio, class: 'form-control  main-stack-control', placeholder: "Enter a short description of yourself", autofocus: true %>
+              </div>
+              </div>
+
+             <!--LOCATION -->
+             <%= f.label :location %><br />
+             <div class="input-group stack-supp-input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+
+              <div class="form-group">
+                <%= f.text_field :location, class: 'form-control  main-stack-control', placeholder: "Enter Location", autofocus: true %>
+              </div>
+             </div>
+
+              <!--URL-->
+             <%= f.label :website %><br />
+             <div class="input-group stack-supp-input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+
+                <div class="form-group">
+                  <%= f.text_field :url, class: 'form-control  main-stack-control', placeholder: "Enter your website", autofocus: true %>
+                </div>
+             </div>
+
+              <!-- ADD AN AVATAR -->
+              <%= f.label :avatar %><br />
+              <div class="form-group">
+                <%= render_settings_avatar_for(current_user) %>
+              </div>
+
+              <div class="form-group">
+               <!--  <%= f.label "Update Avatar" %> -->
+                <%= f.file_field :avatar %>
+                <%= f.hidden_field :avatar_cache %>
+              </div>
+              <hr>
+              <div class="form-group">
+                  <%= f.label "Receive Following Emails?" %>
+                  <%= f.check_box :email_follows %>
+                 <p class="help-block">Be notified via e-mail when new Answers are left on Questions that you are following. We recommend you leave this checked.</p>
+              </div> 
+
+               <div class="form-group">
+                <%= f.submit "Update Profile", class: 'btn btn-green' %>
+              </div>
+              
+            <% end %>
+          </div>
+        </div>
+      </div>

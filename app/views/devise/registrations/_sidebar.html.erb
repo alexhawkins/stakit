@@ -1,0 +1,94 @@
+   
+<%= link_to render_profile_avatar_for(current_user), user_path(current_user), class: 'supplement-tip',
+         data: { toggle: :tooltip, placement: :top }, title: 'View Public Profile' %>
+ <div class="page-header squashed-header">
+  <h3><strong><%= current_user.name %></strong></h3>
+</div>
+<!-- Location Info/ Joined Info-->
+<div class="page-header squashed-header">
+ 
+  <!--SHORTBIO-->
+  <% if current_user.shortbio? %>
+    <h5>
+    <%= link_to "  ", "#", class: 'glyphicon glyphicon-book' %> 
+    <strong><%= current_user.shortbio %></strong>
+    </h5>
+  <% end %>
+  <!--WEBSITE URL -->
+  <% if current_user.url? %>
+    <h5>
+    <%= link_to "  ", "#", class: 'glyphicon glyphicon-globe' %> 
+    <strong><%= link_to strip_url(current_user.url), "http://#{current_user.url}" %></strong>
+    </h5>
+  <% end %>  
+  <% if current_user.shortbio? || current_user.url? %>
+    <hr>
+  <% end %>
+<h5>
+  <!--LOCATION-->
+  <% if current_user.location? %>
+  <%= link_to " ", "#", class: 'glyphicon glyphicon-map-marker supplement-tip', data: { toggle: :tooltip, placement: :top }, title: current_user.location %>
+  <%= current_user.location %>
+  <% else %>
+  <%= link_to " ", "#", class: 'glyphicon glyphicon-map-marker supplement-tip', data: { toggle: :tooltip, placement: :top }, title: 'Silicon Valley' %>
+  Silicon Valley, CA
+  <% end %>
+</h5>
+<!--JOINED-->
+<h5>
+ <%= link_to " ", "#", class: 'glyphicon glyphicon-time supplement-tip', data: { toggle: :tooltip, placement: :bottom }, title: "#{time_ago_in_words(current_user.created_at)} ago" %>
+ <%= current_user.created_at.strftime("Joined on %B %d, %Y") %>
+</h5>
+
+</div>
+<!--ACCORDIAN PANEL 1 - FOLLOWERS -->
+<div class="panel-group" id="accordionFollow">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+       <%= render_arrow_collapse_for("#accordionFollow", "#collapseFollowStack").html_safe %>
+       <span id="followers"><%= link_to "Followers (#{current_user.followers.count})", followers_user_path(current_user) %></span>
+     </h4>
+   </div>
+   <div id="collapseFollowStack" class="panel-collapse collapse in">
+    <div class="panel-body">
+     <%= render partial: 'shared/followers', locals: { followers: current_user.followers.limit(20) } %>
+   </div>
+ </div>
+</div>
+</div>
+
+<!--ACCORDIAN PANEL 2 - FOLLOWING -->
+<div class="panel-group" id="accordionFollowing">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <%= render_arrow_collapse_for("#accordionFollowing", "#collapseNewStack1").html_safe %>
+        <span id="following"><%= link_to "Following (#{current_user.followed_users.count})", following_user_path(current_user) %></span>
+      </h4>
+    </div>
+    <div id="collapseNewStack1" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <%= render partial: 'shared/following', locals: { following: current_user.followed_users.limit(20) } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--ACCORDIAN PANEL 1 - ABOUT-->
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+       <%= render_arrow_collapse_for("#accordion", "#collapseMyStacks").html_safe %>
+       About
+     </h4>
+   </div>
+   <div id="collapseMyStacks" class="panel-collapse collapse in">
+    <!--MY STACK MAIN BODY -->
+    <div class="panel-body">
+
+    </div>
+  </div>
+</div>
+</div>

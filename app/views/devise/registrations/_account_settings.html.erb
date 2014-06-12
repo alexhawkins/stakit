@@ -1,0 +1,63 @@
+   <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>Edit Account Settings</strong></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-8">
+            <!-- EMAIL AND PASSWORD-->
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <div class="form-group">
+              <%= devise_error_messages! %>
+            </div>
+            <!--EMAIL-->
+            <%= f.label :email %><br />
+            <div class="input-group stack-supp-input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+              <div class="form-group">  
+                <%= f.email_field :email, class: 'form-control main-stack-control', autofocus: true %>
+              </div>
+            </div>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div class="form-group">
+                Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+              </div>
+            <% end %>
+             <!--PASSWORD-->
+            <%= f.label :new_password %> <i>( leave blank if you don't want to change it )</i><br />
+            <div class="input-group stack-supp-input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+              <div class="form-group">  
+                <%= f.password_field :password, class: 'form-control main-stack-control', autocomplete: "off" %>
+              </div>
+            </div>
+            <!--PASSWORD CONFIRMATION--> 
+            <%= f.label :new_password_confirmation %><br />
+            <div class="input-group stack-supp-input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+              <div class="form-group">  
+                <%= f.password_field :password_confirmation, class: 'form-control main-stack-control', autocomplete: "off" %>
+              </div  >
+            </div>
+            <hr>
+            <!--CURRENT PASSWORD--> 
+            <%= f.label :current_password %> <i>( we need your current password to confirm your changes )</i><br />
+            <div class="input-group stack-supp-input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-ok-sign"></i></span>
+              <div class="form-group">
+                <%= f.password_field :current_password, class: 'form-control main-stack-control', autocomplete: "off" %>
+              </div>
+            </div>
+            <!--UPDATE--> 
+            <div class="form-group">
+                <%= f.submit "Update Settings", class: 'btn btn-green' %>
+            </div>
+          <% end %>      
+          <!--CANCEL ACCOUNT--> 
+          <div class="form-group">
+            <hr>
+            <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-red pull-right' %>
+          </div>
+        </div>
+      </div>
+    </div>

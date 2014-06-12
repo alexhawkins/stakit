@@ -15,6 +15,23 @@
    </div>
    <!-- Location Info/ Joined Info-->
    <div class="page-header squashed-header">
+      <!--SHORTBIO-->
+      <% if current_user.shortbio? %>
+        <h5>
+        <%= link_to "  ", "#", class: 'glyphicon glyphicon-book' %> 
+        <strong><%= current_user.shortbio %></strong>
+        </h5>
+      <% end %>
+      <!--WEBSITE URL -->
+      <% if current_user.url? %>
+        <h5>
+        <%= link_to "  ", "#", class: 'glyphicon glyphicon-globe' %> 
+        <strong><%= link_to strip_url(current_user.url), "http://#{current_user.url}" %></strong>
+        </h5>
+      <% end %>  
+      <% if current_user.shortbio? || current_user.url? %>
+        <hr>
+      <% end %>
       <h5>
         <%= link_to " ", "#", class: 'glyphicon glyphicon-map-marker supplement-tip', data: { toggle: :tooltip, placement: :top }, title: @user.location %>
         <%= @user.location %>
@@ -37,7 +54,7 @@
           </div>
           <div id="collapseFollowStack" class="panel-collapse collapse in">
             <div class="panel-body">
-               <%= render 'shared/followers' %>
+               <%= render partial: 'shared/followers', locals: { followers: @followers } %>
             </div>
           </div>
         </div>
@@ -54,7 +71,8 @@
           </div>
           <div id="collapseNewStack1" class="panel-collapse collapse in">
             <div class="panel-body">
-              <%= render 'shared/following' %>
+               <%= render partial: 'shared/following', locals: { following: @following } %>
+
             </div>
           </div>
         </div>

@@ -11,10 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611234134) do
+ActiveRecord::Schema.define(version: 20140612221919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
+  enable_extension "pg_trgm"
+  enable_extension "fuzzystrmatch"
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -208,6 +211,8 @@ ActiveRecord::Schema.define(version: 20140611234134) do
     t.string   "location"
     t.boolean  "email_stack_favorites",  default: false
     t.boolean  "email_follows",          default: true
+    t.string   "shortbio"
+    t.string   "url"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

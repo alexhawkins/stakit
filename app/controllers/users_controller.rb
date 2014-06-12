@@ -41,7 +41,8 @@ class UsersController < ApplicationController
         }
         format.json { respond_with_bip(@user) }
       else
-        format.html { render "devise/registrations/edit" }
+        flash[:error] = "There was error updating your acccount. Make sure your entries are valid."
+        format.html { redirect_to :back }
         format.json { respond_with_bip(@user) }
       end
     end
@@ -59,6 +60,12 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def profile
+    @title = "Profile"
+    @user = User.find(params[:id])
+    render 'profile'
+  end
+
   private
 
   def set_follow
@@ -68,6 +75,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :followed_id, :email_follows, :avatar, :avatar_cache, :location, user_attachments_attributes: [:id, :user_id, :image])
+    params.require(:user).permit(:name, :followed_id, :shortbio, :email_follows, :url, :avatar, :avatar_cache, :location, user_attachments_attributes: [:id, :user_id, :image])
   end
 end

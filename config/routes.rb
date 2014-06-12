@@ -31,18 +31,20 @@ Stakit::Application.routes.draw do
   
 
   devise_for :users, controllers: { sessions: "users/sessions" },
-           :path => '', 
-           :path_names => { 
-              :sign_in => "login", 
-              :sign_out => "logout", 
-              :sign_up => "register",
-              :edit => "settings" }
+           path: '', 
+           path_names: { 
+              sign_in: "login", 
+              sign_out: "logout", 
+              sign_up: "register",
+              edit: "settings" 
+            }
 
   resources :users, only: [:update, :show] do
     member do
       get :following, :followers
     end
   end
+
   resources :relationships, only: [:create, :destroy]
   resources :favorite_stacks, only: [:create, :destroy]
 

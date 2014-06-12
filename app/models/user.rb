@@ -24,6 +24,9 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :user_attachments
   scope :alphabetically, -> { order('name ASC') }
 
+  validates :url, url: true
+  #validates :url, :presence => {:message => 'URL cannot be blank.'}, :format => {:with => /\A[www]+[A-Za-z0-9._%+-]+\.[A-Za-z]+\z/, :message => 'INCORRECT FORMAT!'}
+
   def role?(base_role)
     role == base_role.to_s
   end

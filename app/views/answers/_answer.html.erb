@@ -6,13 +6,14 @@
       </a>
 
       <div class="media-body">
-        <h4 class="media-heading"> 
+        <h5 class="media-heading"> 
         <!-- USER NAME and INFO OF ANSWER -->
           <%= link_to answer.user.name, user_path(answer.user)%>
+          <span class="short-bio"><%="— #{answer.user.shortbio}" if answer.user.shortbio? %></span>
           
           <!-- RENDER A TINY AVATAR FOR THE USER OF THIS ANSWER -->
          <%= link_to render_follower_avatar_for(answer.user), user_path(answer.user), class: 'pull-right answer-image supplement-tip', data: { toggle: :tooltip, placement: :left}, title: "#{answer.user.name} profile" %>
-          </h4>
+          </h5>
        
         <!-- VOTERS NAME -->
         <div class="vote-names">

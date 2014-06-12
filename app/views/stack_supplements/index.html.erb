@@ -93,7 +93,7 @@
           </div>
           <div id="collapseFollowStack" class="panel-collapse collapse in">
             <div class="panel-body">
-               <%= render 'shared/followers' %>
+               <%= render partial: 'shared/followers', locals: { followers: @followers } %>
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@
           </div>
           <div id="collapseNewStack1" class="panel-collapse collapse in">
             <div class="panel-body">
-              <%= render 'shared/following' %>
+              <%= render partial: 'shared/following', locals: { following: @following } %>
             </div>
           </div>
         </div>

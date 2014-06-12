@@ -17,4 +17,12 @@ module UsersHelper
     end
   end
 
+  #CHECK URL AND STRIP HTTP or HTTPS in output
+  def strip_url(url)
+    url.sub!(/https\:\/\//, '') if url.include? "https://"
+    url.sub!(/http\:\/\//, '')  if url.include? "http://"
+    return url
+  end
+
+
 end

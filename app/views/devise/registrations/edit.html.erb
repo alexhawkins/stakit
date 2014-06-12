@@ -1,115 +1,32 @@
 <div class="row">
 <!-- SIDEBAR -->
   <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Profile</h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-    </div>
+    <%= render partial: 'sidebar' %>
   </div>
   <!-- MAIN -->
   <div class="col-md-9">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><strong>Edit Public Profile</strong></h3>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#profile" data-toggle="tab">Public Profile</a></li>
+      <li><a href="#settings" data-toggle="tab">Account Settings</a></li>
+      <li><a href="#summary" data-toggle="tab">Summary of Activity</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="profile">
+        <!--PUBLIC PROFILE SETTINGS-->
+        <p><%= render partial: 'profile' %></p>
       </div>
-
-      <div class="panel-body">
-        <div class="col-md-8">
-            <!-- PERSONAL INFO AND AVATAR -->
-            <%= form_for(current_user) do |f| %>
-              <!-- NAME -->
-              <div class="form-group">
-                <%= f.label :name %>
-                <%= f.text_field :name, class: 'form-control', placeholder: "Enter name", autofocus: true %>
-              </div>
-              <!--LOCATION -->
-              <div class="form-group">
-                <%= f.label :location %>
-                <%= f.text_field :location, class: 'form-control', placeholder: "Enter Location", autofocus: true %>
-              </div>
-
-              <!-- ADD AN AVATAR -->
-              <div class="form-group">
-                <p><strong>Profile Picture</strong></p>
-                <%= render_settings_avatar_for(current_user) %>
-              </div>
-
-              <div class="form-group">
-               <!--  <%= f.label "Update Avatar" %> -->
-                <%= f.file_field :avatar %>
-                <%= f.hidden_field :avatar_cache %>
-              </div>
-
-               <div class="form-group">
-                  <%= f.label "Receive Following Emails?" %>
-                  <%= f.check_box :email_follows %>
-                 <p class="help-block">Be notified via e-mail when new Answers are left on Questions that you are following. We recommend you leave this checked.</p>
-               </div> 
-
-               <div class="form-group">
-                <%= f.submit "Update", class: 'btn btn-success' %>
-              </div>
-              
-            <% end %>
-
-            <!-- EMAIL AND PASSWORD-->
-            <h4 class="page-header">Change email or password</h4>
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <div class="form-group">
-              <%= devise_error_messages! %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :email %><br />
-              <%= f.email_field :email, class: 'form-control', autofocus: true %>
-            </div>
-
-            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-              <div class="form-group">
-                Currently waiting confirmation for: <%= resource.unconfirmed_email %>
-              </div>
-              <% end %>
-
-              <div class="form-group">
-                <%= f.label :password %> <i>( leave blank if you don't want to change it )</i><br />
-                <%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
-              </div>
-
-              <div class="form-group">
-                <%= f.label :password_confirmation %><br />
-                <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>
-              </div  >
-
-              <div class="form-group">
-                <%= f.label :current_password %> <i>( we need your current password to confirm your changes )</i><br />
-                <%= f.password_field :current_password, class: 'form-control', autocomplete: "off" %>
-              </div>
-
-              <div class="form-group">
-                <%= f.submit "Update", class: 'btn btn-success' %>
-              </div>
-
-
-            <% end %>
-
-            
-             
-           
-            
-            <div class="page-header">
-              <h3>Cancel my account</h3>
-            </div>
-            
-            <div class="form-group">
-              <p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %></p>
-            </div>
-           </div>
-          </div>
-        </div>
+      <div class="tab-pane fade" id="settings">
+        <!--ACCOUNT SETTINGS-->
+       <p><%= render partial: 'account_settings' %></p>
+      </div>
+      <div class="tab-pane fade" id="summary">
+        <!--SUMMARY OF ACTIVITY-->
+        <p><%= render partial: 'user_summary' %></p>
       </div>
     </div>
+  </div>
+</div>
   
