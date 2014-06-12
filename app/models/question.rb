@@ -37,7 +37,6 @@ class Question < ActiveRecord::Base
       topics: { name: 'C' },
       answers: { body: 'D' }
      },
-     ignoring: :accents,
      ranked_by: ":tsearch + (0.25 * :trigram)",
      order_within_rank: "questions.updated_at DESC"
    
