@@ -22,10 +22,11 @@ class User < ActiveRecord::Base
   has_many :videos, dependent: :destroy
 
   accepts_nested_attributes_for :user_attachments
+  #SCOPES
   scope :alphabetically, -> { order('name ASC') }
-
+  scope :created_at, -> { order('created_at DESC') }
+  #VALIDATIONS
   validates :url, url: true
-  #validates :url, :presence => {:message => 'URL cannot be blank.'}, :format => {:with => /\A[www]+[A-Za-z0-9._%+-]+\.[A-Za-z]+\z/, :message => 'INCORRECT FORMAT!'}
 
   def role?(base_role)
     role == base_role.to_s

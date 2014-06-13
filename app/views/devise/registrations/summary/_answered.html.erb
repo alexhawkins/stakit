@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>My Answers</th>
+      <th>Votes</th>
+      <th>Shares</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% num = 1 %>
+  <% current_user.answers.each do |answer| %>
+  <%= content_tag :div, class: 'media', id: "summary-answer-#{answer.id}" do %>
+    <tbody>
+         <tbody>
+          <tr>
+            <td><%= num %></td>
+            <td>
+              <div><strong>
+              <%= link_to truncate( answer.body, :length => 125), question_path(answer.question, anchor: "answer-#{answer.id}") %></strong>
+              </div>
+              <div class="question-asked-date"><small>answered <%= time_ago_in_words(answer.created_at)%> ago</small></div>
+            </td>
+            <td>
+              <strong><%= answer.points %></strong></td>
+            <td>
+              <strong>0</strong></td>
+            <td>
+              <%= link_to " ", question_answer_path(answer.question, answer), method: :delete, class: 'glyphicon glyphicon-trash supplement-tip', remote: true, data: { confirm: 'Are you sure? This will permanently remove your answer forever!' }, toggle: :tooltip, placement: :left, title: 'Delete Answer' %>
+            </td>
+          </tr>
+        </tbody>
+    <% num += 1 %>
+    <% end %>
+  <% end %>
+</table>

@@ -1,0 +1,65 @@
+<div class="panel-group" id="accordion-settings">
+  
+  <!-- ANSWERS -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion-settings" href="#collapseAnswers">
+          My Answers
+        </a>
+        <span class="badge pull-right"><%= current_user.answers.count %></span>
+      </h4>
+    </div>
+    <div id="collapseAnswers" class="panel-collapse collapse">
+      <div class="panel-body">
+       <%= render 'devise/registrations/summary/answered' %>
+      </div>
+    </div>
+  </div>
+  <!-- FOLLOWS -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion-settings" href="#collapseFollows">
+          Questions I'm Following
+        </a>
+        <span class="badge pull-right"><%= current_user.follow_questions.count %></span>
+      </h4>
+    </div>
+    <div id="collapseFollows" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= render 'devise/registrations/summary/followed_questions' %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion-settings" href="#collapseStacks">
+          My Favorite Stacks
+        </a>
+      </h4>
+    </div>
+    <div id="collapseStacks" class="panel-collapse collapse">
+      <div class="panel-body">
+       <%= render 'devise/registrations/summary/favorite_stacks' %>
+      </div>
+    </div>
+  </div>
+  <!-- QUESTIONS -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion-settings" href="#collapseQuestions">
+          My Questions 
+        </a>
+        <span class="badge pull-right"><%= current_user.questions.count %></span>
+      </h4>
+    </div>
+    <div id="collapseQuestions" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <%= render'devise/registrations/summary/questions_asked' %>
+      </div>
+    </div>
+  </div>
+</div>

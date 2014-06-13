@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>My Questions</th>
+      <th>Answers</th>
+      <th>Following</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% num = 1 %>
+  <% current_user.questions.each do |question| %>
+    <tbody>
+         <tbody>
+          <tr>
+            <td><%= num %></td>
+            <td>
+              <div><strong>
+              <a href="#" data-xeditable="true" data-pk="<%= question.id %>" data-model="question" data-name="name" data-url="<%= question_path(question) %>" data-title="Edit your Question">
+                <%= question.name %>
+              </a></strong></div>
+              <div class="question-asked-date"><small>asked <%= time_ago_in_words(question.created_at)%> ago</small></div>
+            </td>
+            <td>
+              <strong><%= question.answers.count %></strong></td>
+            <td>
+              <strong><%= question.follow_questions.count %></strong></td>
+            <td>
+              <%= link_to "View", question_path(question),class: 'btn btn-primary'%>
+            </td>
+          </tr>
+        </tbody>
+    <% num += 1 %>
+  <% end %>
+</table>
+

@@ -1,0 +1,35 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Followed Questions</th>
+      <th>Answers</th>
+      <th>Followers</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% num = 1 %>
+  <% current_user.follow_questions.each do |follow_question| %>
+    <tbody>
+         <tbody>
+          <tr>
+            <td><%= num %></td>
+            <td>
+              <div><strong>
+                <%= link_to follow_question.question.name, question_path(follow_question.question) %>
+              </a></strong></div>
+              <div class="question-asked-date"><small>followed <%= time_ago_in_words(follow_question.created_at)%> ago</small></div>
+            </td>
+            <td>
+              <strong><%= follow_question.question.answers.count %></strong></td>
+            <td>
+              <strong><%= FollowQuestion.where(question_id: follow_question.question.id).count%></strong>
+            </td>
+            <td>
+            
+           </td>
+          </tr>
+        </tbody>
+    <% num += 1 %>
+  <% end %>
+</table>
