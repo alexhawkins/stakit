@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   scope :alphabetically, -> { order('name ASC') }
   scope :created_at, -> { order('created_at DESC') }
   #VALIDATIONS
-  validates :url, url: true
+  validates :url, url: true, allow_blank: true
 
   def role?(base_role)
     role == base_role.to_s
