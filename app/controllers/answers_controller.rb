@@ -45,11 +45,12 @@ class AnswersController < ApplicationController
   # PATCH/PUT /answers/1
   # PATCH/PUT /answers/1.json
   def update
+    @question = Question.find(params[:question_id])
     respond_to do |format|
       if @answer.update(answer_params)
         track_activity @answer
         format.html { redirect_to :back, notice: 'Answer was successfully updated.' }
-        format.json { head :no_content }
+        format.json { respond_with_bip(@answer) }
         format.js
       else
         format.html { render action: 'edit' }

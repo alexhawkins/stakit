@@ -78,5 +78,23 @@ module ApplicationHelper
     end
   end
 
+   def render_user_link_avatar_for(user)
+      output = ""
+      output += "
+        <ul class='media-list'>
+          <li class='media'>
+          <a class='pull-left' href='#'>
+             #{render_settings_avatar_for(user)}
+          </a>
+            <div class='media-body'>
+              <h5 class='media-heading'>#{user.name}</h5>
+               <small><em>#{user.shortbio}</em></small>
+               <small>#{user.location}</small>
+               </small>
+            </div>
+          </li>
+        </ul>"
+    output
+  end
 
 end

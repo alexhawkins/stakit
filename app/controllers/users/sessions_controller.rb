@@ -10,12 +10,12 @@ class Users::SessionsController < Devise::SessionsController
         #create a new Supplement array with the first 8 supplements we have, then iterate
         Supplement.take(8).each do |supplement|
             #Create and new Stack Supplement association for each supplement in this beginner stack
-            StackSupplement.create(stack_id: @starter_stack_id, supplement_id: supplement.id)
+            StackSupplement.create(stack_id: @starter_stack_id, supplement_id: supplement.id, frequency_id: 1, dose: supplement.default_dose)
           end
         #create a beginner brain stack for the user
-        StackSupplement.create(stack_id: @brain_stack.id, supplement_id: 2)
+        StackSupplement.create(stack_id: @brain_stack.id, supplement_id: 2, frequency_id: 1, dose: "500 mg")
         #create a beginner fitness stack for the user
-        StackSupplement.create(stack_id: @fitness_stack.id, supplement_id: 3)
+        StackSupplement.create(stack_id: @fitness_stack.id, supplement_id: 3, frequency_id: 1, dose: "500 mg")
         #stack_stack_supplements_path(@stack, @stack_supplement)
         redirect_to stack_stack_supplements_path(@starter_stack) and return
       else

@@ -51,6 +51,8 @@ jQuery ->
         return railsParams
   #BEST IN PLACE EDITING
   $(".best_in_place").best_in_place()
+  #POPOVERS FOR USERS
+  $(".user-popover-with-html").popover({ html : true })
 
   #WSYIHTML5
  # $(".answer-textarea").wysihtml5
