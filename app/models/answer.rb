@@ -14,7 +14,6 @@ class Answer < ActiveRecord::Base
   #validates :user_id, uniqueness: { scope: :question_id }
   validates :body,
     presence: true,
-    uniqueness: { scope: :question_id, case_sensitive: false },
     length: {
     minimum: 10,
     maximum: 5000,
