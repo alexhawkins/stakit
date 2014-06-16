@@ -19,8 +19,7 @@ class Users::SessionsController < Devise::SessionsController
         #stack_stack_supplements_path(@stack, @stack_supplement)
         redirect_to stack_stack_supplements_path(@starter_stack) and return
       else
-
-        @stack = current_user.stacks.last
+        @stack = current_user.stacks.where(default: true).first
         redirect_to stack_stack_supplements_path(@stack) and return
        end
     end
