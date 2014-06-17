@@ -10,10 +10,8 @@
   </thead>
   <% num = 1 %>
   <% current_user.answers.each do |answer| %>
-  <%= content_tag :div, class: 'media', id: "summary-answer-#{answer.id}" do %>
-    <tbody>
          <tbody>
-          <tr>
+          <tr id="answer-<%= answer.id%>" >
             <td><%= num %></td>
             <td>
               <div><strong>
@@ -26,11 +24,12 @@
             <td>
               <strong>0</strong></td>
             <td>
+             <% if policy(answer).destroy? %>
               <%= link_to " ", question_answer_path(answer.question, answer), method: :delete, class: 'glyphicon glyphicon-trash supplement-tip', remote: true, data: { confirm: 'Are you sure? This will permanently remove your answer forever!' }, toggle: :tooltip, placement: :left, title: 'Delete Answer' %>
+             <% end %>
             </td>
           </tr>
         </tbody>
     <% num += 1 %>
-    <% end %>
   <% end %>
 </table>

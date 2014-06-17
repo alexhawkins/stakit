@@ -11,7 +11,7 @@ class Answer < ActiveRecord::Base
   validates :question, presence: true
   validates :user, presence: true
   #make sure that each user can only answer a question once
-  validates :user_id, uniqueness: { scope: :question_id }
+ # validates :user_id, uniqueness: { scope: :question_id }
   validates :body,
     presence: true,
     length: {

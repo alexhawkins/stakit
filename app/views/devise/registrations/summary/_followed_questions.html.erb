@@ -10,14 +10,13 @@
   </thead>
   <% num = 1 %>
   <% current_user.follow_questions.each do |follow_question| %>
-    <tbody>
-         <tbody>
+      <tbody>
           <tr>
             <td><%= num %></td>
             <td>
               <div><strong>
                 <%= link_to follow_question.question.name, question_path(follow_question.question) %>
-              </a></strong></div>
+              </strong></div>
               <div class="question-asked-date"><small>followed <%= time_ago_in_words(follow_question.created_at)%> ago</small></div>
             </td>
             <td>

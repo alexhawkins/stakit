@@ -137,7 +137,11 @@
         <li>
           <%= link_to " Video", "#video", class: 'glyphicon glyphicon-film', data: { toggle: :tab } %>
         </li>
+        <li>
+          <%= link_to " Summary", "#summary", class: 'glyphicon glyphicon-list-alt', data: { toggle: :tab } %>
+        </li>
       </ul>
+
 
      <!-- Tab panes -->
   <div class="tab-content">
@@ -268,9 +272,12 @@
         </div>
      </div>
      <!-- END OF TAB 3 -->
-    </div>
+        <div class="tab-pane fade" id="summary">
+          <!--SUMMARY OF ACTIVITY-->
+          <p><%= render partial: 'devise/registrations/summary/user_summary' %></p>
+        </div>
+      </div>
+      </div>
+     </div>
     <!-- END OF TABS -->
-  </div>
- </div>
-</div>
     

@@ -7,7 +7,7 @@
         <a data-toggle="collapse" data-parent="#accordion-settings" href="#collapseAnswers">
           My Answers
         </a>
-        <span class="badge pull-right"><%= current_user.answers.count %></span>
+        <span class="badge pull-right" id="js-summary-answers-count"><%= current_user.answers.count %></span>
       </h4>
     </div>
     <div id="collapseAnswers" class="panel-collapse collapse">
