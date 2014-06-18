@@ -57,8 +57,7 @@
               </li>
               <% else %>
                 <% if User.where(last_sign_in_ip: request.remote_ip).exists? %>
-                <%= request.remote_ip %>
-                <li><span><%= link_to "Login", new_user_session_path, class: 'btn btn-grey menu-btn'  %></span></li>
+                <li><%= render partial: "devise/sessions/login_popup", locals: {resource: resource } %></li>
                 <% else %>
                 <li><span><%= link_to "Register", new_user_registration_path, class: 'btn btn-grey menu-btn'  %></span></li>
                 <% end %>

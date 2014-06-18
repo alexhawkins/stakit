@@ -1,4 +1,16 @@
 module ApplicationHelper
+  #allow logging in with devise from anywhere in app
+  def resource_name
+    :user
+  end
+ 
+  def resource
+    @resource ||= User.new
+  end
+ 
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
 
   #REDCARPET MARKDOWN TEXT
   def markdown(text)

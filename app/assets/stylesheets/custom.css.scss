@@ -74,6 +74,7 @@ a {
     }
   }
   .btn-primary {
+    font-size: .95em;
     background-color: $brand-royal-blue;
     color: #ffffff;
     text-shadow: 0 1px 2px rgba(0,0,0,0.5);
@@ -92,9 +93,23 @@ a {
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-    &:hover{
-      background-color: darken($brand-royal-blue, 8.5%);
-    }
+  }
+  .btn-primary:hover,
+  .btn-primary:focus,
+  .btn-primary:active,
+  .btn-primary.active,
+  .btn-primary.disabled,
+  .btn-primary[disabled] {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    background-image: -moz-linear-gradient(top, #0088cc, darken(#0044cc, 5.5%));
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(darken(#0044cc, 5.5%)));
+    background-image: -webkit-linear-gradient(top, #0088cc, darken(#0044cc, 5.5%));
+    background-image: -o-linear-gradient(top, #0088cc, darken(#0044cc, 5.5%));
+    background-image: linear-gradient(to bottom, #0088cc, darken(#0044cc, 5.5%));
+    background-repeat: repeat-x;
+     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   }
   .btn-danger {
     background-color: $brand-danger;
@@ -145,12 +160,12 @@ a {
     font-size: .95em;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.35);
     background-color: $brand-success;
-    background-image: -ms-linear-gradient(top, #62c462, $brand-success);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#52c462), to($brand-success));
-    background-image: -webkit-linear-gradient(top, #52c462, $brand-success);
-    background-image: -o-linear-gradient(top, #52c462, $brand-success);
-    background-image: -moz-linear-gradient(top, #52c462, $brand-success);
-    background-image: linear-gradient(top, #52c462, $brand-success);
+    background-image: -ms-linear-gradient(top, #62c462, darken($brand-success, 5.5%));
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#52c462), darken($brand-success, 5.5%));
+    background-image: -webkit-linear-gradient(top, #52c462, darken($brand-success, 5.5%));
+    background-image: -o-linear-gradient(top, #52c462, darken($brand-success, 5.5%));
+    background-image: -moz-linear-gradient(top, #52c462, darken($brand-success, 5.5%));
+    background-image: linear-gradient(top, #52c462, darken($brand-success, 5.5%));
     background-repeat: repeat-x;
     border-color: darken($brand-success, 9.5%);
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -168,13 +183,16 @@ a {
     outline: none;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.85);
     color: #fff;
-    background-image: -ms-linear-gradient(top, #62c462, darken($brand-success, 5.5%));
+    background-image: -ms-linear-gradient(top, #62c462, darken($brand-success, 9.5%));
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#52c462), darken($brand-success, 5.5%));
-    background-image: -webkit-linear-gradient(top, #52c462, darken($brand-success, 5.5%));
-    background-image: -o-linear-gradient(top, #52c462, darken($brand-success, 5.5%));
-    background-image: -moz-linear-gradient(top, #52c462, darken($brand-success, 5.5%));
-    background-image: linear-gradient(top, #52c462, darken($brand-success, 5.5%));
+    background-image: -webkit-linear-gradient(top, #52c462, darken($brand-success, 9.5%));
+    background-image: -o-linear-gradient(top, #52c462, darken($brand-success, 9.5%));
+    background-image: -moz-linear-gradient(top, #52c462, darken($brand-success, 9.5%));
+    background-image: linear-gradient(top, #52c462, darken($brand-success, 9.5%));
     background-repeat: repeat-x;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   }
 
 
@@ -387,4 +405,8 @@ a {
 .list-group-item {
   font-size: .95em;
   line-height: 1.2;
+}
+//USER LOGIN
+.adjust-checkbox{
+  margin-left: 20px;
 }
