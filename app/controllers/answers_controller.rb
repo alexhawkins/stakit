@@ -15,8 +15,14 @@ class AnswersController < ApplicationController
   end
 
   # GET /answers/1/edit
-  def edit
+ def edit
+    @question = Question.find(params[:question_id])
+    respond_to do |format|
+      format.html { redirect_to [@question]}
+      format.js
+    end
   end
+
 
   # POST /answers
   # POST /answers.json
@@ -31,11 +37,14 @@ class AnswersController < ApplicationController
       if @answer.save
         #create an Activity when we create an answer!
         track_activity @answer
-        format.html { redirect_to :back, notice: 'Answer was successfully created.' }
+        format.html { redirect_to question_path(@question,  anchor: "answer-#{@answer.id}"), notice: 'Answer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @question }
         format.js
       else
-        format.html { render action: 'new' }
+        format.html { 
+          flash[:error] = 'There was a problem creating your answer.'
+          redirect_to :back 
+        }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
         format.js
       end

@@ -1,0 +1,49 @@
+<!-- add remote: true to enable Ajax on the form -->
+<%= form_for [question, answer] do |f| %>
+ <% if answer.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>There are <%= pluralize(answer.errors.count, "error") %>.</h4>
+      <ul>
+        <% answer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<!-- DETERMINE PLAEHOlDER TEXT BASED UPON NUMBER OF FOLLOWERS -->
+
+<% if question.answers.empty? %>
+  <% answer_placeholder = "Add your answer" %>
+<% end %>         
+<div class="panel panel-default answer-panel">
+  <div class="panel-heading answer-heading">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#write-<%= question.id %>" data-toggle="tab">Write</a></li>
+      <li><a href="#markdown-<%= question.id %>" data-toggle="tab">Markdown</a></li>
+    </ul>    
+  </div>
+  <!-- Tab panes -->
+  <div class="tab-content">
+     <div class="tab-pane active" id="write-<%= question.id %>">
+      <div class="panel-body answer-body">
+        <%= form_group_tag(answer.errors[:body]) do %>
+          <%= f.text_area :body, rows: 6, cols: 40, id: "answer-textarea-#{question.id}", class: 'form-control answer-textarea', placeholder: "#{answer_placeholder}" %>
+        <% end %>
+          <% if policy(answer).create? %>
+            <%= f.submit "Add Answer", class: 'btn btn-primary pull-right' %>
+          <% else %>
+            <%= link_to "Add Answer", user_session_path, class: 'btn btn-primary pull-right' %>
+          <% end %>
+      </div>
+     </div>
+    <div class="tab-pane" id="markdown-<%= question.id %>">
+     <div class="panel-body answer-body">
+      Markdown
+     </div>
+    </div>
+  </div>  
+ </div>
+<% end %>

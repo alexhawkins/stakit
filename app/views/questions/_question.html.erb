@@ -34,7 +34,7 @@
 
               <div id="js-button-answer-<%=question.id %>" class="collapse">
                <div class="user-answer-form">
-                 <%= render partial: 'answers/answers_form', locals: { question: question, answer: @new_answer} %>
+                 <%= render partial: 'answers/question_answers_form', locals: { question: question, answer: @new_answer} %>
                </div>
               </div>
           <% end %>

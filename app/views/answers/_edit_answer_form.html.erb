@@ -1,8 +1,9 @@
-<%= form_for [@question, @answer], remote: true do |f| %>
+
+<%= form_for [question, answer], remote: true do |f| %>
      <div class="form-group">
         <%= f.text_area :body, rows: 8, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.submit "Update", class: 'btn btn-xs btn-green' %>
+        <%= f.submit "Update Answer", class: 'btn btn-primary' %>
       </div>
  <% end %>

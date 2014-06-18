@@ -34,6 +34,14 @@ class Answer < ActiveRecord::Base
     self.update_attribute(:rank, new_rank)
   end
 
+  def markdown
+    renderer = Redcarpet::Render::HTML.new(safe_links_only: true, hard_wrap: true, filter_html: true, prettify: true)
+    extensions = {fenced_code_blocks: true, autolink: true, highlight: true, strikethrough: true}
+    redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+    (redcarpet.render self.body).html_safe
+  end
+
+
   private
 
 # automatically be set to up vote an Answer after creation

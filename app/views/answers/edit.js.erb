@@ -1,0 +1,1 @@
+$('#answer-' +<%= @answer.id %>).html("<%= escape_javascript(render partial: 'answers/edit_answer_form', locals: { question: @question, answer: @answer }) %>");

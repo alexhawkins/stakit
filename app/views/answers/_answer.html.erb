@@ -1,6 +1,7 @@
+<%= content_tag :div, id: "answer-#{answer.id}" do %>
 <div class="panel panel-default">
   <div class="panel-body">
-   <%= content_tag :div, class: 'media', id: "answer-#{answer.id}" do %>
+   <div class= "media">
       <a class="pull-left" href="#">
       <!--VOTE COUNT FOR ANSWER -->
         <%= render partial: 'answer_votes/voter', locals: { question: @question, answer: answer } %>
@@ -23,7 +24,7 @@
         <%= render partial: 'answers/answer_partials/creation_date', locals: { question: @question, answer: answer } %>
         <!--END DATE CREATED -->
       </div>
-   <% end %>
+    </div>
   </div>
   <!--FOOTER-->
   <div class="panel-footer">
@@ -35,3 +36,4 @@
   </div>
   <!--END FOOTER-->
 </div>
+<% end %>
