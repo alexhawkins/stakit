@@ -2,7 +2,9 @@ class Users::SessionsController < Devise::SessionsController
   def create
     super do |resource|
       if current_user.sign_in_count <= 1 && current_user.confirmed_at?
-       
+        @alex_hawkins = User.find(2)
+        Relationship.create(follower_id: current_user.id, followed_id: @alex_hawkins.id)
+        Relationship.create(follower_id: @alex_hawkins.id, followed_id: current_user.id)
         @brain_stack = Stack.create(user_id: current_user.id, name: 'Sample Brain Stack')
         @fitness_stack = Stack.create(user_id: current_user.id, name: 'Sample Fitness Stack')
         @starter_stack = Stack.create(user_id: current_user.id, name: 'My Starter Stack', default: true)

@@ -1,19 +1,12 @@
 <!-- QUESTION TITLE -->
-<h2>
-  <!-- Allow edit in place if user is a member of the site -->
-  <!-- Also show an edit button if user is a member of the site -->
-  <strong><%= question.name %></strong>
-</h2>
+<h2><strong><%= question.name %></strong></h2>
 <!-- QUESTION DETAILS -->
 <p class="lead">
-  <% if policy(question).edit? %>
-      <%= question.description %>
-   <p>
-      <%= link_to "Edit this Question", edit_question_path(question),  class: 'btn btn-primary', remote: true %>
-   </p>
-  <!--Otherwise just show a regular title -->
+  <%= question.description %>  
+  <% if policy(question).destroy? %>
+    <div>
+      <%= link_to "Edit this Question", edit_question_path(question),  class: 'btn btn-green', remote: true %>
+    </div>
+  <% end %>    
 </p>
-  <% else %>
-      <%= question.description %>
-  <% end %>
-</p>
+
