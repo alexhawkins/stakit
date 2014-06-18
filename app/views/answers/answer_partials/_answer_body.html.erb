@@ -1,6 +1,6 @@
 <div class="answer-body-text">
     <% if policy(answer).destroy? %>
-      <%= best_in_place [question, answer], :body, type: :textarea %>
+      <%= markdown (best_in_place [question, answer], :body, type: :textarea) %>
     <% else %>
       <%= markdown (answer.body) %>
     <% end %>
