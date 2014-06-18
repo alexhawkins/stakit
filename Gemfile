@@ -7,7 +7,7 @@ gem 'pg'
 gem 'pg_search'
 # Use PG for Heroku production environment
 group :production do
-  gem 'rails_12factor', '0.0.2'
+  gem 'rails_12factor'
 end
 
 group :development do

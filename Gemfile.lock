@@ -285,7 +285,7 @@ DEPENDENCIES
   pundit
   rails (= 4.0.5)
   rails4_client_side_validations
-  rails_12factor (= 0.0.2)
+  rails_12factor
   redcarpet
   rspec-rails
   sass-rails (= 4.0.2)
