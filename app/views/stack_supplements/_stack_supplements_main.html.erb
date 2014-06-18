@@ -1,0 +1,155 @@
+  <!-- STACK_SUPPLEMENT FORM -->
+
+    <!-- Nav tabs -->
+      <ul class="nav nav-tabs user-nav-tabs">
+        <li class="active">
+          <%= link_to " Stacks", "#stacks", class: 'glyphicon glyphicon-th-list', data: { toggle: :tab } %>
+        </li>
+         <li>
+          <%= link_to " Feed", "#activity", class: 'glyphicon glyphicon-fire', data: { toggle: :tab } %>
+        </li>
+        <li>
+          <%= link_to " Pictures", "#pictures", class: 'glyphicon glyphicon-picture', data: { toggle: :tab } %>
+        </li>
+        <li>
+          <%= link_to " Video", "#video", class: 'glyphicon glyphicon-film', data: { toggle: :tab } %>
+        </li>
+        <li>
+          <%= link_to " Summary", "#summary", class: 'glyphicon glyphicon-list-alt', data: { toggle: :tab } %>
+        </li>
+      </ul>
+
+
+     <!-- Tab panes -->
+  <div class="tab-content">
+   <div class="tab-pane fade in active" id="stacks">
+   <%= render partial: 'stack_supplements/form', locals: {stack: @stack, stack_supplement: StackSupplement.new }%>
+        <!--CONTENT FOR TAB 1 -->
+    <!--ACCORDIAN PANEL 1/MAIN BODY - DETAILS ABOUT STACK-->
+    <div class="panel-group" id="accordion-top">
+      <div class="panel panel-default default-accordian">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+          <%= render_arrow_collapse_for("#accordion-top", "#collapseTop").html_safe %>
+             <%= @stack.name %>
+             <!-- STACK PRIVACY -->
+             <% if @public %>
+               <%= link_to " ", "#", class: 'glyphicon glyphicon-eye-open supplement-tip pull-right', data: { toggle: :tooltip, placement: :top}, title: 'Public' %>
+             <% else %>
+               <%= link_to " ", "#", class: 'glyphicon glyphicon-lock supplement-tip pull-right', data: { toggle: :tooltip, placement: :top}, title: 'Private' %>
+             <% end %>
+             <!-- STACK DEFAULT -->
+             <% if @stack.default? %>
+                <%= link_to " ", "#", class: 'glyphicon glyphicon-flag supplement-tip default-tag pull-right', data: { toggle: :tooltip, placement: :left}, title: 'This is your default stack' %>
+             <% else %>
+              <%= link_to "Make Default", default_stack_stack_path(@stack), class: 'btn-xs btn-grey default-stack-button pull-right', :method => :put  %>
+             <% end %>
+
+          </h4>
+        </div>
+        <div id="collapseTop" class="panel-collapse collapse in">
+          <div class="panel-body">
+          <!-- SUPPLEMENT TABLE --> 
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Supplement</th>
+                  <th>Dose</th>
+                  <th>Frequency</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="js-stack-supplements" data-update-url="<%= sort_stack_supplements_url %>">
+              <!-- RENDER INDIVIDUAL STACK SUPPLEMENTS-->
+                <%= render @stack_supplements %>
+              </tbody>  
+            </table>
+            <!-- STACK PRIVACY -->
+            <div class="privacy-for-stacks pull-left">
+              <%= render partial: 'stack_supplements/stacks/form_privacy', locals: {stack: @stack}%>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+          <%= render_arrow_collapse_for("#accordion-top", "#collapseOne").html_safe %>
+              Important Details about this Stack
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <div class="panel-body">
+           <%= best_in_place @stack, :description, :classes => 'highlight_on_success', :type => :textarea %>
+          </div>
+        </div>
+      </div>
+      <!--END OF TAB 1 -->
+     </div>
+    </div>
+     <!-- BEGIN ACTIVTY FEED TAB-->
+     <div class="tab-pane fade" id="activity">
+        <div class="panel-group" id="accordion5">
+        <!--ACCORDIAN PANEL 2/MAIN BODY - VIDEO LINKS-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <%= render_arrow_collapse_for("#accordion5", "#collapseActivity").html_safe %>
+                Latest Friend Activity
+            </h4>
+          </div>
+          <div id="collapseActivity" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <%= render partial: 'activity_feed' %>
+            </div>
+          </div>
+          </div>
+        </div>
+     </div>
+     <!-- END ACTIVITY FEED -->
+     <!-- TAB 3 -->
+     <div class="tab-pane fade" id="pictures">
+        <div class="panel-group" id="accordion2">
+        <!--ACCORDIAN PANEL 3/MAIN BODY - VIDEO LINKS-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <%= render_arrow_collapse_for("#accordion2", "#collapseTwo").html_safe %>
+                Pictures
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <%= render partial: 'stack_supplements/user_attachments/new', locals: {user_attachment: @user_attachment} %>
+            </div>
+          </div>
+          </div>
+        </div>
+     </div>
+     <!-- END OF TAB -->
+     <div class="tab-pane fade" id="video">
+        <div class="panel-group" id="accordion3">
+        <!--ACCORDIAN PANEL 2/MAIN BODY - VIDEO LINKS-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <%= render_arrow_collapse_for("#accordion3", "#collapseThree").html_safe %>
+                Videos
+            </h4>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <%= render partial: 'videos/new', locals: {video: @video} %>
+            </div>
+          </div>
+          </div>
+        </div>
+     </div>
+     <!-- END OF TAB 3 -->
+      <div class="tab-pane fade" id="summary">
+          <!--SUMMARY OF ACTIVITY-->
+          <p><%= render partial: 'devise/registrations/summary/user_summary' %></p>
+      </div>
+
+    </div>
