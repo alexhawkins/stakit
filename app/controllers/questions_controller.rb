@@ -20,7 +20,6 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     @related_questions = collect_related_questions @topics
-    @stack = current_user.stacks.where(default: true).first
     get_and_show_answers
   end
 

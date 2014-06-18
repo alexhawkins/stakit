@@ -5,7 +5,7 @@
       <ul class="list-group">
         <!--loop  through each topic association with question object-->
         <% @latest_questions.each do |question| %>
-              <li class="list-group-item">
+              <li class="list-group-item ">
               <span class="badge badge-related-questions"><%= question.answers.count %></span>
               <strong><%= link_to truncate("#{question.topics.first.name}: #{question.name}", length: 100, omission: '... (continued)'), question_path(question) %></strong>
              </li>

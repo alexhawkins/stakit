@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:show, :following, :followers]  
   before_action :set_follow, only: [:show, :following, :followers]
   respond_to :html, :json
 
-
-  def show
+ def show
     @stacks = @user.stacks.includes(:stack_supplements).includes(:supplements)
     @activities = @user.activities.includes(:trackable)[0..20] #limit to last 20 activities
     @user_attachments = @user.user_attachments
   end
+ 
 
   def new
     @user = User.new

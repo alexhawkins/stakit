@@ -1,0 +1,22 @@
+  <div class="vote-names">
+    <%= pluralize(answer.answer_votes.count, 'Vote') %>
+    <% num = 0 %>
+    <% unless answer.answer_votes.empty? %>
+    by
+    <% answer.answer_votes.each do |vote| %>
+    <% num += 1 %>
+    <% if num <= 6  %>
+    <!--check to make sure there is more than 1 vote and it's not the last vote -->
+    <% if answer.answer_votes.count > 1 && answer.answer_votes.last != vote %>
+
+    <%= link_to vote.user.name, user_path(vote.user), class: 'user-popover-with-html', data: {toggle: :popover, placement: :top, container: :body, trigger: 'hover', content: "#{render_user_link_avatar_for(vote.user).html_safe}"},title: "<strong>#{pluralize (vote.user.followers.count), 'follower'}</strong>, <strong>#{pluralize (vote.user.stacks.count), 'stack'} </strong>" %>, 
+    <% else %>
+    <%= link_to vote.user.name, user_path(vote.user), class: 'user-popover-with-html', data: {toggle: :popover, placement: :top, container: :body, trigger: 'hover', content: "#{render_user_link_avatar_for(vote.user).html_safe}"},title: "<strong>#{pluralize (vote.user.followers.count), 'follower'}</strong>, <strong>#{pluralize (vote.user.stacks.count), 'stack'} </strong>" %>
+    <% end %>
+    <% end %>
+    <% end %>
+    <% if answer.answer_votes.count > 6 %>
+    and <%= (pluralize (answer.answer_votes.count - 6), 'other') %> 
+    <% end %>
+    <% end %>
+  </div>

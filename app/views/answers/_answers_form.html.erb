@@ -21,22 +21,25 @@
   <div class="panel-heading answer-heading">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#write" data-toggle="tab">Write</a></li>
-      <li><a href="#markdown" data-toggle="tab">Markdown</a></li>
+      <li class="active"><a href="#write-<%= question.id %>" data-toggle="tab">Write</a></li>
+      <li><a href="#markdown-<%= question.id %>" data-toggle="tab">Markdown</a></li>
     </ul>    
   </div>
   <!-- Tab panes -->
   <div class="tab-content">
-     <div class="tab-pane active" id="write">
+     <div class="tab-pane active" id="write-<%= question.id %>">
       <div class="panel-body answer-body">
         <%= form_group_tag(answer.errors[:body]) do %>
           <%= f.text_area :body, rows: 6, cols: 40, id: "answer-textarea-#{question.id}", class: 'form-control answer-textarea', placeholder: "#{answer_placeholder}" %>
         <% end %>
-
-        <%= f.submit "Add Answer", class: 'btn btn-primary pull-right' %>
+          <% if policy(answer).create? %>
+            <%= f.submit "Add Answer", class: 'btn btn-primary pull-right' %>
+          <% else %>
+            <%= link_to "Add Answer", user_session_path, class: 'btn btn-primary pull-right' %>
+          <% end %>
       </div>
      </div>
-    <div class="tab-pane" id="markdown">
+    <div class="tab-pane" id="markdown-<%= question.id %>">
      <div class="panel-body answer-body">
       Markdown
      </div>

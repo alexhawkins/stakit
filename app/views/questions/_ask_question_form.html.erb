@@ -24,9 +24,13 @@
            <%= hidden_field_tag "topic_id", 3 %>
       </div>
       <div class="modal-footer">
+       <% if policy(question).create? %>
         <button type="button" class="btn btn-default" data-dismiss="modal">Exit</button>
-        <%= f.submit "Ask Question", class: "btn btn-primary" %>
-    </div>
+          <%= f.submit "Ask Question", class: "btn btn-primary" %>
+       <% else %>
+          <%= link_to "Ask Question", user_session_path, class: 'btn btn-primary' %>
+       <% end %>
+      </div>
   </div>
 </div>
 <% end %>

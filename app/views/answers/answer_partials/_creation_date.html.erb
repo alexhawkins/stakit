@@ -1,0 +1,7 @@
+<span>   
+    <%= link_to "#{time_ago_in_words(answer.created_at)} ago", question_answer_path(@question, answer), class: 'label label-default' %>
+    <!--DELETE BUTTON-->
+    <% if policy(answer).destroy? %>
+    <%= link_to "Delete", question_answer_path(@question, answer), method: :delete, class: 'label label-danger', remote: true %>
+    <% end %>
+</span>

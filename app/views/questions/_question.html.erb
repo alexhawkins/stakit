@@ -3,13 +3,16 @@
        <!--ADD FOLLOW HERE LATER -->
         <div class="media-body">
         <!-- QUESTION FOLLOW -->
+       <% if policy(question).edit? %>
         <span id="js-follow">
             <%= render partial: 'follow_questions/follow_questions', locals: { question: question } %>
          </span>
+        <% end %>
           <div class="question-added-section">
           <!--QUESTION ADDED TO WHAT TOPIC? -->
+            <% if question.topics.present? %>
             Question added to topic <%= link_to question.topics.first.name, topic_path(question.topics.first),  class: "label label-default" %> &bull; <%= link_to "#{time_ago_in_words(question.created_at)} ago", question_path(question) %> 
-
+            <% end %>
             <!--DELETE BUTTON-->
             <% if policy(question).destroy? %>
               &bull; <%= link_to "Delete", question_path(question), method: :delete, remote: true, class: 'label label-danger' %>
@@ -17,11 +20,12 @@
 
           </div>
            <!-- QUESTION TITLE + LINK -->
-          <h3 class="media-heading question-title-space">
+          <h4 class="media-heading question-title-space">
             <strong><%= link_to question.name,  question_path(question) %></strong>
-          </h3>
+          </h4>
           <!-- QUESTION BODY -->
-          <%= question.description %>
+
+          <%= question.description if question.description? %>
           <!-- ANSWER FORM -->
           <%= content_tag :div, id: "js-question-answer-#{question.id}" do %>
               <button type="button" class="btn btn-green answer-btn" data-toggle="collapse" data-target="#js-button-answer-<%= question.id %>">

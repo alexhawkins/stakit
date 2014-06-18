@@ -8,15 +8,16 @@
     <% end %>
     <!-- QUESTION TITLE & DETAILS-->
     <div>
-      <span id="js-follow">
-        <%= render partial: 'follow_questions/follow_questions', locals: { question: @question } %>
-      </span>
+      <% if policy(@question).edit? %>
+        <span id="js-follow">
+          <%= render partial: 'follow_questions/follow_questions', locals: { question: @question } %>
+        </span>
+      <% end %>
 
       <span id="js-edit-question">
       <%= render partial: 'questions/question_title', locals: { question: @question } %>
      </span>
     </div>
-      <!-- FOLLOW QUESTION -->
    
     <!-- ANSWER COUNT -->
     <div class="answers-lead">
@@ -24,7 +25,9 @@
         <%= pluralize(@question.answers.count, 'Answer') %>
       </span>
        <!-- FOLLOW QUESTION TEXT -->
-      <%= render partial: 'follow_questions/follow_questions_text', locals: { question: @question } %>
+      <% if policy(@question).edit? %>
+        <%= render partial: 'follow_questions/follow_questions_text', locals: { question: @question } %>
+      <% end %>
     </div>
 
     <!-- ANSWER FORM -->

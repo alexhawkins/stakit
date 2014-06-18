@@ -1,82 +1,37 @@
-<p>
-<%= content_tag :div, class: 'media', id: "answer-#{answer.id}" do %>
-      <a class="pull-left" href="#"
+<div class="panel panel-default">
+  <div class="panel-body">
+   <%= content_tag :div, class: 'media', id: "answer-#{answer.id}" do %>
+      <a class="pull-left" href="#">
       <!--VOTE COUNT FOR ANSWER -->
-      <%= render partial: 'answer_votes/voter', locals: { question: @question, answer: answer } %>
+        <%= render partial: 'answer_votes/voter', locals: { question: @question, answer: answer } %>
       </a>
 
       <div class="media-body">
-        <h5 class="media-heading"> 
-        <!-- USER NAME and INFO OF ANSWER -->
-          <%= link_to answer.user.name, user_path(answer.user)%>
-          <span class="short-bio"><%="— #{answer.user.shortbio}" if answer.user.shortbio? %></span>
-          
-          <!-- RENDER A TINY AVATAR FOR THE USER OF THIS ANSWER -->
-         <%= link_to render_follower_avatar_for(answer.user), user_path(answer.user), class: 'pull-right answer-image supplement-tip', data: { toggle: :tooltip, placement: :left}, title: "#{answer.user.name} profile" %>
-          </h5>
-
+         <!-- USER AVATAR + INFO -->
+         <%= render partial: 'answers/answer_partials/user_avatar_info', locals: { answer: answer } %>
+        <!-- END USER AVATAR -->
        
         <!-- VOTERS NAME -->
-        <div class="vote-names">
-          <%= pluralize(answer.answer_votes.count, 'Vote') %>
-            <% num = 0 %>
-          <% unless answer.answer_votes.empty? %>
-            by
-            <% answer.answer_votes.each do |vote| %>
-                <% num += 1 %>
-                <% if num <= 6  %>
-              <!--check to make sure there is more than 1 vote and it's not the last vote -->
-                  <% if answer.answer_votes.count > 1 && answer.answer_votes.last != vote %>
+         <%= render partial: 'answers/answer_partials/voter_names', locals: { answer: answer } %>
+        <!-- END VOTER NAMES -->
 
-                  <%= link_to vote.user.name, user_path(vote.user), class: 'user-popover-with-html', data: {toggle: :popover, animation: false, placement: :top, container: :body, trigger: 'hover', content: "#{render_user_link_avatar_for(vote.user).html_safe}"},title: "<strong>#{pluralize (vote.user.followers.count), 'follower'}</strong>, <strong>#{pluralize (vote.user.stacks.count), 'stack'} </strong>" %>, 
-                  <% else %>
-                  <%= link_to vote.user.name, user_path(vote.user), class: 'user-popover-with-html', data: {toggle: :popover, animation: false, placement: :top, container: :body, trigger: 'hover', content: "#{render_user_link_avatar_for(vote.user).html_safe}"},title: "<strong>#{pluralize (vote.user.followers.count), 'follower'}</strong>, <strong>#{pluralize (vote.user.stacks.count), 'stack'} </strong>" %>
-                  <% end %>
-                <% end %>
-            <% end %>
-            <% if answer.answer_votes.count > 6 %>
-                   and <%= (pluralize (answer.answer_votes.count - 6), 'other') %> 
-            <% end %>
-          <% end %>
-        </div>
         <!--ANSWER BODY -->
-        <div class="answer-body-text">
-        <% if policy(answer).destroy? %>
-          <%= best_in_place [@question, answer], :body, type: :textarea %>
-        <% else %>
-          <%= markdown (answer.body) %>
-        <% end %>
-        </div>
-
-        <p>
-          <!--DATE ANSWER WAS CREATED-->
-           <span>
-            <%= link_to "#{time_ago_in_words(answer.created_at)} ago", question_answer_path(@question, answer), class: 'label label-default' %>
-          <!--DELETE BUTTON-->
-           <% if policy(answer).destroy? %>
-            <%= link_to "Delete", question_answer_path(@question, answer), method: :delete, class: 'label label-danger', remote: true %>
-           <% end %>
-          </span>
-        </p>
-
-        <!-- USER DEFAULT SUPPLEMENTS -->      
-          <div class="panel-group answer-feed-info" id="accordion-user-supplements">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <%= render_arrow_collapse_for("#accordion-user-supplements", "#collapseUser-#{answer.id}").html_safe %>
-                    View My Current Stack
-                </h4>
-              </div>
-              <div id="collapseUser-<%= answer.id %>" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <% answer.user.stacks.where(default: true).first.supplements.each do |supplement| %>
-                    <span class="unique-supplement"><%= link_to supplement.name, '#',  class: 'label label-info' %></span>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
+         <%= render partial: 'answers/answer_partials/answer_body', locals: { question: @question, answer: answer } %>
+        <!-- END ANSWER BODY -->
+        
+        <!--DATE ANSWER WAS CREATED-->
+        <%= render partial: 'answers/answer_partials/creation_date', locals: { question: @question, answer: answer } %>
+        <!--END DATE CREATED -->
       </div>
-  <% end %>
-</p>
+   <% end %>
+  </div>
+  <!--FOOTER-->
+  <div class="panel-footer">
+      <!--USER STACKS -->
+      <div>
+        <%= render partial: 'answers/answer_partials/answer_user_stacks', locals: { answer: answer } %>       
+      </div>
+      <!-- END USER STACK -->
+  </div>
+  <!--END FOOTER-->
+</div>

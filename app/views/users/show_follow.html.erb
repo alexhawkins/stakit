@@ -16,20 +16,20 @@
    <!-- Location Info/ Joined Info-->
    <div class="page-header squashed-header">
       <!--SHORTBIO-->
-      <% if current_user.shortbio? %>
+      <% if @user.shortbio? %>
         <h5>
         <%= link_to "  ", "#", class: 'glyphicon glyphicon-book' %> 
-        <strong><%= current_user.shortbio %></strong>
+        <strong><%= @user.shortbio %></strong>
         </h5>
       <% end %>
       <!--WEBSITE URL -->
-      <% if current_user.url? %>
+      <% if @user.url? %>
         <h5>
         <%= link_to "  ", "#", class: 'glyphicon glyphicon-globe' %> 
-        <strong><%= link_to strip_url(current_user.url), "http://#{current_user.url}" %></strong>
+        <strong><%= link_to strip_url(@user.url), "http://#{@user.url}" %></strong>
         </h5>
       <% end %>  
-      <% if current_user.shortbio? || current_user.url? %>
+      <% if @user.shortbio? || @user.url? %>
         <hr>
       <% end %>
       <h5>

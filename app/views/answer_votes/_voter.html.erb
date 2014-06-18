@@ -1,3 +1,4 @@
+<% if policy(answer).create? %>
 <div class="vote-arrows pull-left">
   <div ><%= link_to " ", question_answer_up_vote_path(question, answer), class: 'glyphicon glyphicon-hand-up supplement-tip', data: { toggle: :tooltip, placement: :top}, title: "Vote Up", remote: true %></div>
   <strong>
@@ -7,3 +8,14 @@
   </strong>
   <div><%= link_to " ",  question_answer_down_vote_path(question, answer), class: 'glyphicon glyphicon-hand-down supplement-tip', data: { toggle: :tooltip, placement: :bottom}, title: "Vote Down", remote: true %></div>
 </div>
+<% else %>
+  <div class="vote-arrows pull-left">
+    <div ><%= link_to " ", user_session_path, class: 'glyphicon glyphicon-hand-up supplement-tip', data: { toggle: :tooltip, placement: :top}, title: "Vote Up" %></div>
+    <strong>
+      <%= content_tag :div, id: "answer-points-#{answer.id}" do %>
+        <%= answer.points %>
+      <% end %>
+    </strong>
+    <div><%= link_to " ", user_session_path, class: 'glyphicon glyphicon-hand-down supplement-tip', data: { toggle: :tooltip, placement: :bottom}, title: "Vote Down" %></div>
+  </div>
+<% end %>
