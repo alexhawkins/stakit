@@ -1,14 +1,30 @@
 <div class="row">
-  <div class="col-md-8">
-    <h1 class="page-header"><strong>Questions</strong></h1>
-    
-
-     <div class="js-questions", id="js-questions">
-          <%= render @questions %>
-     </div>
-        <%= will_paginate @questions %>
+  <!--LEFT SIDE BAR-->
+  <div class="col-md-3">
+    <div class="left-side-questions">
+        <%= render 'questions/question_main_sidebars/left_side_main' %>
+    </div>
   </div>
- <div class="col-md-4">
- </div>
+
+  <div class="col-md-6">
+     <!--QUESTIONS-->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Questions</h3>
+      </div>
+      <div class="panel-body">
+        <div class="js-questions", id="js-questions">
+          <%= render @questions %>
+        </div>
+          <%= will_paginate @questions %>
+      </div>
+    </div>
+  </div>
+  <!--RIGHT SIDEBAR-->
+  <div class="col-md-3">
+    <div class="right-side-questions">
+       <%= render 'questions/question_main_sidebars/right_side_main' %>
+    </div>
+  </div>
 
 </div>

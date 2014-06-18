@@ -37,17 +37,17 @@ class StackSupplementsController < ApplicationController
   # POST /stack_supplements.json
   def create
     #prevent user form creating unlimited number of stack_supplements
-    unless @stack.stack_supplements.count > 40
+    unless @stack.stack_supplements.count > 50
      @stack_supplement = @stack.stack_supplements.build(stack_supplement_params)
     #set initial stack dose to default stack dose/RDA
     #set default frequency
-     @stack_supplement.frequency_id = 1
-     @stack_supplement.dose = @stack_supplement.supplement.default_dose
     end
     @new_stack_supplement = StackSupplement.new
 
     respond_to do |format|
       if @stack_supplement.save
+        @stack_supplement.update_attribute(:frequency_id, 1)
+        @stack_supplement.update_attribute(:dose, @stack_supplement.supplement.default_dose)
         format.html { redirect_to :back, notice: 'Stack supplement was successfully created.' }
         format.json { render action: 'show', status: :created, location: [@stack, @stack_supplement] }
         format.js
@@ -66,9 +66,11 @@ class StackSupplementsController < ApplicationController
       if @stack_supplement.update(stack_supplement_params)
         format.html { redirect_to [@stack, @stack_supplement], notice: 'Stack supplement was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: 'edit' }
         format.json { render json: @stack_supplement.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

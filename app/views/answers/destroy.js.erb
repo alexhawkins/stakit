@@ -9,3 +9,4 @@ $('#answer-' +<%= @answer.id %>).prepend("<div class='alert alert-error'><%= fla
 <% end %>
 $('.new_answer').html("<%= escape_javascript(render partial: 'answers/answers_form', locals: { question: @question, answer: @new_answer }) %>");
 $('.user-popover-with-html').popover({ html : true });
+

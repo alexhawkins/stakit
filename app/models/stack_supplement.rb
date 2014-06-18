@@ -17,7 +17,6 @@ validates :stack,
 validates :supplement, 
           presence: true, 
           uniqueness: { scope: :stack_id, case_sensitive: false }
-validates :supplement_name, presence: true
 
 
   def supplement_name

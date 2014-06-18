@@ -1,6 +1,4 @@
 Stakit::Application.routes.draw do
-  resources :search_suggestions
-
   resources :videos
   resources :activities
   resources :user_attachments

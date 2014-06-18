@@ -1,7 +1,7 @@
 class StacksController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_stack, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :json
+  respond_to :html, :json, :js
 
   # GET /stacks
   # GET /stacks.json
@@ -48,6 +48,7 @@ class StacksController < ApplicationController
         else
           format.html { render action: 'new' }
           format.json { render json: @stack.errors, status: :unprocessable_entity }
+          format.js
         end
       end
     end

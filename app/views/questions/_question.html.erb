@@ -24,10 +24,15 @@
           <%= question.description %>
           <!-- ANSWER FORM -->
           <%= content_tag :div, id: "js-question-answer-#{question.id}" do %>
-            <p>
+              <button type="button" class="btn btn-green answer-btn" data-toggle="collapse" data-target="#js-button-answer-<%= question.id %>">
+                  Click to Answer
+              </button>
 
-            <%= render partial: 'answers/answers_form', locals: { question: question, answer: @new_answer} %>
-            </p>
+              <div id="js-button-answer-<%=question.id %>" class="collapse">
+               <div class="user-answer-form">
+                 <%= render partial: 'answers/answers_form', locals: { question: question, answer: @new_answer} %>
+               </div>
+              </div>
           <% end %>
 
           <!--LINKS: FOLLOW/ ANSWER COUNT / SHARE-->

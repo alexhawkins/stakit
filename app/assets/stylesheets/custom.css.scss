@@ -21,6 +21,8 @@ $brand-danger-hover: darken($brand-danger, 15.5%);
 $brand-red: #bd362f;
 $brand-red-hover: darken($brand-red, 9.5%);
 
+//get rid of outline on focus
+
 //BASIC ELEMENT OVERIDES
 body {
   //background-color: $purple;
@@ -39,6 +41,11 @@ a {
   margin-top: 2px;
 }
 
+.btn{
+  &:hover, &:active, &:focus{
+  outline: none !important;
+  }
+}
 
 .btn-success {
     //box shadow
@@ -153,10 +160,12 @@ a {
 
 
   .btn-green:hover,
+  .btn-green:focus,
   .btn-green:active,
   .btn-green.active,
   .btn-green.disabled,
   .btn-green[disabled] {
+    outline: none;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.85);
     color: #fff;
     background-image: -ms-linear-gradient(top, #62c462, darken($brand-success, 5.5%));
@@ -364,4 +373,11 @@ a {
 
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
   background-color: $brand-royal-blue;
+}
+//PAGINATION COLORS
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+  background-color: $brand-royal-blue;
+}
+.pagination > li > a, .pagination > li > span {
+  color:  $brand-royal-blue;
 }

@@ -1,11 +1,12 @@
 class QuestionsController < ApplicationController
-  respond_to :html, :js
+  respond_to :html, :json, :js
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.text_search(params[:query]).paginate(page: params[:page], per_page: 5)
+    @questions = Question.text_search(params[:query]).includes(:follow_questions).includes(:question_topics).paginate(page: params[:page], per_page: 10)
     #includes(:user).includes(:answers).includes(:follow_questions).paginate(page: params[:page], per_page: 5)
+    @latest_questions = Question.all.load.order('created_at DESC')[0..9]
     @new_question = Question.new
     @new_answer = Answer.new
     respond_to do |format|

@@ -1,8 +1,13 @@
+<% if @stack_supplement.valid? %>
 $('#js-stack-supplements').prepend("<%= escape_javascript(render(@stack_supplement)) %>");
 $('#js-stack-supplements-' +<%= @stack_supplement.id %>).hide().fadeIn(500);
 $('.new_stack_supplement').html("<%= escape_javascript(render partial: 'stack_supplements/form', locals: { stack: @stack, stack_supplement: @new_stack_supplement }) %>");
 $('#stack-count-' +<%= @stack.id %>).html("<%= @stack.supplements.count %>");
 //CALL AGAIN AFTER NEW SUPPLEMENT IS CREATED
+<% else %>
+  alert("<%= j @stack_supplement.errors.full_messages.join(', ').html_safe %>");
+<% end %>
+
 $('#stack_supplement_supplement_name').autocomplete({
   source: $('#stack_supplement_supplement_name').data('autocomplete-source'),
   selectFirst: true,
