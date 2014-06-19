@@ -1,5 +1,5 @@
 class FollowUserMailer < ActionMailer::Base
-  default from: "alexhawkins.me@gmail.com"
+  default from: "stakkit.com@gmail.com"
 
   def new_auser(user)
     @user = user

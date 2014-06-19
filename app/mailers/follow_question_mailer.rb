@@ -1,5 +1,5 @@
 class FollowQuestionMailer < ActionMailer::Base
-  default from: "alexhawkins.me@gmail.com"
+  default from: "stakkit.com@gmail.com"
 
   def new_answer(user, question, answer)
     @user = user
