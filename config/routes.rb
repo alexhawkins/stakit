@@ -48,5 +48,5 @@ Stakit::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :favorite_stacks, only: [:create, :destroy]
 
-  root to: 'stacks#index'
+  root to: 'questions#index'
 end
