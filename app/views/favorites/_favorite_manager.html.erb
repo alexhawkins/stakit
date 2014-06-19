@@ -1,4 +1,4 @@
-<% if policy(Favorite.new).create? && current_user != @user %>
+<% if policy(Favorite.new).create? && current_user %>
   <span class = "favorite-stacks" %>
       <% if favorite = current_user.favorited(stack) %>
         <%= link_to "", [stack, favorite], method: :delete, class: 'glyphicon glyphicon-star default-tag supplement-tip pull-right star-size-medium', data: { toggle: :tooltip, placement: :left }, title: 'Unfavorite this stack' %>
