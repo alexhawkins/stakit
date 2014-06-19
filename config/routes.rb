@@ -13,6 +13,7 @@ Stakit::Application.routes.draw do
   end
 
   resources :stacks do
+    resources :favorites, only: [:create, :destroy]
     resources :stack_supplements
     # route for updating default stack on specific stack id
     # note that we use member to update/act on a singular object like stacks/1/default_stack
@@ -46,7 +47,6 @@ Stakit::Application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
-  resources :favorite_stacks, only: [:create, :destroy]
 
   root to: 'questions#index'
 end

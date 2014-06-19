@@ -1,0 +1,9 @@
+<% if signed_in? %>
+  <span class = "favorite-stacks" %>
+      <% if favorite = current_user.favorited(stack) %>
+        <%= link_to "", [stack, favorite], method: :delete, class: 'glyphicon glyphicon-star default-tag supplement-tip pull-right', data: { toggle: :tooltip, placement: :left }, title: 'Unfavorite this stack' %>
+      <% else %>
+        <%= link_to "", [stack, Favorite.new], method: :post, class: 'glyphicon glyphicon-star-empty supplement-tip default-tag pull-right', data: { toggle: :tooltip, placement: :left }, title: 'Favorite this stack' %>
+      <% end %>
+    </span>
+<% end %>

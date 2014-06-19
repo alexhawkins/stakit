@@ -145,9 +145,7 @@
                     <%= stack.name %>
                     <!--DOUBLE CHECK TO MAKE SURE THIS IS THE DEFAULT USER STACK -->
                     <!--IF IT IS, FLAG IT -->
-                    <% if stack.default? %>
-                      <%= link_to " ", "#", class: 'glyphicon glyphicon-flag supplement-tip default-tag pull-right', data: { toggle: :tooltip, placement: :left}, title: 'User default stack' %>
-                    <% end %>
+                   <%= render partial: 'favorites/favorite', locals: { stack: stack } %>
                   </h4>
                 </div>
                 <div id="collapseTop-<%= stack.id %>" class="panel-collapse collapse in ">
@@ -168,6 +166,8 @@
                        <% end %>
                       </tbody>  
                     </table>
+                    <div %>  
+                    </div>
                   </div>
                 </div>
                </div>
@@ -185,6 +185,7 @@
                   <!-- ARROW COLLAPSE -->
                   <%= render_arrow_collapse_for("#accordion-top", "#collapseTop-#{stack.id}").html_safe %>
                     <%= stack.name %>
+                  <%= render partial: 'favorites/favorite', locals: { stack: stack } %>
                   </h4>
                 </div>
                 <% if check == 0 %>
@@ -210,6 +211,8 @@
                        <% end %>
                       </tbody>  
                     </table>
+
+  
                   </div>
                 </div>
                </div>
