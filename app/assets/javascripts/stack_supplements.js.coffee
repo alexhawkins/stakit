@@ -12,11 +12,7 @@ jQuery ->
     messages:
        noResults: ""
        results: ->
-#SORTIING
-  $('#js-stack-supplements').sortable
-    axis: 'y'
-    update: ->
-      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+        
 # FOR CHOSEN SELECTION FORMS
   $('#stack_supplement_supplement_id').chosen()
 # TOOLTIPS

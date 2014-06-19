@@ -86,13 +86,6 @@ class StackSupplementsController < ApplicationController
     end
   end
 
-  def sort
-      params[:stack_supplement].each_with_index do |id, index| 
-        StackSupplement.where(id: id).update_all({position: index+1})
-      end
-      render nothing: true
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
 
