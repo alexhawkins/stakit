@@ -8,7 +8,7 @@
     <% end %>
     <!-- QUESTION TITLE & DETAILS-->
     <div>
-      <% if policy(@question).edit? %>
+      <% if policy(@question).create? %>
         <span id="js-follow">
           <%= render partial: 'follow_questions/follow_questions', locals: { question: @question } %>
         </span>
@@ -25,7 +25,7 @@
         <%= pluralize(@question.answers.count, 'Answer') %>
       </span>
        <!-- FOLLOW QUESTION TEXT -->
-      <% if policy(@question).edit? %>
+      <% if policy(@question).create? %>
         <%= render partial: 'follow_questions/follow_questions_text', locals: { question: @question } %>
       <% end %>
     </div>

@@ -3,7 +3,7 @@
        <!--ADD FOLLOW HERE LATER -->
         <div class="media-body">
         <!-- QUESTION FOLLOW -->
-       <% if policy(question).edit? %>
+       <% if policy(question).create? %>
         <span id="js-follow">
             <%= render partial: 'follow_questions/follow_questions', locals: { question: question } %>
          </span>
