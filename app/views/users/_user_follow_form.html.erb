@@ -1,11 +1,13 @@
-<% if current_user != user %>
-  <div id="user_follow_form">
-    <% if current_user.following?(user) %>
-      <%= render partial: 'users/user_unfollow', locals: { user: user } %>
-    <% else %>
-       <%= render partial: 'users/user_follow', locals: { user: user } %>
-    <% end %>
-  </div>
-<% else %>
-  <%= link_to "That's me!", '#', class: "btn btn-green" %>
+<% if signed_in? %>
+  <% if current_user != user %>
+    <div id="user_follow_form">
+      <% if current_user.following?(user) %>
+        <%= render partial: 'users/user_unfollow', locals: { user: user } %>
+      <% else %>
+         <%= render partial: 'users/user_follow', locals: { user: user } %>
+      <% end %>
+    </div>
+  <% else %>
+    <%= link_to "That's me!", '#', class: "btn btn-green" %>
+  <% end %>
 <% end %>
