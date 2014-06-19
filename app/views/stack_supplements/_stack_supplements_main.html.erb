@@ -32,6 +32,7 @@
           <h4 class="panel-title">
           <%= render_arrow_collapse_for("#accordion-top", "#collapseTop").html_safe %>
              <%= @stack.name %>
+              <span class="badge favorite-badge"><%= pluralize(@stack.favorites.count, 'Favorite') %></span>
              <!-- STACK PRIVACY -->
              <% if @public %>
                <%= link_to " ", "#", class: 'glyphicon glyphicon-eye-open supplement-tip pull-right', data: { toggle: :tooltip, placement: :top}, title: 'Public' %>

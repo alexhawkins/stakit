@@ -143,6 +143,7 @@
                   <!-- ARROW COLLAPSE -->
                   <%= render_arrow_collapse_for("#accordion-top", "#collapseTop-#{stack.id}").html_safe %>
                     <%= stack.name %>
+                     <span class="badge favorite-badge"><%= pluralize(stack.favorites.count, 'Favorite') %></span>
                     <!--DOUBLE CHECK TO MAKE SURE THIS IS THE DEFAULT USER STACK -->
                     <!--IF IT IS, FLAG IT -->
                    <%= render partial: 'favorites/favorite', locals: { stack: stack } %>
@@ -185,6 +186,7 @@
                   <!-- ARROW COLLAPSE -->
                   <%= render_arrow_collapse_for("#accordion-top", "#collapseTop-#{stack.id}").html_safe %>
                     <%= stack.name %>
+                    <span class="badge favorite-badge"><%= pluralize(stack.favorites.count, 'Favorite') %></span>
                   <%= render partial: 'favorites/favorite', locals: { stack: stack } %>
                   </h4>
                 </div>

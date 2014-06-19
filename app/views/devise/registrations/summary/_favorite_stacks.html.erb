@@ -1,0 +1,37 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>My Favorite Stacks</th>
+      <th>Favorited by</th>
+      <th>Comments</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% num = 1 %>
+  <% current_user.favorites.each do |favorite| %>
+      <tbody>
+          <tr>
+            <td><%= num %></td>
+            <td>
+              <div><strong>
+                <%= link_to truncate(favorite.stack.name, length: 75), user_path(favorite.stack.user, anchor: "stacks") %>
+              </strong></div>
+              <div class="question-asked-date">
+                <small>added by  <%= link_to favorite.stack.user.name, user_path(favorite.stack.user), class: 'user-popover-with-html', data: {toggle: :popover, placement: :top, container: :body, trigger: 'hover', content: "#{render_user_link_avatar_for(favorite.stack.user).html_safe}"},title: "<strong>#{pluralize (favorite.stack.user.followers.count), 'follower'}</strong>, <strong>#{pluralize (favorite.stack.user.stacks.count), 'stack'} </strong>" %> 
+                </small>
+              </div>
+            </td>
+            <td>
+              <strong><%= pluralize(Favorite.where(stack_id: favorite.stack.id).count, 'person') %></strong></td>
+            <td>
+              <strong>10</strong>
+            </td>
+            <td>
+              <%= render partial: 'favorites/favorite', locals: { stack: favorite.stack } %>
+           </td>
+          </tr>
+        </tbody>
+    <% num += 1 %>
+  <% end %>
+</table>

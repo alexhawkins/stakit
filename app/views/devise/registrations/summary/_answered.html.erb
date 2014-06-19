@@ -15,7 +15,7 @@
             <td><%= num %></td>
             <td>
               <div><strong>
-              <%= link_to truncate( answer.body, :length => 125), question_path(answer.question, anchor: "answer-#{answer.id}") %></strong>
+              <%= link_to truncate(answer.body, length: 125), question_path(answer.question, anchor: "answer-#{answer.id}") %></strong>
               </div>
               <div class="question-asked-date"><small>answered <%= time_ago_in_words(answer.created_at)%> ago</small></div>
             </td>

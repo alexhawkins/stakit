@@ -1,11 +1,15 @@
+<% stack = answer.user.stacks.where(default: true).first %>
 <button type="button" class="btn btn-xs btn-green answer-btn" data-toggle="collapse" data-target="#js-user-stack-<%= answer.id %>">
   click to see my latest stack
 </button>
-
 <div id="js-user-stack-<%=answer.id %>" class="collapse">
   <div class="user-answer-form">
-    <% answer.user.stacks.where(default: true).first.supplements.each do |supplement| %>
+    <div class = "star-size">
+      <%= render partial: 'favorites/favorite', locals: { stack: stack } %>
+    </div>
+    <% stack.supplements.each do |supplement| %>
       <span class="unique-supplement"><%= link_to supplement.name, '#',  class: 'label label-info' %></span>
     <% end %>
   </div>
+   <span class="badge favorite-stack-on-questions"><%= pluralize(stack.favorites.count, 'Favorite') %></span>
 </div>
