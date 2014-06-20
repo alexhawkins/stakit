@@ -8,7 +8,6 @@ jQuery ->
     source: $("#stack_supplement_supplement_name").data('autocomplete-source')
     selectFirst: true #here
     minLength: 2
-    delay: 500
     messages:
        noResults: ""
        results: ->
