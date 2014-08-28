@@ -9,7 +9,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <%= render_arrow_collapse_for("#accordion", "#collapseMyStacks").html_safe %>
-              My Patients
+              My Stacks
                <%= link_to " ", stacks_path, class: 'glyphicon glyphicon-th-list supplement-tip pull-right', data: { toggle: :tooltip, placement: :left}, title: 'Manage Stacks' %>
           </h4>
         </div>
@@ -51,7 +51,7 @@
           <% end %> 
           <!-- MANAGE MY STACKS -->
             <div class="manage-stack-margin-space">
-              <%= link_to "Manage my Patients", stacks_path, class: 'btn btn-default btn-sm pull-right' %>
+              <%= link_to "Manage my Stacks", stacks_path, class: 'btn btn-default btn-sm pull-right' %>
             </div> 
           </div>
         </div>
@@ -63,7 +63,7 @@
           <div class="panel-heading">
             <h4 class="panel-title">
               <%= render_arrow_collapse_for("#accordion3", "#collapseNewStack").html_safe %>
-                Add New Patient
+                Add New Stack
             </h4>
           </div>
           <div id="collapseNewStack" class="panel-collapse collapse in">
